@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-fixed-variant": "#584400",
+                        "on-tertiary-container": "#545656",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "primary": "#ffe5a0",
+                        "on-background": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "tertiary-container": "#cbcbcb",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "secondary": "#c8c6c5",
+                        "surface-bright": "#3a3939",
+                        "surface-tint": "#f0c110",
+                        "secondary-fixed": "#e4e2e1",
+                        "error-container": "#93000a",
+                        "tertiary": "#e7e7e7",
+                        "on-secondary": "#303030",
+                        "on-error": "#690005",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary": "#2f3131",
+                        "surface-container-highest": "#353534",
+                        "surface-variant": "#353534",
+                        "on-primary-container": "#695200",
+                        "primary-fixed-dim": "#f0c110",
+                        "on-primary-fixed": "#241a00",
+                        "outline": "#9a9078",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-secondary-container": "#b7b5b4",
+                        "primary-fixed": "#ffe08b",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131313",
+                        "on-surface-variant": "#d1c5ac",
+                        "on-surface": "#e5e2e1",
+                        "on-primary": "#3d2f00",
+                        "outline-variant": "#4e4633",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "secondary-container": "#474746",
+                        "inverse-primary": "#745b00",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "primary-container": "#f5c518",
+                        "inverse-on-surface": "#313030",
+                        "surface-container": "#201f1f",
+                        "surface": "#131313"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .vitreous-glass {
+            background: rgba(58, 57, 57, 0.8);
+            backdrop-filter: blur(24px);
+            box-shadow: inset 0 1px 1px rgba(245, 197, 24, 0.1);
+        }
+        .forge-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(78, 70, 51, 0.1) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(78, 70, 51, 0.1) 1px, transparent 1px);
+        }
+        .molten-gradient {
+            background: linear-gradient(135deg, #ffe5a0 0%, #f5c518 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-[#131313]/80 dark:bg-[#131313]/80 backdrop-blur-xl border-b border-[#F5C518]/10 fixed top-0 w-full z-50 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-black tracking-tighter text-[#F5C518]">CodeCrafters</div>
+<div class="hidden md:flex space-x-8 font-['Inter'] font-medium tracking-tight uppercase text-sm">
+<a class="text-[#F5C518] border-b-2 border-[#F5C518] pb-1 transition-all duration-300" href="#">Services</a>
+<a class="text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">AI Forge</a>
+<a class="text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">Odoo Solutions</a>
+<a class="text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">Case Studies</a>
+</div>
+<button class="bg-[#F5C518] text-[#3d2f00] px-6 py-2 rounded-sm font-bold text-sm tracking-tight uppercase hover:bg-primary transition-all duration-300 scale-95 active:scale-90">
+                Book a free audit
+            </button>
+</div>
+</nav>
+<main class="pt-24 min-h-screen">
+<!-- Hero Section -->
+<section class="relative px-8 py-24 max-w-7xl mx-auto overflow-hidden">
+<div class="forge-grid absolute inset-0 -z-10"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+<div class="md:col-span-2">
+<span class="text-primary-container font-label text-sm tracking-[0.2em] uppercase mb-4 block">Engineered Solutions</span>
+<h1 class="text-6xl md:text-8xl font-black tracking-tighter text-on-surface leading-none mb-8">
+                        FORGING THE <br/><span class="text-primary-container">DIGITAL EDGE</span>
+</h1>
+<p class="text-on-surface-variant text-xl leading-relaxed max-w-2xl">
+                        High-precision architectural code designed for elite enterprises. We specialize in transforming complex business chaos into streamlined, automated infrastructure.
+                    </p>
+</div>
+<div class="relative aspect-[2/1] md:aspect-square overflow-hidden rounded-sm border border-outline-variant/20">
+<img class="w-full h-full object-cover grayscale contrast-125 opacity-70" data-alt="abstract 3d render of flowing liquid gold and dark obsidian geometry with sharp light reflections and technical precision" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0tRR2OcmoL7Sp3-SMXcgtdoi1r7TW2kiWdt2HEGv5IdaSCjqM9wGmbpxiZbUA_vpXTlEd_Ta71kioNyPUxASMnZFLi3vs8AH6-GXEd-MH58Dgj5ds-OYA6NfKEiWH272vjuKJ8ouS_wcTW1M5-ECzUtn5IBBVmWalwDtVD7xJolbLMp-lupcCBUaYT5nsrV1lDRFdGmDSzQP1m3EK2ef2DEpp75UWRgcUrarexckNazbw5w08-r4_uUliWOPlFaPud1sRLVQG0xQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+</div>
+</div>
+</section>
+<!-- Main Services Bento Grid -->
+<section class="px-8 py-24 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Odoo Implementation (2/3 width) -->
+<div class="md:col-span-8 vitreous-glass p-12 flex flex-col justify-between border border-outline-variant/10 group">
+<div>
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="settings_input_component">settings_input_component</span>
+<h2 class="text-4xl font-bold tracking-tighter text-on-surface">Odoo Implementation</h2>
+</div>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-12 max-w-xl">
+                            Architecting seamless ERP ecosystems. We go beyond setup, tailoring Odoo’s modular power to your specific operational DNA—from manufacturing workflows to global supply chain logistics.
+                        </p>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-y-4 text-sm font-label tracking-wide uppercase">
+<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-primary-container"></span> Module Engineering</li>
+<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-primary-container"></span> Legacy Migration</li>
+<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-primary-container"></span> API Integrations</li>
+<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-primary-container"></span> Performance Tuning</li>
+</ul>
+</div>
+<div class="mt-12 flex justify-end">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-container transition-colors duration-500 text-6xl" data-icon="schema">schema</span>
+</div>
+</div>
+<!-- Strategic Audit (1/3 width) -->
+<div class="md:col-span-4 bg-surface-container-lowest p-12 border border-outline-variant/20 flex flex-col justify-between">
+<div>
+<h3 class="text-2xl font-bold tracking-tight text-primary-container mb-4">Strategic Audit</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">
+                            Uncover inefficiencies in your current tech stack with a deep-dive diagnostic by our lead architects.
+                        </p>
+</div>
+<button class="w-full border border-primary-container/30 py-4 font-bold text-xs uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-all duration-300">
+                        Request Diagnostic
+                    </button>
+</div>
+<!-- AI Workflow Automation (Full width in context of grid layout) -->
+<div class="md:col-span-12 vitreous-glass p-12 grid grid-cols-1 md:grid-cols-2 gap-12 border border-outline-variant/10">
+<div class="relative overflow-hidden rounded-sm h-64 md:h-auto">
+<img class="w-full h-full object-cover opacity-50 contrast-150" data-alt="futuristic neural network visualization with glowing golden data points and dark procedural wires in 3d space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzizPjixbsewbyhY1l5K5rUyu7jzS3UuEw2W3DP8Utry9HLVpKrrM5GG15tIoVwJ56jx3uqkxi1FLcOMXHROOiyWH-SXOa2xL0kBF2KOiEHfE1ZQtynfCypygyXOEgdV3DWn7Ig7byjn3Nl9u_rNjobVV9ASJPCSlhNlelML8Vp_Gddu8eyT1cfVw-EAIAetBZG0cZpGzpRkELFslHvyBl7-Z31cAETs2Y8TP5nVbAAsgSrJOhqnbpogTTiE5FU0jDvJ7oBBlClog"/>
+<div class="absolute inset-0 bg-surface-container-lowest/40 backdrop-blur-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-8xl" data-icon="psychology">psychology</span>
+</div>
+</div>
+<div class="flex flex-col justify-center">
+<h2 class="text-4xl font-bold tracking-tighter text-on-surface mb-6">AI Workflow Automation</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8">
+                            Eliminate repetitive cognitive tasks. We forge custom AI agents and LLM pipelines that integrate directly into your existing software, allowing your team to focus on high-leverage strategy.
+                        </p>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-low border-l-2 border-primary-container">
+<h4 class="text-on-surface font-bold text-sm uppercase mb-1">Neural Logic Integration</h4>
+<p class="text-on-surface-variant text-xs">Direct API connections between LLMs and your internal database.</p>
+</div>
+<div class="p-4 bg-surface-container-low border-l-2 border-outline-variant">
+<h4 class="text-on-surface font-bold text-sm uppercase mb-1">Automated Reporting</h4>
+<p class="text-on-surface-variant text-xs">Self-generating executive summaries from raw telemetry data.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Smart Dashboards (1/2 width) -->
+<div class="md:col-span-6 vitreous-glass p-12 border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary-container mb-6 block" data-icon="dashboard_customize">dashboard_customize</span>
+<h3 class="text-3xl font-bold tracking-tight text-on-surface mb-6">Smart Dashboards</h3>
+<p class="text-on-surface-variant text-md leading-relaxed mb-8">
+                        Real-time visualization of your entire business engine. We design technical interfaces that translate billions of data points into actionable insights for stakeholders.
+                    </p>
+<div class="aspect-video bg-surface-container-lowest rounded-sm border border-outline-variant/10 overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center p-8 opacity-40">
+<!-- Visual placeholder for a dashboard -->
+<div class="grid grid-cols-3 gap-2 w-full h-full">
+<div class="bg-primary-container h-full w-full opacity-20"></div>
+<div class="bg-primary-container h-1/2 w-full self-end opacity-40"></div>
+<div class="bg-primary-container h-3/4 w-full self-end opacity-60"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cloud Infrastructure (1/2 width) -->
+<div class="md:col-span-6 vitreous-glass p-12 border border-outline-variant/10 flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary-container mb-6 block" data-icon="cloud_done">cloud_done</span>
+<h3 class="text-3xl font-bold tracking-tight text-on-surface mb-6">Cloud Infrastructure</h3>
+<p class="text-on-surface-variant text-md leading-relaxed mb-8">
+                        The bedrock of your digital empire. High-availability, self-healing server architectures forged on AWS, GCP, and Azure. Zero-downtime deployments for high-frequency operations.
+                    </p>
+<div class="flex gap-4">
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant px-3 py-1 bg-surface-container-highest">Auto-Scaling</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant px-3 py-1 bg-surface-container-highest">Kubernetes</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant px-3 py-1 bg-surface-container-highest">Zero-Trust</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Strategic CTA -->
+<section class="bg-surface-container-lowest border-y border-outline-variant/10 relative overflow-hidden">
+<div class="forge-grid absolute inset-0 opacity-20"></div>
+<div class="max-w-7xl mx-auto px-8 py-32 text-center relative z-10">
+<h2 class="text-4xl md:text-6xl font-black tracking-tighter text-on-surface mb-8">READY TO <span class="text-primary-container">OPTIMIZE</span> YOUR FORGE?</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl mx-auto mb-12">
+                    Stop fighting your tools. Start building your future. Join the elite organizations scaling with CodeCrafters engineering.
+                </p>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<button class="molten-gradient text-on-primary px-10 py-5 font-bold uppercase tracking-widest text-sm hover:shadow-[0_0_20px_rgba(245,197,24,0.4)] transition-all">
+                        Schedule Audit
+                    </button>
+<button class="bg-transparent border border-outline px-10 py-5 font-bold uppercase tracking-widest text-sm text-on-surface hover:bg-surface-container-low transition-all">
+                        View Technical Docs
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0E0E0E] w-full pt-16 pb-8 border-t border-[#4E4633]/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 max-w-7xl mx-auto font-['Inter'] text-sm leading-relaxed">
+<div class="md:col-span-1">
+<span class="text-lg font-bold text-[#F5C518] mb-4 block">CodeCrafters</span>
+<p class="text-[#D1C5AC] opacity-80 mb-6">Architectural software development for the next era of industrial digital transformation.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-[#F5C518] cursor-pointer hover:opacity-100 opacity-80" data-icon="terminal">terminal</span>
+<span class="material-symbols-outlined text-[#F5C518] cursor-pointer hover:opacity-100 opacity-80" data-icon="memory">memory</span>
+</div>
+</div>
+<div>
+<h4 class="text-[#F5C518] font-bold uppercase tracking-widest mb-6">Solutions</h4>
+<ul class="space-y-3 text-[#D1C5AC]">
+<li><a class="hover:text-white transition-colors" href="#">Custom AI</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Odoo ERP</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Cloud Infrastructure</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#F5C518] font-bold uppercase tracking-widest mb-6">Company</h4>
+<ul class="space-y-3 text-[#D1C5AC]">
+<li><a class="hover:text-white transition-colors" href="#">Security</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Case Studies</a></li>
+<li><a class="hover:text-white transition-colors" href="#">LinkedIn</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#F5C518] font-bold uppercase tracking-widest mb-6">Contact</h4>
+<p class="text-[#D1C5AC] opacity-80">
+                    forge@codecrafters.ai<br/>
+                    Silicon Valley, CA
+                </p>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-[#4E4633]/10 text-[#D1C5AC] text-xs opacity-60 flex justify-between">
+<span>© 2024 CodeCrafters Forge. All rights reserved.</span>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy</a>
+<a class="hover:text-white transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>

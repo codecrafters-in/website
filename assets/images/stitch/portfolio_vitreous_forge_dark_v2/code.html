@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#584400",
+              "on-tertiary-container": "#545656",
+              "inverse-surface": "#e5e2e1",
+              "tertiary-fixed-dim": "#c6c6c6",
+              "primary": "#ffe5a0",
+              "on-background": "#e5e2e1",
+              "surface-dim": "#131313",
+              "on-tertiary-fixed": "#1a1c1c",
+              "tertiary-container": "#cbcbcb",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-container-high": "#2a2a2a",
+              "secondary-fixed-dim": "#c8c6c5",
+              "secondary": "#c8c6c5",
+              "surface-bright": "#3a3939",
+              "surface-tint": "#f0c110",
+              "secondary-fixed": "#e4e2e1",
+              "error-container": "#93000a",
+              "tertiary": "#e7e7e7",
+              "on-secondary": "#303030",
+              "on-error": "#690005",
+              "surface-container-low": "#1c1b1b",
+              "on-tertiary": "#2f3131",
+              "surface-container-highest": "#353534",
+              "surface-variant": "#353534",
+              "on-primary-container": "#695200",
+              "primary-fixed-dim": "#f0c110",
+              "on-primary-fixed": "#241a00",
+              "outline": "#9a9078",
+              "on-secondary-fixed-variant": "#474746",
+              "on-secondary-container": "#b7b5b4",
+              "primary-fixed": "#ffe08b",
+              "tertiary-fixed": "#e2e2e2",
+              "on-error-container": "#ffdad6",
+              "background": "#131313",
+              "on-surface-variant": "#d1c5ac",
+              "on-surface": "#e5e2e1",
+              "on-primary": "#3d2f00",
+              "outline-variant": "#4e4633",
+              "error": "#ffb4ab",
+              "on-secondary-fixed": "#1b1c1c",
+              "secondary-container": "#474746",
+              "inverse-primary": "#745b00",
+              "on-tertiary-fixed-variant": "#454747",
+              "primary-container": "#f5c518",
+              "inverse-on-surface": "#313030",
+              "surface-container": "#201f1f",
+              "surface": "#131313"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .vitreous-edge {
+            box-shadow: inset 0 1px 0 0 rgba(245, 197, 24, 0.1);
+        }
+        .industrial-grid {
+            background-image: radial-gradient(#4e4633 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl border-b border-[#F5C518]/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-black tracking-tighter text-[#F5C518]">CodeCrafters</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['Inter'] font-medium tracking-tight uppercase text-sm text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">Services</a>
+<a class="font-['Inter'] font-medium tracking-tight uppercase text-sm text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">AI Forge</a>
+<a class="font-['Inter'] font-medium tracking-tight uppercase text-sm text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">Odoo Solutions</a>
+<a class="font-['Inter'] font-medium tracking-tight uppercase text-sm text-[#F5C518] border-b-2 border-[#F5C518] pb-1" href="#">Case Studies</a>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2 rounded-sm font-label font-bold text-xs uppercase tracking-widest scale-95 active:scale-90 transition-transform">
+                Book a free audit
+            </button>
+</div>
+</nav>
+<main class="pt-24 industrial-grid min-h-screen">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-8 py-20 flex flex-col md:grid md:grid-cols-3 gap-12 items-center">
+<div class="md:col-span-2">
+<span class="text-primary-container font-label text-sm font-bold tracking-[0.3em] uppercase mb-4 block">Architectural Portfolio</span>
+<h1 class="text-5xl md:text-7xl font-headline font-black tracking-tighter text-on-surface mb-6 leading-none">
+                    ENGINEERED <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">PRECISION.</span>
+</h1>
+<p class="text-on-surface-variant text-lg max-w-xl leading-relaxed">
+                    Explore our forge of high-performance digital infrastructure, where raw complex logic is tempered into vitreous industrial solutions.
+                </p>
+</div>
+<div class="md:col-span-1 hidden md:block">
+<div class="p-8 bg-surface-container-high vitreous-edge rounded-sm border-l-4 border-primary-container">
+<div class="text-4xl font-black text-on-surface mb-2">99.8%</div>
+<div class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Average Optimization Rate</div>
+</div>
+</div>
+</section>
+<!-- Case Studies Container -->
+<section class="max-w-7xl mx-auto px-8 pb-32 space-y-32">
+<!-- Case Study 01: Neural Bridge V2.0 -->
+<div class="flex flex-col md:grid md:grid-cols-2 gap-0 bg-surface-container-low rounded-sm overflow-hidden vitreous-edge">
+<div class="relative min-h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Abstract visualization of neural networks with glowing gold connections on a deep charcoal glass background, high technical precision" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlJquVcZkfRa8vXMx0E3JSFoDGQ4SJRnWuSJl63XZiNawxRAS6R20at728LU36cqSNtAPkKxdtB7z1dSLzGOboS6CugP6PU-0EnZJHI2EKQOuK8IkSnSpCKTT9NY-Qd-1LEMmos6-5uTBlJFOwHxMSZVfqHN_4lGo5AvDNUwoCoyVHppBoXOPdwyapkf-ca7XgmGwo7BvLWbH4pTogK0-vjI6dszSNhzfrLm6zGloNgSpOxyXjJ96nvvJWIZauAWSF7NJS7XYC90g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<div class="absolute top-6 left-6 bg-surface-container-highest/80 backdrop-blur-md px-4 py-2 rounded-sm border border-outline-variant/20">
+<span class="text-primary-container font-label text-[10px] font-black tracking-widest uppercase">Active Deployment</span>
+</div>
+</div>
+<div class="p-12 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-6">
+<span class="text-4xl font-black text-outline-variant/30">01</span>
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+</div>
+<h2 class="text-4xl font-headline font-bold text-on-surface mb-4">Neural Bridge V2.0</h2>
+<p class="text-on-surface-variant mb-8 leading-relaxed">
+                        A proprietary cross-chain AI latency reduction engine designed for high-frequency data synthesis between legacy systems and modern cloud infrastructure.
+                    </p>
+<div class="grid grid-cols-2 gap-8 mb-10">
+<div>
+<div class="text-2xl font-bold text-primary-container tracking-tight">14ms</div>
+<div class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest">Global Latency</div>
+</div>
+<div>
+<div class="text-2xl font-bold text-primary-container tracking-tight">99.9%</div>
+<div class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest">Synthesis Accuracy</div>
+</div>
+</div>
+<button class="w-fit flex items-center gap-3 text-on-surface hover:text-primary-container transition-colors group">
+<span class="font-label text-sm font-bold uppercase tracking-widest">Full Technical Specs</span>
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Case Study 02: Stock Market Prediction Model -->
+<div class="flex flex-col md:grid md:grid-cols-2 gap-0 bg-surface-container-low rounded-sm overflow-hidden vitreous-edge">
+<div class="p-12 flex flex-col justify-center order-2 md:order-1">
+<div class="flex items-center gap-4 mb-6">
+<span class="text-4xl font-black text-outline-variant/30">02</span>
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+</div>
+<h2 class="text-4xl font-headline font-bold text-on-surface mb-4">Stock Market Prediction Model</h2>
+<p class="text-on-surface-variant mb-8 leading-relaxed">
+                        An ensemble learning architecture that processes 4.2TB of sentiment and transactional data hourly to forecast short-term volatility in emerging markets.
+                    </p>
+<div class="space-y-4 mb-10">
+<div class="bg-surface-container-lowest p-4 rounded-sm border-b border-primary-container/30">
+<div class="flex justify-between text-xs font-bold uppercase tracking-tighter mb-2">
+<span class="text-on-surface">Predictive Precision</span>
+<span class="text-primary-container">88.4%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1">
+<div class="bg-primary-container h-full" style="width: 88.4%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-sm border-b border-primary-container/30">
+<div class="flex justify-between text-xs font-bold uppercase tracking-tighter mb-2">
+<span class="text-on-surface">Processing Capacity</span>
+<span class="text-primary-container">4.2 TB/hr</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1">
+<div class="bg-primary-container h-full" style="width: 95%"></div>
+</div>
+</div>
+</div>
+<button class="w-fit flex items-center gap-3 text-on-surface hover:text-primary-container transition-colors group">
+<span class="font-label text-sm font-bold uppercase tracking-widest">View Architecture</span>
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">database</span>
+</button>
+</div>
+<div class="relative min-h-[400px] order-1 md:order-2">
+<img class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Digital stock market charts on high-end glass screens with amber and gold light reflections, professional financial environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7q0K5bwdQYBOYhzcTtmG4Wh2Eu7va5-4RPyyfjZwl2mJoeS_t-6SddVqu33tMkSdXi9NbBH6hlV0tDvuzmXNAhXMNbEbesuF02WuYlmm5KcNRkFF5vP47ZjkU78r6FAJ3wLmOtCEP_owIhnzPR3aVVYqyD3AAZD_MONcE6GQxLZjsa2jRDFFnSXgsL56FkCw2GLiUfsAHNAOqa9zaUHzyFNepztNQ78ylldpjNtrr2UaFf-vOC_89k6WSsdnrOJ0ebmlHdmmzp8M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+</div>
+</div>
+<!-- Case Study 03: Secure Perimeter Auth -->
+<div class="flex flex-col md:grid md:grid-cols-2 gap-0 bg-surface-container-low rounded-sm overflow-hidden vitreous-edge">
+<div class="relative min-h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Macro photo of circuit boards with glowing gold pathways and server room aesthetic, security focus, dark industrial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCZq6xUnOF_gmSOx0lHhQnTVRl7dUyla0YPuts-sqvruvpZcRaya5TiQPoAEeR70JKqaGqiNlfUSBpbL12wu9WnEIsKz62I53ck_AWQ_BUXsMhrdzwQm8RFMS-KiLePgbJPQcT4XyFv5JXs-MF68ZaMy7hecmV8kPrAoJWH6t64lq88_HsqlQB3TSgUtFznsVe1lEX915QQFgLtS82gNKwTNC3dAqdnE5g4cx09Vwwkr2JQNwK_YcZWRgDkw8iPOTa8zXAycI8hbU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+</div>
+<div class="p-12 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-6">
+<span class="text-4xl font-black text-outline-variant/30">03</span>
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+</div>
+<h2 class="text-4xl font-headline font-bold text-on-surface mb-4">Secure Perimeter Auth</h2>
+<p class="text-on-surface-variant mb-8 leading-relaxed">
+                        Biometric-first authentication protocol utilizing zero-knowledge proofs to secure enterprise-level cloud perimeters against quantum-based intrusion.
+                    </p>
+<div class="grid grid-cols-1 gap-4 mb-10">
+<div class="flex items-center gap-4 px-4 py-3 bg-surface-container-highest rounded-sm">
+<span class="material-symbols-outlined text-primary-container">shield</span>
+<span class="text-xs font-bold uppercase tracking-widest">Quantum-Resistant Encryption</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 bg-surface-container-highest rounded-sm">
+<span class="material-symbols-outlined text-primary-container">fingerprint</span>
+<span class="text-xs font-bold uppercase tracking-widest">ZKP Biometric Verification</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-8 py-3 rounded-sm font-label font-black text-xs uppercase tracking-widest self-start scale-95 active:scale-90 transition-transform">
+                        Explore Security Protocol
+                    </button>
+</div>
+</div>
+</section>
+<!-- CTAs / Industrial Section -->
+<section class="max-w-7xl mx-auto px-8 pb-32">
+<div class="bg-surface-container-high p-16 rounded-sm vitreous-edge text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-[12rem]">settings_input_component</span>
+</div>
+<h3 class="text-3xl font-headline font-bold text-on-surface mb-6 relative z-10">READY TO FORGE YOUR PROJECT?</h3>
+<p class="text-on-surface-variant mb-10 max-w-2xl mx-auto relative z-10">
+                    Our engineering team is ready to analyze your existing infrastructure and propose a technical roadmap for high-performance optimization.
+                </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+<button class="bg-primary-container text-on-primary-container px-10 py-4 rounded-sm font-label font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all">
+                        Initiate Free Audit
+                    </button>
+<button class="border border-outline-variant px-10 py-4 rounded-sm font-label font-black text-xs uppercase tracking-widest hover:bg-surface-container-highest transition-all">
+                        Technical Catalog
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0E0E0E] w-full pt-16 pb-8 border-t border-[#4E4633]/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 max-w-7xl mx-auto font-['Inter'] text-sm leading-relaxed">
+<div class="col-span-1 md:col-span-1">
+<span class="text-lg font-bold text-[#F5C518] mb-4 block">CodeCrafters</span>
+<p class="text-[#D1C5AC]">Architectural software engineering for the modern industrial complex.</p>
+</div>
+<div>
+<h4 class="text-[#F5C518] font-bold uppercase tracking-widest text-[10px] mb-6">Solutions</h4>
+<ul class="space-y-3">
+<li><a class="text-[#D1C5AC] hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Custom AI</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Odoo ERP</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Cloud Infrastructure</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#F5C518] font-bold uppercase tracking-widest text-[10px] mb-6">Company</h4>
+<ul class="space-y-3">
+<li><a class="text-[#D1C5AC] hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Security</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Case Studies</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#F5C518] font-bold uppercase tracking-widest text-[10px] mb-6">Social</h4>
+<div class="flex gap-4">
+<a class="text-[#D1C5AC] hover:text-[#F5C518] transition-colors" href="#"><span class="material-symbols-outlined">hub</span></a>
+<a class="text-[#D1C5AC] hover:text-[#F5C518] transition-colors" href="#"><span class="material-symbols-outlined">terminal</span></a>
+<a class="text-[#D1C5AC] hover:text-[#F5C518] transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-[#4E4633]/10 text-center">
+<p class="text-[#D1C5AC] opacity-50 text-[10px] uppercase tracking-[0.2em]">© 2024 CodeCrafters Forge. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

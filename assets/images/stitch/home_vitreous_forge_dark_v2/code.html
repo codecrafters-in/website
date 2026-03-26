@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeCrafters | Architectural AI &amp; Odoo Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#584400",
+              "on-tertiary-container": "#545656",
+              "inverse-surface": "#e5e2e1",
+              "tertiary-fixed-dim": "#c6c6c6",
+              "primary": "#ffe5a0",
+              "on-background": "#e5e2e1",
+              "surface-dim": "#131313",
+              "on-tertiary-fixed": "#1a1c1c",
+              "tertiary-container": "#cbcbcb",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-container-high": "#2a2a2a",
+              "secondary-fixed-dim": "#c8c6c5",
+              "secondary": "#c8c6c5",
+              "surface-bright": "#3a3939",
+              "surface-tint": "#f0c110",
+              "secondary-fixed": "#e4e2e1",
+              "error-container": "#93000a",
+              "tertiary": "#e7e7e7",
+              "on-secondary": "#303030",
+              "on-error": "#690005",
+              "surface-container-low": "#1c1b1b",
+              "on-tertiary": "#2f3131",
+              "surface-container-highest": "#353534",
+              "surface-variant": "#353534",
+              "on-primary-container": "#695200",
+              "primary-fixed-dim": "#f0c110",
+              "on-primary-fixed": "#241a00",
+              "outline": "#9a9078",
+              "on-secondary-fixed-variant": "#474746",
+              "on-secondary-container": "#b7b5b4",
+              "primary-fixed": "#ffe08b",
+              "tertiary-fixed": "#e2e2e2",
+              "on-error-container": "#ffdad6",
+              "background": "#131313",
+              "on-surface-variant": "#d1c5ac",
+              "on-surface": "#e5e2e1",
+              "on-primary": "#3d2f00",
+              "outline-variant": "#4e4633",
+              "error": "#ffb4ab",
+              "on-secondary-fixed": "#1b1c1c",
+              "secondary-container": "#474746",
+              "inverse-primary": "#745b00",
+              "on-tertiary-fixed-variant": "#454747",
+              "primary-container": "#f5c518",
+              "inverse-on-surface": "#313030",
+              "surface-container": "#201f1f",
+              "surface": "#131313"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .vitreous-edge {
+            box-shadow: inset 0 1px 0 0 rgba(245, 197, 24, 0.1);
+        }
+        .glass-blur {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .molten-gradient {
+            background: linear-gradient(135deg, #ffe5a0 0%, #f5c518 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl border-b border-[#F5C518]/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<a class="text-xl font-black tracking-tighter text-[#F5C518]" href="#">CodeCrafters</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-['Inter'] font-medium tracking-tight uppercase text-sm text-[#F5C518] border-b-2 border-[#F5C518] pb-1 transition-all duration-300" href="#">Services</a>
+<a class="font-['Inter'] font-medium tracking-tight uppercase text-sm text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">AI Forge</a>
+<a class="font-['Inter'] font-medium tracking-tight uppercase text-sm text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">Odoo Solutions</a>
+<a class="font-['Inter'] font-medium tracking-tight uppercase text-sm text-[#D1C5AC] hover:text-[#F5C518] transition-all duration-300" href="#">Case Studies</a>
+</div>
+<button class="molten-gradient text-on-primary font-bold px-6 py-2 rounded-sm scale-95 active:scale-90 transition-transform text-sm uppercase tracking-wider">
+                Book a free audit
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section: 2:1 Ratio -->
+<section class="relative min-height-[819px] flex items-center overflow-hidden px-8 py-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- 2 Parts Visual/Texture -->
+<div class="md:col-span-2 relative h-[500px] bg-surface-container-lowest rounded-lg vitreous-edge overflow-hidden group">
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#f5c518 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-full h-full opacity-60 mix-blend-screen overflow-hidden">
+<img alt="Technical Engineering Grid" class="w-full h-full object-cover grayscale brightness-50 contrast-125" data-alt="Abstract 3D technical grid of glowing yellow particles and geometric lines in a deep obsidian dark void space environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPkcieTH49RsQo5nReK2YDUBBzv6Z-ABgzHQnK_2wZG2Qb6rdHA7dj7DwPkEE-QPdveIpHHTWAx14mMvDEYn7iJ72IBqBmZa9fzoaEboZ7MFndEP9F_P-0V99FtQqp_UeCTiq9OheQRRRQloRrMGPF4Y8kAKpTxt2OVtXuyZGqj1S2K_rU1jeOShsKXarccuG5RIpKukVhmh7zATHRj9hJulir4uku06ZWD1D5jZbH9Xdj9Qpwkf5Op60y3gg8cGvB_dg0Uvje6YY"/>
+</div>
+</div>
+<div class="absolute bottom-8 left-8">
+<div class="bg-surface-bright/80 glass-blur p-6 rounded-sm border border-outline-variant/20 max-w-md">
+<p class="text-primary-container font-label text-xs uppercase tracking-[0.2em] mb-2">Live Forge Status</p>
+<h3 class="text-xl font-bold text-on-surface mb-1 tracking-tight">System Integrations: 99.9%</h3>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-4/5"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- 1 Part Typography -->
+<div class="flex flex-col justify-center space-y-8">
+<span class="text-primary-container font-label text-sm uppercase tracking-[0.3em] font-bold">Architectural Alchemists</span>
+<h1 class="text-5xl md:text-6xl font-black tracking-tighter leading-none text-on-surface">
+                    WE FORGE <br/>
+<span class="text-primary-container">DIGITAL</span> <br/>
+                    INFRASTRUCTURE.
+                </h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-sm">
+                    High-precision AI orchestration and Odoo ERP transformation for elite global enterprises.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="molten-gradient text-on-primary px-8 py-4 font-bold text-sm uppercase tracking-widest rounded-sm vitreous-edge hover:brightness-110 transition-all">Start Project</button>
+<button class="border border-outline-variant/30 text-on-surface px-8 py-4 font-bold text-sm uppercase tracking-widest rounded-sm hover:bg-surface-container-high transition-all">View Forge</button>
+</div>
+</div>
+</section>
+<!-- Pain Points: Architectural Layout -->
+<section class="bg-surface-container-low py-24 px-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-1">
+<h2 class="text-3xl font-black tracking-tighter uppercase text-on-surface leading-tight">System <br/> Friction <br/> Cost.</h2>
+</div>
+<div class="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-8 bg-surface-container-lowest border border-outline-variant/10 group hover:border-primary-container/30 transition-all">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4" data-icon="settings_slow_motion">settings_slow_motion</span>
+<h4 class="text-on-surface font-bold text-lg mb-3 uppercase tracking-tight">Legacy Bloat</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Disconnected ERP systems draining 15-20% of operational margin annually through manual rework.</p>
+</div>
+<div class="p-8 bg-surface-container-lowest border border-outline-variant/10 group hover:border-primary-container/30 transition-all">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4" data-icon="database_off">database_off</span>
+<h4 class="text-on-surface font-bold text-lg mb-3 uppercase tracking-tight">Data Silos</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Critical business intelligence trapped in fragmented databases, inaccessible to AI automation.</p>
+</div>
+<div class="p-8 bg-surface-container-lowest border border-outline-variant/10 group hover:border-primary-container/30 transition-all">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4" data-icon="security_update_warning">security_update_warning</span>
+<h4 class="text-on-surface font-bold text-lg mb-3 uppercase tracking-tight">Scale Ceiling</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Infrastructure that breaks under pressure rather than scaling elastically with demand.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services: High-End Bento Grid -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+<div class="mb-16">
+<p class="text-primary-container font-label text-xs uppercase tracking-[0.3em] mb-4">Core Capabilities</p>
+<h2 class="text-4xl md:text-5xl font-black tracking-tighter text-on-surface">The Alchemist's Suite</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+<!-- Large Card: 2/3 Width -->
+<div class="md:col-span-8 relative bg-surface-container-high overflow-hidden rounded-lg border border-outline-variant/20 p-12 flex flex-col justify-end group cursor-pointer">
+<img alt="AI Infrastructure" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-105 transition-transform duration-700" data-alt="Abstract visualization of deep learning neural networks with golden glowing nodes connected by fiber optic light lines on a dark obsidian background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbQNfet2Oj0xKcbvHIF59oXH1Suf0JEgcbP403ZtIcBP9kQR1dLLSSnUGF198eIoHD4SeNnfH4vDFApBetOTdeo3BZHOn6vZ0tKZlyz622odw7VTHWTAelxaPNjSZPuIKnHJgKpLPs0O1vdy0HVafytpSXu2vCzig16tgn9Bkw2K8OETnInC5mPibkINOm3RDqctSyforK89TwfxsPgsiUotBEYKZhrJOuiIml7LW0le21ZelR-2wxr0YxTfbdgN2wpmKoroxk_6Y"/>
+<div class="relative z-10">
+<span class="inline-block bg-primary-container text-on-primary-container px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-4">Premier Service</span>
+<h3 class="text-3xl font-black text-on-surface mb-4 uppercase">AI Forge &amp; Orchestration</h3>
+<p class="text-on-surface-variant max-w-lg mb-8">Building custom LLM pipelines, RAG systems, and autonomous agent swarms tailored to your specific business logic and proprietary data sets.</p>
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Tall Card: 1/3 Width -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-outline-variant/20 p-8 flex flex-col rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary-container text-5xl mb-6" data-icon="deployed_code">deployed_code</span>
+<h3 class="text-2xl font-black text-on-surface mb-4 uppercase">Odoo ERP Architecture</h3>
+<p class="text-on-surface-variant text-sm leading-loose flex-grow">Complete digital transformation using Odoo. We don't just implement; we re-engineer your entire workflow for maximum efficiency and architectural purity.</p>
+<hr class="border-outline-variant/20 my-6"/>
+<ul class="space-y-3 text-xs font-bold uppercase tracking-widest text-on-surface">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> Module Development</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> API Integrations</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> Cloud Migrations</li>
+</ul>
+</div>
+<!-- Small Card: Bottom Left -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-outline-variant/20 p-8 rounded-lg flex items-center justify-between group hover:bg-primary-container/5 transition-all">
+<div>
+<h3 class="text-lg font-black text-on-surface uppercase mb-1">Cyber Security</h3>
+<p class="text-on-surface-variant text-xs">Tempered defense for digital assets.</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-container transition-colors" data-icon="shield_lock">shield_lock</span>
+</div>
+<!-- Small Card: Bottom Right -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant/20 p-8 rounded-lg flex items-center justify-between group hover:bg-primary-container/5 transition-all">
+<div class="flex gap-12 items-center">
+<div>
+<h3 class="text-lg font-black text-on-surface uppercase mb-1">DevOps Forge</h3>
+<p class="text-on-surface-variant text-xs">High-availability cloud infrastructure.</p>
+</div>
+<div class="hidden lg:flex gap-4">
+<span class="text-[10px] font-bold py-1 px-3 border border-outline-variant/20 rounded-full text-on-surface-variant uppercase">AWS</span>
+<span class="text-[10px] font-bold py-1 px-3 border border-outline-variant/20 rounded-full text-on-surface-variant uppercase">Docker</span>
+<span class="text-[10px] font-bold py-1 px-3 border border-outline-variant/20 rounded-full text-on-surface-variant uppercase">K8S</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-container transition-colors" data-icon="terminal">terminal</span>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="bg-surface-container-lowest border-y border-outline-variant/10 py-20">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div>
+<p class="text-5xl font-black text-primary-container tracking-tighter mb-2">420%</p>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-[0.2em]">ROI Average</p>
+</div>
+<div>
+<p class="text-5xl font-black text-on-surface tracking-tighter mb-2">12M+</p>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-[0.2em]">API Calls Managed</p>
+</div>
+<div>
+<p class="text-5xl font-black text-on-surface tracking-tighter mb-2">85%</p>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-[0.2em]">Efficiency Gain</p>
+</div>
+<div>
+<p class="text-5xl font-black text-primary-container tracking-tighter mb-2">0</p>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-[0.2em]">Critical Failures</p>
+</div>
+</div>
+</section>
+<!-- Lead Magnet: Odoo AI Checklist -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+<div class="bg-surface-container rounded-lg vitreous-edge overflow-hidden flex flex-col md:flex-row border border-outline-variant/20">
+<div class="md:w-1/2 p-12 flex flex-col justify-center">
+<span class="text-primary-container font-bold text-xs uppercase tracking-[0.3em] mb-4">Free Resource</span>
+<h2 class="text-4xl font-black text-on-surface mb-6 leading-tight uppercase">The Odoo AI <br/> Automation Checklist</h2>
+<p class="text-on-surface-variant mb-8 leading-relaxed">Download our technical blueprint for integrating LLMs and automated workflows directly into your Odoo ecosystem. 14 critical checkpoints for CTOs.</p>
+<form class="flex flex-col space-y-4">
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant/30 text-on-surface px-0 py-3 focus:ring-0 focus:border-primary-container transition-all outline-none" placeholder="Corporate Email Address" type="email"/>
+</div>
+<button class="molten-gradient text-on-primary font-black py-4 uppercase tracking-[0.2em] rounded-sm shadow-xl mt-4">Generate Access Key</button>
+</form>
+<p class="text-[10px] text-on-surface-variant/50 mt-4 uppercase font-medium">Encrypted transmission via RSA-4096. No spam, just technical value.</p>
+</div>
+<div class="md:w-1/2 relative bg-surface-container-highest flex items-center justify-center p-12 overflow-hidden">
+<div class="absolute inset-0 opacity-10">
+<img alt="Code on Screen" class="w-full h-full object-cover" data-alt="Monochromatic dark close-up of complex software code displayed on a high-resolution screen with subtle light flares." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw1T6GUkvmaHOqWJEYzBYWbKtRNP07pDTA7ng6z8fYF7ZYvyMLTY73vqVOMznA5mDFplSA1S42EgDmkSWxJEl0hH8t-4N9NcVP-0D_PSO5AwKqhLTdp2fc56Vr3AJG2EH0aXYn05BD7XtiK6fgu9beaC-uLGxG9j6De0gCJpLmDL_YmFFqjRw_4uCdo7nPbnerHcbnAjVGxz7-X1YWMzHIOYlaFaWHjg5gElTyzoL_ysQtXFnDIHfpNh3q5j4iNPxRMtOR-3o0Gtk"/>
+</div>
+<div class="relative z-10 bg-surface p-1 border border-primary-container/20 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+<div class="p-8 bg-surface-container-lowest border border-outline-variant/10 text-center w-64 md:w-80">
+<div class="w-16 h-1 bg-primary-container mx-auto mb-6"></div>
+<h4 class="text-lg font-black text-on-surface uppercase mb-4">Architecture <br/> Manual</h4>
+<div class="space-y-2 mb-8">
+<div class="h-1 bg-on-surface-variant/20 w-full"></div>
+<div class="h-1 bg-on-surface-variant/20 w-4/5 mx-auto"></div>
+<div class="h-1 bg-on-surface-variant/20 w-full"></div>
+<div class="h-1 bg-on-surface-variant/20 w-3/4 mx-auto"></div>
+</div>
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="file_download">file_download</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0E0E0E] w-full pt-16 pb-8 border-t border-[#4E4633]/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<a class="text-lg font-bold text-[#F5C518] mb-4 block" href="#">CodeCrafters</a>
+<p class="text-[#D1C5AC] font-['Inter'] text-sm leading-relaxed mb-6">Precision engineered solutions for the digital frontier. We forge the future of business automation.</p>
+<div class="flex space-x-4">
+<span class="material-symbols-outlined text-[#F5C518] cursor-pointer hover:text-white transition-colors" data-icon="terminal">terminal</span>
+<span class="material-symbols-outlined text-[#F5C518] cursor-pointer hover:text-white transition-colors" data-icon="hub">hub</span>
+<span class="material-symbols-outlined text-[#F5C518] cursor-pointer hover:text-white transition-colors" data-icon="shield">shield</span>
+</div>
+</div>
+<div>
+<h5 class="text-white font-black text-xs uppercase tracking-widest mb-6">Expertise</h5>
+<ul class="space-y-3">
+<li><a class="text-[#D1C5AC] hover:text-white text-sm transition-colors" href="#">Custom AI</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white text-sm transition-colors" href="#">Odoo ERP</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white text-sm transition-colors" href="#">Cloud Infrastructure</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white text-sm transition-colors" href="#">Security</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-black text-xs uppercase tracking-widest mb-6">Company</h5>
+<ul class="space-y-3">
+<li><a class="text-[#D1C5AC] hover:text-white text-sm transition-colors" href="#">Case Studies</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white text-sm transition-colors" href="#">Our Process</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white text-sm transition-colors" href="#">LinkedIn</a></li>
+<li><a class="text-[#D1C5AC] hover:text-white text-sm transition-colors" href="#">GitHub</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-black text-xs uppercase tracking-widest mb-6">Newsletter</h5>
+<p class="text-[#D1C5AC] text-xs leading-relaxed mb-4">Bi-weekly technical insights on AI architecture and ERP trends.</p>
+<div class="flex">
+<input class="bg-surface-container-low border-0 border-b border-outline-variant/30 text-xs text-white focus:ring-0 w-full" placeholder="Email" type="text"/>
+<button class="text-[#F5C518] ml-2">
+<span class="material-symbols-outlined" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-[#4E4633]/10 text-center">
+<p class="text-[#D1C5AC] text-[10px] uppercase tracking-widest opacity-60">© 2024 CodeCrafters Forge. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

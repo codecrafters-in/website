@@ -1,0 +1,17 @@
+{
+  "name": "CodeCrafters — AI & Odoo Enterprise Solutions",
+  "short_name": "CodeCrafters",
+  "description": "High-precision AI automation and Odoo ERP transformation for elite global enterprises.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#131313",
+  "theme_color": "#131313",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
