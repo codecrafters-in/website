@@ -24,47 +24,47 @@ const caseStudies = [
     number: '01',
     category: 'AI Automation',
     badge: 'Active Deployment',
-    title: 'Neural Bridge V2.0',
-    client: 'Global Logistics Co.',
-    description: 'A proprietary cross-chain AI latency reduction engine. The client had 3 separate legacy systems that couldn\'t share data in real time — causing 4-hour delays in shipment updates. We built a custom AI middleware layer that bridges all three systems and predicts routing anomalies before they happen.',
+    title: 'Conversational AI Agent for Odoo ERP',
+    client: 'Enterprise ERP Client',
+    description: 'Business operators were drowning in manual report requests — every insight required a developer query. We built a natural language interface that lets teams ask plain-English questions directly against live Odoo data. ORM-safe query execution, role-based access validation, AI-driven report generation, and hardened prompt injection safeguards mean non-technical staff get answers in seconds, safely.',
     image: '/images/portfolio-neural.jpg',
-    metrics: [{ value: '14ms', label: 'Cross-system sync latency' }, { value: '99.9%', label: 'Data accuracy' }],
-    cta: { label: 'View Technical Specs', icon: 'arrow_forward' },
+    metrics: [{ value: 'NL→SQL', label: 'Plain English to live data' }, { value: '100%', label: 'Prompt injection hardened' }],
+    cta: { label: 'Discuss a Similar Build', icon: 'arrow_forward' },
     imageRight: false,
-    tags: ['LLM Pipeline', 'Real-time Sync', 'Legacy Integration'],
+    tags: ['LLM Pipeline', 'Odoo Integration', 'AI Agents', 'Claude MCP'],
   },
   {
     number: '02',
-    category: 'AI + Analytics',
+    category: 'Healthcare + ERP',
     badge: null,
-    title: 'Predictive Market Intelligence',
-    client: 'FinTech Ventures',
-    description: 'An ensemble ML architecture that replaced a 3-person analyst team. The system processes 4.2TB of sentiment and transactional data per hour to forecast short-term volatility in emerging markets — delivering insights 100x faster than the previous human-driven process.',
+    title: 'Healthcare Insurance Automation',
+    client: 'Healthcare Platform (Canada)',
+    description: 'A Canadian healthcare platform was processing OHIP insurance claims manually — eligibility checks, payment reconciliation, and EDI batch submissions all required human intervention. We integrated OHIP APIs for real-time eligibility verification, built MCEDT/WSDL payment reconciliation, and automated XML/EDI batch claims with rule-based validation. What took a team days now runs overnight without oversight.',
     image: '/images/portfolio-stocks.jpg',
     bars: [
-      { label: 'Predictive Precision', value: '88.4%', width: '88.4%' },
-      { label: 'Processing Capacity', value: '4.2 TB/hr', width: '95%' },
+      { label: 'Claims processed automatically', value: '100%', width: '100%' },
+      { label: 'Manual data entry eliminated', value: '80%+', width: '80%' },
     ],
-    cta: { label: 'View Architecture', icon: 'database' },
+    cta: { label: 'View Integration Approach', icon: 'database' },
     imageRight: true,
-    tags: ['ML Models', 'Real-time Analytics', 'Cost Reduction'],
+    tags: ['OHIP API', 'Odoo', 'EDI Automation', 'Healthcare'],
   },
   {
     number: '03',
-    category: 'Security Infrastructure',
+    category: 'FinTech Platform',
     badge: null,
-    title: 'Enterprise Zero-Trust Auth Platform',
-    client: 'MediCore Systems',
-    description: 'Biometric-first authentication with zero-knowledge proofs for a healthcare enterprise managing PHI across 12 hospital systems. Previous system had 3 security incidents in 2 years. Zero incidents in 18 months since our implementation — and passed every compliance audit first try.',
+    title: 'Line of Credit Platform',
+    client: 'Lending Enterprise',
+    description: 'Built a full lending lifecycle platform from scratch — Plaid-based bank account verification, Stripe-powered disbursements and repayments, multi-location credit rules, automated statement generation, and interest/fee calculations. The client had been managing this in spreadsheets. The new platform handles the entire credit lifecycle with zero manual intervention and a complete audit trail.',
     image: '/images/portfolio-security.jpg',
     features: [
-      { icon: 'shield', label: 'Quantum-Resistant Encryption' },
-      { icon: 'fingerprint', label: 'ZKP Biometric Verification' },
-      { icon: 'verified_user', label: 'HIPAA/SOC2 Certified' },
+      { icon: 'account_balance', label: 'Plaid Bank Verification' },
+      { icon: 'payments', label: 'Stripe Disbursements & Repayments' },
+      { icon: 'receipt_long', label: 'Automated Statements & Interest' },
     ],
-    cta: { label: 'Explore Protocol', primary: true },
+    cta: { label: 'Start a Similar Project', primary: true },
     imageRight: false,
-    tags: ['Zero-Trust', 'Healthcare', 'Compliance'],
+    tags: ['Plaid', 'Stripe', 'FinTech', 'Odoo'],
   },
 ]
 
@@ -94,7 +94,7 @@ export default function Portfolio() {
             </motion.p>
           </div>
           <motion.div variants={fadeUp} className="md:col-span-1 hidden md:grid grid-cols-2 gap-4">
-            {[['50+', 'Projects'], ['420%', 'Avg ROI'], ['94%', 'Retention'], ['0', 'Failures']].map(([v, l]) => (
+            {[['30+', 'Projects'], ['4+', 'Years Odoo'], ['80%', 'Manual Work Cut'], ['2', 'Publications']].map(([v, l]) => (
               <div key={l} className="p-5 bg-surface-container-high vitreous-edge border border-[#f5c518]/10 text-center">
                 <div className="text-2xl font-black text-primary-container mb-1">{v}</div>
                 <div className="text-[10px] uppercase tracking-widest text-on-surface-variant">{l}</div>

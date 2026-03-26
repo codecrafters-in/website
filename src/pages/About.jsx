@@ -68,7 +68,10 @@ export default function About() {
         <InView className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
           <motion.div variants={fadeUp} className="relative aspect-square">
             <div className="absolute inset-0 border border-[#4e4633] opacity-20 translate-x-4 translate-y-4" />
-            <img src="/images/founder-portrait.jpg" alt="Jaimin Shah, Founder" className="w-full h-full object-cover rounded-sm relative z-10 contrast-125" />
+            <div className="w-full h-full bg-[#1c1b1b] rounded-sm relative z-10 flex flex-col items-center justify-center border border-[#4e4633]/20 gap-3">
+              <span className="material-symbols-outlined text-[#4e4633]/40" style={{ fontSize: '6rem' }}>terminal</span>
+              <span className="text-5xl font-black text-[#4e4633]/30 tracking-tighter">JS</span>
+            </div>
             <motion.div
               className="absolute -bottom-6 -right-6 glass-panel p-6 md:p-8 z-20 max-w-xs"
               initial={{ opacity: 0, x: 20 }}
