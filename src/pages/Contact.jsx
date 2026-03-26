@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import emailjs from '@emailjs/browser'
 import { toast } from 'sonner'
 import SEO from '../components/SEO'
 
@@ -20,14 +19,23 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (formRef.current.botcheck.checked) return
     setLoading(true)
     try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_CONTACT,
-        formRef.current,
-        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
-      )
+      const form = formRef.current
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.user_name.value,
+          email: form.user_email.value,
+          company: form.company.value,
+          budget: form.budget.value,
+          message: form.message.value,
+          botcheck: form.botcheck.checked,
+        }),
+      })
+      if (!res.ok) throw new Error()
       setSubmitted(true)
       toast.success('Message sent! We\'ll be in touch within 4 hours.')
     } catch {

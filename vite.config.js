@@ -4,6 +4,11 @@ import compression from 'vite-plugin-compression'
 import path from 'path'
 
 export default defineConfig({
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+  },
   plugins: [
     react(),
     compression({ algorithm: 'brotliCompress', ext: '.br' }),

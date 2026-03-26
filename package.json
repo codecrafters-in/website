@@ -11,8 +11,8 @@
     "lint:fix": "eslint src --ext .js,.jsx --fix"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^11.0.0",
+    "nodemailer": "^8.0.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^3.0.0",
