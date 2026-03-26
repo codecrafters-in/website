@@ -72,8 +72,9 @@ export default function Portfolio() {
   return (
     <>
       <SEO
-        title="Case Studies — Proven Enterprise Results"
-        description="Real results from real clients. See how CodeCrafters delivered AI automation and Odoo ERP transformations with measurable ROI."
+        title="Odoo ERP Projects & Case Studies | CodeCrafters India"
+        description="Real Odoo ERP projects: healthcare automation, eCommerce, v14–v19 migrations, custom modules, AI integrations. 30+ delivered across industries by Jaimin Shah."
+        keywords="Odoo ERP case study India, Odoo project examples, Odoo implementation portfolio, Odoo customisation projects, Odoo migration examples India"
         path="/portfolio"
       />
     <main className="pt-24 industrial-grid min-h-screen">
@@ -199,6 +200,41 @@ export default function Portfolio() {
             </motion.div>
           </InView>
         ))}
+      </section>
+
+      {/* ── MORE PROJECTS ── */}
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 xl:px-14 pb-16">
+        <InView>
+          <motion.div variants={fadeUp} className="mb-10">
+            <p className="text-primary-container text-xs font-bold uppercase tracking-[0.3em] mb-2">More Work</p>
+            <h3 className="text-2xl font-black uppercase tracking-tight text-on-surface">Also Built</h3>
+          </motion.div>
+          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: 'mic', cat: 'AI Productivity', title: 'AI Meeting Intelligence Assistant', line: 'Audio capture → AI summarisation → TODOs, mind-maps, and conversational Q&A over transcripts.', tags: ['LLM', 'Audio AI', 'React', 'Flask'] },
+              { icon: 'visibility', cat: 'AI Vision', title: 'AI Real-Time Screen Assistant', line: 'Live screen analysis via Gemini Vision with voice interaction and low-latency streaming.', tags: ['Gemini Vision', 'Voice AI', 'Python'] },
+              { icon: 'document_scanner', cat: 'Odoo', title: 'Custom OCR Engine for Odoo', line: 'Automated invoice processing with confidence scoring and human-in-the-loop review for edge cases.', tags: ['OCR', 'Odoo', 'Python', 'ML'] },
+              { icon: 'approval', cat: 'Workflow', title: 'Portal Order Approval Engine', line: 'Multi-stage credit control checks, manager validations, and real-time notifications without breaking order integrity.', tags: ['Odoo', 'Python', 'OWL'] },
+              { icon: 'support_agent', cat: 'Helpdesk', title: 'Multi-Team Helpdesk System', line: 'Role-based visibility, workload-aware auto-assignment, and enforced routing boundaries across teams.', tags: ['Odoo', 'Python', 'OWL'] },
+              { icon: 'smart_toy', cat: 'AI + CRM', title: 'AI Customer Engagement Module', line: 'Analyses conversations, generates response suggestions, and auto-schedules appointments via Odoo Calendar.', tags: ['LLM', 'Odoo CRM', 'Python'] },
+              { icon: 'monitoring', cat: 'Analytics', title: 'Sales & Inventory Forecasting Dashboards', line: 'Real-time forecasting and end-to-end stock traceability dashboard built in Python + OWL.', tags: ['Python', 'OWL', 'Odoo', 'BI'] },
+              { icon: 'upgrade', cat: 'ERP Migration', title: 'Odoo v14 → v19 Full-Stack Migration', line: 'Rewrote business logic, modernised OWL components, and replaced deprecated APIs — zero data loss.', tags: ['Odoo v14–v19', 'OWL', 'PostgreSQL'] },
+              { icon: 'science', cat: 'ML Research', title: 'Stock Prediction Model — Elsevier', line: 'Hybrid LSTM + CNN + ARIMA model with sentiment analysis. Published peer-reviewed in Elsevier.', tags: ['LSTM', 'CNN', 'ARIMA', 'Python'] },
+            ].map((p) => (
+              <motion.div key={p.title} variants={fadeUp} className="p-6 bg-surface-container-low border border-[#4e4633]/10 hover:border-[#f5c518]/30 transition-colors duration-300 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-black uppercase tracking-widest text-primary-container bg-primary-container/10 px-2 py-1">{p.cat}</span>
+                  <span className="material-symbols-outlined text-[#4e4633]/40 text-xl">{p.icon}</span>
+                </div>
+                <h4 className="font-bold text-on-surface text-sm leading-snug">{p.title}</h4>
+                <p className="text-on-surface-variant text-xs leading-relaxed flex-grow">{p.line}</p>
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#4e4633]/15">
+                  {p.tags.map((t) => <span key={t} className="text-[9px] font-bold uppercase tracking-wider text-[#4e4633] px-2 py-0.5 border border-[#4e4633]/25">{t}</span>)}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </InView>
       </section>
 
       {/* ── CTA ── */}

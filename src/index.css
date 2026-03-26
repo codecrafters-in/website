@@ -133,6 +133,37 @@
   }
 }
 
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pain points infinite marquee */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll-reverse {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.marquee-track-reverse {
+  animation: marquee-scroll-reverse 38s linear infinite;
+}
+.marquee-track-reverse:hover {
+  animation-play-state: paused;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

@@ -23,8 +23,9 @@ export default function Services() {
   return (
     <>
       <SEO
-        title="Services — AI Automation & Odoo ERP"
-        description="Full-stack AI automation, Odoo ERP implementation, cloud infrastructure, and cyber security for enterprise organizations."
+        title="Odoo ERP Services — Implementation, Customisation & Automation"
+        description="Full Odoo ERP services: implementation, custom module development, migrations, AI automation, and third-party integrations. Senior Odoo engineers in Ahmedabad, India."
+        keywords="Odoo ERP services India, Odoo implementation services, Odoo customisation services, Odoo consulting India, hire Odoo developer India, Odoo service company"
         path="/services"
       />
     <main className="pt-24 min-h-screen">

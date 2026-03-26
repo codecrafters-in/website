@@ -46,8 +46,9 @@ export default function BrandDesign() {
   return (
     <>
       <SEO
-        title="Brand Design — Identity Systems for Ambitious Companies"
-        description="Logo, brand guidelines, design systems, and pitch decks built for enterprise credibility. First impressions that close deals."
+        title="Brand & Identity Design — CodeCrafters"
+        description="Logo systems, brand guidelines, UI design systems, pitch decks, and social media kits. Built for enterprise credibility by a technical team that understands product."
+        keywords="brand design India, logo design Ahmedabad, brand identity system, UI design system, pitch deck design India"
         path="/brand-design"
       />
     <main className="pt-24 min-h-screen">

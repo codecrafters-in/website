@@ -1,7 +1,7 @@
 import SEO from '../components/SEO'
 
 const LAST_UPDATED = 'March 2025'
-const CONTACT_EMAIL = 'legal@codecrafters.ai'
+const CONTACT_EMAIL = 'legal@codecrafters.in'
 
 export default function Terms() {
   return (

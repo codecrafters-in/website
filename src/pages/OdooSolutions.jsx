@@ -36,8 +36,9 @@ export default function OdooSolutions() {
   return (
     <>
       <SEO
-        title="Odoo ERP Solutions — Implementation & Customisation"
-        description="End-to-end Odoo ERP implementation that eliminates spreadsheet chaos and manual hand-offs. Go live in 90 days, not 18 months."
+        title="Odoo ERP Implementation & Customisation | Best Odoo Partner India"
+        description="End-to-end Odoo ERP implementation, module customisation, v14–v19 migration, and integrations. Best Odoo service provider in India with 4+ years and 30+ projects."
+        keywords="best Odoo partner India, Odoo ERP implementation India, Odoo customisation service, Odoo v17 v18 v19 developer, Odoo module development, Odoo migration India, Odoo service provider"
         path="/odoo-solutions"
       />
     <main className="pt-24 min-h-screen">

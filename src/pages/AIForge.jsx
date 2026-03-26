@@ -48,8 +48,9 @@ export default function AIForge() {
   return (
     <>
       <SEO
-        title="AI Forge — Intelligent Automation Engineering"
-        description="LLM pipelines, autonomous agent swarms, and RAG systems engineered for enterprise-scale automation. Reduce manual labour by 80%."
+        title="Odoo AI Automation & LLM Integration | CodeCrafters India"
+        description="Automate your Odoo ERP with AI agents, LLM pipelines, and intelligent workflows. Cut manual work by 80%. Expert Odoo AI automation by CodeCrafters, Ahmedabad India."
+        keywords="Odoo AI automation, Odoo LLM integration, AI agent Odoo, Odoo automation India, intelligent Odoo workflows, Odoo AI developer India"
         path="/ai-forge"
       />
     <main className="pt-20">

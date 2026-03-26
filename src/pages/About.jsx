@@ -23,8 +23,9 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About — Who We Are"
-        description="CodeCrafters is a boutique AI and Odoo engineering firm. We work with a select few enterprise clients who demand precision over promises."
+        title="About — Jaimin Shah, Senior Odoo Developer & Partner India"
+        description="Jaimin Shah — senior Odoo developer and implementation partner with 4+ years across v14–v19. Expert in Odoo customisation, AI automation, and ERP migrations. Ahmedabad, India."
+        keywords="Jaimin Shah Odoo developer, Odoo partner India, senior Odoo developer Ahmedabad, Odoo ERP expert India, Odoo consultant Gujarat"
         path="/about"
       />
     <main className="pt-24">

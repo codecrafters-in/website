@@ -48,8 +48,9 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Contact — Book a Free Technical Audit"
-        description="Tell us about your biggest operational bottleneck. We'll respond within 24 hours with a tailored assessment — no sales pitch, no fluff."
+        title="Hire Odoo Developer India | Free Odoo ERP Audit"
+        description="Looking for an Odoo ERP partner in India? Book a free 30-min Odoo audit with Jaimin Shah. Clear diagnosis, no sales pitch. Ahmedabad-based, serving clients globally."
+        keywords="hire Odoo developer India, Odoo ERP consultant India, best Odoo partner contact, free Odoo audit, Odoo developer Ahmedabad, Odoo service India"
         path="/contact"
       />
     <main className="min-h-screen pt-24 pb-16 relative overflow-hidden technical-grid">

@@ -1,7 +1,7 @@
 import SEO from '../components/SEO'
 
 const LAST_UPDATED = 'March 2025'
-const CONTACT_EMAIL = 'legal@codecrafters.ai'
+const CONTACT_EMAIL = 'legal@codecrafters.in'
 
 export default function Privacy() {
   return (
@@ -57,7 +57,7 @@ export default function Privacy() {
               },
               {
                 title: '10. Contact',
-                body: `For privacy-related enquiries, data access requests, or complaints, contact our data controller at: ${CONTACT_EMAIL} — CodeCrafters, forge@codecrafters.ai`,
+                body: `For privacy-related enquiries, data access requests, or complaints, contact our data controller at: ${CONTACT_EMAIL} — CodeCrafters, forge@codecrafters.in`,
               },
             ].map((section) => (
               <section key={section.title}>
