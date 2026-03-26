@@ -38,6 +38,17 @@ export default function Footer() {
               <a href="mailto:hello@codecrafters.in" aria-label="Email" className="text-[#4E4633] hover:text-[#F5C518] transition-colors">
                 <span className="material-symbols-outlined text-xl">mail</span>
               </a>
+              {import.meta.env.VITE_WHATSAPP_NUMBER && (
+                <a
+                  href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="WhatsApp"
+                  className="text-[#4E4633] hover:text-[#F5C518] transition-colors"
+                >
+                  <span className="material-symbols-outlined text-xl">chat</span>
+                </a>
+              )}
             </div>
           </div>
 

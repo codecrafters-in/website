@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import emailjs from '@emailjs/browser'
+import { toast } from 'sonner'
 import SEO from '../components/SEO'
 
 const fadeUp = {
@@ -9,13 +11,30 @@ const fadeUp = {
 }
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } }
 
-export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', budget: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
+const CAL_URL = import.meta.env.VITE_CAL_URL || 'https://cal.com'
 
-  const handleSubmit = (e) => {
+export default function Contact() {
+  const formRef = useRef(null)
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_CONTACT,
+        formRef.current,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+      )
+      setSubmitted(true)
+      toast.success('Message sent! We\'ll be in touch within 4 hours.')
+    } catch {
+      toast.error('Something went wrong. Please email us directly at hello@codecrafters.in')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -26,7 +45,6 @@ export default function Contact() {
         path="/contact"
       />
     <main className="min-h-screen pt-24 pb-16 relative overflow-hidden technical-grid">
-      {/* Ambient glow */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary-container/5 rounded-full blur-[128px] pointer-events-none" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary-container/5 rounded-full blur-[128px] pointer-events-none" />
 
@@ -50,9 +68,9 @@ export default function Contact() {
             {/* Contact Info */}
             <motion.div variants={stagger} className="space-y-6">
               {[
-                { icon: 'terminal', title: 'Email Us', value: 'forge@codecrafters.ai' },
-                { icon: 'location_on', title: 'Headquarters', value: 'Silicon Valley, CA' },
-                { icon: 'schedule', title: 'Response Time', value: 'Within 4 business hours' },
+                { icon: 'mail', title: 'Email Us', value: 'hello@codecrafters.in', href: 'mailto:hello@codecrafters.in' },
+                { icon: 'location_on', title: 'Headquarters', value: 'India', href: null },
+                { icon: 'schedule', title: 'Response Time', value: 'Within 4 business hours', href: null },
               ].map((item) => (
                 <motion.div key={item.title} variants={fadeUp} className="flex items-start gap-4 group">
                   <div className="mt-0.5 flex items-center justify-center w-9 h-9 border border-[#4e4633]/20 group-hover:border-[#f5c518]/40 transition-colors shrink-0">
@@ -60,10 +78,32 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface">{item.title}</h4>
-                    <p className="text-sm text-on-surface-variant font-mono">{item.value}</p>
+                    {item.href ? (
+                      <a href={item.href} className="text-sm text-on-surface-variant font-mono hover:text-primary-container transition-colors">{item.value}</a>
+                    ) : (
+                      <p className="text-sm text-on-surface-variant font-mono">{item.value}</p>
+                    )}
                   </div>
                 </motion.div>
               ))}
+            </motion.div>
+
+            {/* Cal.com direct booking */}
+            <motion.div variants={fadeUp}>
+              <p className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-3">Prefer to book directly?</p>
+              <a
+                href={CAL_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-3 w-full border border-[#F5C518]/30 bg-[#F5C518]/5 hover:bg-[#F5C518]/10 hover:border-[#F5C518]/60 transition-all p-4 group"
+              >
+                <span className="material-symbols-outlined text-primary-container text-xl">calendar_month</span>
+                <div>
+                  <p className="text-sm font-bold text-on-surface">Book on Cal.com</p>
+                  <p className="text-[10px] text-on-surface-variant">Pick a time that works for you</p>
+                </div>
+                <span className="material-symbols-outlined text-[#4e4633] group-hover:text-primary-container transition-colors ml-auto">arrow_outward</span>
+              </a>
             </motion.div>
 
             {/* Quick links */}
@@ -86,7 +126,7 @@ export default function Contact() {
               <h5 className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-3">Availability</h5>
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-primary-container animate-pulse shadow-[0_0_8px_#f5c518]" />
-                <span className="text-xs font-mono text-on-surface">ACCEPTING NEW CLIENTS // Q2 2024</span>
+                <span className="text-xs font-mono text-on-surface">ACCEPTING NEW CLIENTS // Q2 2026</span>
               </div>
               <p className="text-on-surface-variant text-[10px] mt-2">Limited to 3 new enterprise engagements per quarter to maintain quality.</p>
             </motion.div>
@@ -104,6 +144,10 @@ export default function Contact() {
                   </motion.div>
                   <h3 className="text-3xl font-black text-on-surface uppercase tracking-tighter">Transmission Received.</h3>
                   <p className="text-on-surface-variant max-w-sm mx-auto">We'll review your submission and reach out within 4 business hours to schedule your free audit call.</p>
+                  <a href={CAL_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-primary-container text-sm font-bold hover:underline">
+                    <span className="material-symbols-outlined text-sm">calendar_month</span>
+                    Or book a time directly on Cal.com
+                  </a>
                   <div className="pt-4 space-y-3">
                     <p className="text-on-surface-variant text-xs uppercase tracking-widest">While you wait, explore:</p>
                     <div className="flex flex-wrap justify-center gap-3">
@@ -113,47 +157,65 @@ export default function Contact() {
                   </div>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-8">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
+                  {/* Honeypot — hidden from humans, catches bots */}
+                  <input type="checkbox" name="botcheck" style={{ display: 'none' }} tabIndex={-1} />
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2 group">
                       <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">Your Name *</label>
-                      <input required type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="FULL NAME" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
+                      <input required type="text" name="user_name" placeholder="FULL NAME" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
                     </div>
                     <div className="space-y-2 group">
                       <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">Work Email *</label>
-                      <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="EMAIL@COMPANY.COM" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
+                      <input required type="email" name="user_email" placeholder="EMAIL@COMPANY.COM" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2 group">
                       <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">Company</label>
-                      <input type="text" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="COMPANY NAME" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
+                      <input type="text" name="company" placeholder="COMPANY NAME" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
                     </div>
                     <div className="space-y-2 group">
                       <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">Budget Range</label>
-                      <select value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface py-3 font-mono text-sm outline-none transition-colors appearance-none cursor-pointer">
+                      <select name="budget" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface py-3 font-mono text-sm outline-none transition-colors appearance-none cursor-pointer">
                         <option value="" className="bg-[#1c1b1b]">SELECT RANGE</option>
-                        <option value="under-25k" className="bg-[#1c1b1b]">Under $25K</option>
-                        <option value="25-50k" className="bg-[#1c1b1b]">$25K – $50K</option>
-                        <option value="50-100k" className="bg-[#1c1b1b]">$50K – $100K</option>
-                        <option value="100k-plus" className="bg-[#1c1b1b]">$100K+</option>
+                        <option value="Under $25K" className="bg-[#1c1b1b]">Under $25K</option>
+                        <option value="$25K – $50K" className="bg-[#1c1b1b]">$25K – $50K</option>
+                        <option value="$50K – $100K" className="bg-[#1c1b1b]">$50K – $100K</option>
+                        <option value="$100K+" className="bg-[#1c1b1b]">$100K+</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="space-y-2 group">
                     <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">What Are You Trying to Solve? *</label>
-                    <textarea required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="DESCRIBE YOUR CURRENT SETUP, BIGGEST BOTTLENECKS, AND WHAT SUCCESS LOOKS LIKE..." rows={4} className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm resize-none outline-none transition-colors" />
+                    <textarea required name="message" placeholder="DESCRIBE YOUR CURRENT SETUP, BIGGEST BOTTLENECKS, AND WHAT SUCCESS LOOKS LIKE..." rows={4} className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm resize-none outline-none transition-colors" />
                   </div>
 
                   <div className="pt-2">
-                    <motion.button type="submit" className="w-full molten-gradient group relative overflow-hidden text-on-primary font-bold uppercase tracking-[0.2em] text-sm py-5 transition-all" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}>
+                    <motion.button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full molten-gradient group relative overflow-hidden text-on-primary font-bold uppercase tracking-[0.2em] text-sm py-5 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                      whileHover={loading ? {} : { scale: 1.01 }}
+                      whileTap={loading ? {} : { scale: 0.98 }}
+                    >
                       <span className="relative z-10 flex items-center justify-center gap-3">
-                        Book My Free Audit
-                        <span className="material-symbols-outlined text-xl">bolt</span>
+                        {loading ? (
+                          <>
+                            <motion.span className="block w-4 h-4 border-2 border-[#131313]/40 border-t-[#131313] rounded-full" animate={{ rotate: 360 }} transition={{ duration: 0.7, repeat: Infinity, ease: 'linear' }} />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Book My Free Audit
+                            <span className="material-symbols-outlined text-xl">bolt</span>
+                          </>
+                        )}
                       </span>
-                      <div className="absolute inset-0 bg-white/15 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                      {!loading && <div className="absolute inset-0 bg-white/15 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />}
                     </motion.button>
                     <p className="mt-4 text-center text-[10px] text-on-surface-variant font-mono uppercase tracking-widest opacity-50">
                       No commitment. 45-min call. Written summary delivered same day.
@@ -181,9 +243,9 @@ export default function Contact() {
           <div className="absolute inset-0 flex items-center justify-center p-8">
             <div className="max-w-2xl text-center space-y-5">
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-on-surface">Global Execution Capability</h3>
-              <p className="text-on-surface-variant leading-relaxed text-sm">We operate across three timezones. Our nodes in SF, London, and Tokyo provide 24/7 engineering coverage for our clients.</p>
+              <p className="text-on-surface-variant leading-relaxed text-sm">We operate across timezones to provide responsive engineering coverage for our clients worldwide.</p>
               <div className="flex flex-wrap justify-center gap-8 mt-6">
-                {[{ code: 'SF_01', label: 'Main Cluster' }, { code: 'LDN_04', label: 'Logic Node' }, { code: 'TKY_09', label: 'Visual Core' }].map((node) => (
+                {[{ code: 'IND_01', label: 'Main Cluster' }, { code: 'UAE_04', label: 'Logic Node' }, { code: 'UK_09', label: 'Visual Core' }].map((node) => (
                   <div key={node.code} className="text-center">
                     <span className="block text-primary-container font-mono text-lg">{node.code}</span>
                     <span className="text-[10px] text-on-surface-variant uppercase tracking-widest">{node.label}</span>

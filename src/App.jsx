@@ -9,6 +9,7 @@ import ErrorBoundary from './components/ErrorBoundary'
 import PageLoader from './components/PageLoader'
 import ScrollToTop from './components/ScrollToTop'
 import PrivacyBanner from './components/PrivacyBanner'
+import BookingFloat from './components/BookingFloat'
 
 const Home = lazy(() => import('./pages/Home'))
 const Services = lazy(() => import('./pages/Services'))
@@ -19,6 +20,7 @@ const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Privacy = lazy(() => import('./pages/Privacy'))
 const Terms = lazy(() => import('./pages/Terms'))
+const BrandDesign = lazy(() => import('./pages/BrandDesign'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 const pageVariants = {
@@ -64,6 +66,7 @@ function AnimatedRoutes() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/brand-design" element={<BrandDesign />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
@@ -85,6 +88,7 @@ export default function App() {
           </main>
           <Footer />
           <ScrollToTop />
+          <BookingFloat />
           <PrivacyBanner />
           <Toaster
             position="bottom-right"

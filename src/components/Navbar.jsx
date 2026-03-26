@@ -6,6 +6,7 @@ const navLinks = [
   { label: 'Services', to: '/services' },
   { label: 'AI Forge', to: '/ai-forge' },
   { label: 'Odoo Solutions', to: '/odoo-solutions' },
+  { label: 'Brand Design', to: '/brand-design' },
   { label: 'Case Studies', to: '/portfolio' },
   { label: 'About', to: '/about' },
 ]

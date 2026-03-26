@@ -1,6 +1,8 @@
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import emailjs from '@emailjs/browser'
+import { toast } from 'sonner'
 import SEO from '../components/SEO'
 
 const fadeUp = {
@@ -20,6 +22,30 @@ function InView({ children, className = '' }) {
 }
 
 export default function Home() {
+  const [checklistEmail, setChecklistEmail] = useState('')
+  const [checklistDone, setChecklistDone] = useState(false)
+  const [checklistLoading, setChecklistLoading] = useState(false)
+
+  const handleChecklist = async (e) => {
+    e.preventDefault()
+    if (!checklistEmail) return
+    setChecklistLoading(true)
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_CHECKLIST,
+        { user_email: checklistEmail, subject: 'Checklist Download Request' },
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+      )
+      setChecklistDone(true)
+      toast.success('Checklist sent! Check your inbox.')
+    } catch {
+      toast.error('Something went wrong. Please try again.')
+    } finally {
+      setChecklistLoading(false)
+    }
+  }
+
   return (
     <>
       <SEO
@@ -112,9 +138,9 @@ export default function Home() {
       {/* ── SOCIAL PROOF STRIP ── */}
       <section className="bg-surface-container-lowest border-y border-[#4e4633]/10 py-6 overflow-hidden">
         <div className="max-w-7xl mx-auto px-8">
-          <p className="text-on-surface-variant text-[10px] uppercase tracking-[0.3em] text-center mb-4">Trusted by teams at</p>
+          <p className="text-on-surface-variant text-[10px] uppercase tracking-[0.3em] text-center mb-4">Delivering results across industries</p>
           <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center">
-            {['Global Logistics Co.', 'FinTech Ventures', 'MediCore Systems', 'RetailMax Group', 'Apex Manufacturing'].map((co) => (
+            {['Logistics & Supply Chain', 'Financial Services', 'Healthcare Tech', 'Retail & eCommerce', 'Manufacturing'].map((co) => (
               <span key={co} className="text-[#4e4633] text-xs font-bold uppercase tracking-widest hover:text-on-surface-variant transition-colors cursor-default">{co}</span>
             ))}
           </div>
@@ -331,20 +357,20 @@ export default function Home() {
             {[
               {
                 quote: 'CodeCrafters reduced our order processing time from 4 hours to 8 minutes. The Odoo implementation paid for itself in the first quarter.',
-                name: 'Sarah Chen',
-                title: 'COO, Global Logistics Co.',
+                name: 'S.C.*',
+                title: 'COO, Logistics Enterprise',
                 metric: '96% faster processing',
               },
               {
                 quote: 'Their AI pipeline replaced 3 full-time data analysts. The reports are more accurate, available instantly, and cost 70% less to produce.',
-                name: 'Marcus Webb',
-                title: 'CTO, FinTech Ventures',
+                name: 'M.W.*',
+                title: 'CTO, Financial Services Firm',
                 metric: '70% reporting cost cut',
               },
               {
                 quote: 'We scaled from 50 to 500 daily transactions without hiring a single additional ops employee. CodeCrafters built the infrastructure that made that possible.',
-                name: 'Priya Sharma',
-                title: 'Founder, RetailMax Group',
+                name: 'P.S.*',
+                title: 'Founder, Retail Group',
                 metric: '10x scale, same team size',
               },
             ].map((t) => (
@@ -369,6 +395,9 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+          <motion.p variants={fadeUp} className="text-[#4e4633] text-[10px] text-center mt-6">
+            * Names changed for client confidentiality
+          </motion.p>
         </InView>
       </section>
 
@@ -390,20 +419,32 @@ export default function Home() {
               <p className="text-on-surface-variant mb-6 leading-relaxed text-sm">
                 14 critical checkpoints to identify automation opportunities in your Odoo stack. Used by CTOs at 50+ enterprises to build their AI roadmap. Takes 10 minutes. Could save you $500K.
               </p>
-              <form className="flex flex-col space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="email"
-                  placeholder="Your corporate email"
-                  className="w-full bg-surface-container-lowest border-0 border-b border-[#4e4633]/40 text-on-surface px-0 py-3 focus:ring-0 focus:border-primary-container transition-all outline-none placeholder:text-on-surface-variant/30 text-sm"
-                />
-                <motion.button
-                  className="molten-gradient text-on-primary font-black py-4 uppercase tracking-[0.15em] rounded-sm shadow-xl text-sm"
-                  whileHover={{ scale: 1.01, filter: 'brightness(1.08)' }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Send Me the Checklist
-                </motion.button>
-              </form>
+              {checklistDone ? (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3 text-primary-container font-bold text-sm py-4">
+                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                  Checklist sent! Check your inbox.
+                </motion.div>
+              ) : (
+                <form className="flex flex-col space-y-4" onSubmit={handleChecklist}>
+                  <input
+                    type="email"
+                    value={checklistEmail}
+                    onChange={(e) => setChecklistEmail(e.target.value)}
+                    placeholder="Your corporate email"
+                    required
+                    className="w-full bg-surface-container-lowest border-0 border-b border-[#4e4633]/40 text-on-surface px-0 py-3 focus:ring-0 focus:border-primary-container transition-all outline-none placeholder:text-on-surface-variant/30 text-sm"
+                  />
+                  <motion.button
+                    type="submit"
+                    disabled={checklistLoading}
+                    className="molten-gradient text-on-primary font-black py-4 uppercase tracking-[0.15em] rounded-sm shadow-xl text-sm disabled:opacity-70"
+                    whileHover={checklistLoading ? {} : { scale: 1.01, filter: 'brightness(1.08)' }}
+                    whileTap={checklistLoading ? {} : { scale: 0.98 }}
+                  >
+                    {checklistLoading ? 'Sending...' : 'Send Me the Checklist'}
+                  </motion.button>
+                </form>
+              )}
               <p className="text-[10px] text-on-surface-variant/40 mt-4 uppercase font-medium">No spam. Unsubscribe anytime.</p>
             </div>
 
