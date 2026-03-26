@@ -34,7 +34,7 @@ export default function About() {
         <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-16 items-center" variants={stagger} initial="hidden" animate="visible">
           <div className="md:col-span-2 space-y-8">
             <motion.span variants={fadeUp} className="text-primary-container text-sm tracking-[0.3em] uppercase block font-bold">
-              Est. 2018 · 50+ Enterprise Clients
+              Ahmedabad, India · Odoo & AI Engineering
             </motion.span>
             <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-none text-on-surface">
               We Build Systems<br />
@@ -68,7 +68,7 @@ export default function About() {
         <InView className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
           <motion.div variants={fadeUp} className="relative aspect-square">
             <div className="absolute inset-0 border border-[#4e4633] opacity-20 translate-x-4 translate-y-4" />
-            <img src="/images/founder-portrait.jpg" alt="Founder" className="w-full h-full object-cover rounded-sm relative z-10 contrast-125" />
+            <img src="/images/founder-portrait.jpg" alt="Jaimin Shah, Founder" className="w-full h-full object-cover rounded-sm relative z-10 contrast-125" />
             <motion.div
               className="absolute -bottom-6 -right-6 glass-panel p-6 md:p-8 z-20 max-w-xs"
               initial={{ opacity: 0, x: 20 }}
@@ -76,8 +76,8 @@ export default function About() {
               transition={{ delay: 0.4, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <p className="font-bold text-base md:text-lg text-primary">"Precision is the bridge between imagination and reality."</p>
-              <p className="text-on-surface-variant text-xs mt-2 uppercase tracking-widest">— Julian Thorne, Founder & CEO</p>
+              <p className="font-bold text-base md:text-lg text-primary">"The best ERP is the one your team never has to think about."</p>
+              <p className="text-on-surface-variant text-xs mt-2 uppercase tracking-widest">— Jaimin Shah, Founder</p>
             </motion.div>
           </motion.div>
 
@@ -85,17 +85,17 @@ export default function About() {
             <motion.h2 variants={fadeUp} className="text-4xl font-bold tracking-tight text-on-surface uppercase italic">Why We Built This</motion.h2>
             <motion.div variants={stagger} className="space-y-5 text-on-surface-variant leading-relaxed text-lg">
               <motion.p variants={fadeUp}>
-                In 2018, Julian Thorne watched a $50M ERP project fail at a Fortune 500 client — not because of technical limitations, but because the implementors didn't understand the business.
+                Jaimin Shah spent years inside Odoo India itself — the source — watching enterprises invest heavily in ERP rollouts that never fully landed. The gap was never the software. It was the depth of engineering behind it.
               </motion.p>
               <motion.p variants={fadeUp}>
-                CodeCrafters was his answer: a firm where every architect spends the first week learning your business before writing a single line of code. That discipline is now our competitive moat.
+                With a Master's in Automatic Control &amp; Robotics, published ML research in Elsevier and Taylor &amp; Francis, and hands-on work across AI agents, Claude MCP, and Odoo v14–v19, he founded CodeCrafters to apply that rigor: deep business analysis, AI-augmented workflows, and systems built to last.
               </motion.p>
               <motion.p variants={fadeUp}>
-                Today, we've applied that philosophy to 50+ enterprises across logistics, finance, healthcare, and manufacturing — with a 94% retention rate and zero critical system failures.
+                That approach now powers projects across healthcare, logistics, finance, and manufacturing — from multi-version migrations to custom AI agents running quietly while clients focus on growth.
               </motion.p>
             </motion.div>
             <motion.div variants={fadeUp} className="flex gap-10 pt-4">
-              {[['50+', 'Projects Delivered'], ['94%', 'Client Retention'], ['0', 'Critical Failures']].map(([v, l]) => (
+              {[['4+', 'Years in Odoo'], ['30+', 'Projects Delivered'], ['2', 'Peer-Reviewed Publications']].map(([v, l]) => (
                 <div key={l}>
                   <span className="block text-3xl font-black text-primary">{v}</span>
                   <span className="text-[10px] uppercase tracking-widest text-outline">{l}</span>
