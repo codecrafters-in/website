@@ -65,47 +65,34 @@ export default function About() {
 
       {/* ── FOUNDER SECTION ── */}
       <section id="process-section" className="bg-surface-container-low py-24 md:py-32 px-5 sm:px-8 lg:px-10 xl:px-14">
-        <InView className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
-          <motion.div variants={fadeUp} className="relative aspect-square">
-            <div className="absolute inset-0 border border-[#4e4633] opacity-20 translate-x-4 translate-y-4" />
-            <div className="w-full h-full bg-[#1c1b1b] rounded-sm relative z-10 flex flex-col items-center justify-center border border-[#4e4633]/20 gap-3">
-              <span className="material-symbols-outlined text-[#4e4633]/40" style={{ fontSize: '6rem' }}>terminal</span>
-              <span className="text-5xl font-black text-[#4e4633]/30 tracking-tighter">JS</span>
-            </div>
-            <motion.div
-              className="absolute -bottom-6 -right-6 glass-panel p-6 md:p-8 z-20 max-w-xs"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <p className="font-bold text-base md:text-lg text-primary">"The best ERP is the one your team never has to think about."</p>
-              <p className="text-on-surface-variant text-xs mt-2 uppercase tracking-widest">— Jaimin Shah, Founder</p>
-            </motion.div>
+        <InView className="max-w-4xl mx-auto">
+          <motion.h2 variants={fadeUp} className="text-4xl font-bold tracking-tight text-on-surface uppercase italic mb-10">Why We Built This</motion.h2>
+
+          <motion.blockquote variants={fadeUp} className="border-l-2 border-primary-container pl-6 mb-10">
+            <p className="text-xl md:text-2xl font-semibold text-primary-container leading-snug">"The best ERP is the one your team never has to think about."</p>
+            <footer className="text-on-surface-variant text-xs mt-3 uppercase tracking-widest">— Jaimin Shah, Founder</footer>
+          </motion.blockquote>
+
+          <motion.div variants={stagger} className="space-y-5 text-on-surface-variant leading-relaxed text-lg mb-12">
+            <motion.p variants={fadeUp}>
+              Jaimin Shah spent years inside Odoo India itself — the source — watching enterprises invest heavily in ERP rollouts that never fully landed. The gap was never the software. It was the depth of engineering behind it.
+            </motion.p>
+            <motion.p variants={fadeUp}>
+              With a Master's in Automatic Control &amp; Robotics, published ML research in Elsevier and Taylor &amp; Francis, and hands-on work across AI agents, Claude MCP, and Odoo v14–v19, he founded CodeCrafters to apply that rigor: deep business analysis, AI-augmented workflows, and systems built to last.
+            </motion.p>
+            <motion.p variants={fadeUp}>
+              That approach now powers projects across healthcare, logistics, finance, and manufacturing — from multi-version migrations to custom AI agents running quietly while clients focus on growth.
+            </motion.p>
           </motion.div>
 
-          <div className="space-y-8">
-            <motion.h2 variants={fadeUp} className="text-4xl font-bold tracking-tight text-on-surface uppercase italic">Why We Built This</motion.h2>
-            <motion.div variants={stagger} className="space-y-5 text-on-surface-variant leading-relaxed text-lg">
-              <motion.p variants={fadeUp}>
-                Jaimin Shah spent years inside Odoo India itself — the source — watching enterprises invest heavily in ERP rollouts that never fully landed. The gap was never the software. It was the depth of engineering behind it.
-              </motion.p>
-              <motion.p variants={fadeUp}>
-                With a Master's in Automatic Control &amp; Robotics, published ML research in Elsevier and Taylor &amp; Francis, and hands-on work across AI agents, Claude MCP, and Odoo v14–v19, he founded CodeCrafters to apply that rigor: deep business analysis, AI-augmented workflows, and systems built to last.
-              </motion.p>
-              <motion.p variants={fadeUp}>
-                That approach now powers projects across healthcare, logistics, finance, and manufacturing — from multi-version migrations to custom AI agents running quietly while clients focus on growth.
-              </motion.p>
-            </motion.div>
-            <motion.div variants={fadeUp} className="flex gap-10 pt-4">
-              {[['4+', 'Years in Odoo'], ['30+', 'Projects Delivered'], ['2', 'Peer-Reviewed Publications']].map(([v, l]) => (
-                <div key={l}>
-                  <span className="block text-3xl font-black text-primary">{v}</span>
-                  <span className="text-[10px] uppercase tracking-widest text-outline">{l}</span>
-                </div>
-              ))}
-            </motion.div>
-          </div>
+          <motion.div variants={fadeUp} className="flex gap-12 pt-4 border-t border-[#4e4633]/20">
+            {[['4+', 'Years in Odoo'], ['30+', 'Projects Delivered'], ['2', 'Peer-Reviewed Publications']].map(([v, l]) => (
+              <div key={l}>
+                <span className="block text-3xl font-black text-primary">{v}</span>
+                <span className="text-[10px] uppercase tracking-widest text-outline">{l}</span>
+              </div>
+            ))}
+          </motion.div>
         </InView>
       </section>
 
