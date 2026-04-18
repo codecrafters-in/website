@@ -21,6 +21,8 @@ const Contact = lazy(() => import('./pages/Contact'))
 const Privacy = lazy(() => import('./pages/Privacy'))
 const Terms = lazy(() => import('./pages/Terms'))
 const BrandDesign = lazy(() => import('./pages/BrandDesign'))
+const Products = lazy(() => import('./pages/Products'))
+const QuoteMaker = lazy(() => import('./pages/QuoteMaker'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 const pageVariants = {
@@ -67,6 +69,8 @@ function AnimatedRoutes() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/brand-design" element={<BrandDesign />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/quotemaker" element={<QuoteMaker />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

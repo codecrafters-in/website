@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0E0E0E] w-full pt-16 pb-8 border-t border-[#4E4633]/20">
       <div className="max-w-screen-2xl mx-auto px-5 sm:px-8 lg:px-10 xl:px-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12">
 
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
@@ -50,6 +50,32 @@ export default function Footer() {
                 </a>
               )}
             </div>
+          </div>
+
+          {/* Our Products */}
+          <div>
+            <h5 className="text-white font-bold text-[10px] uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+              Our Products
+              <span className="text-[7px] font-black uppercase tracking-widest bg-[#F5C518] text-[#131313] px-1.5 py-0.5 leading-none">NEW</span>
+            </h5>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/products" className="text-[#8A7F6A] hover:text-[#F5C518] text-sm transition-colors">
+                  All Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/products/quotemaker" className="text-[#8A7F6A] hover:text-[#F5C518] text-sm transition-colors">
+                  QuoteMaker
+                </Link>
+              </li>
+              <li>
+                <a href="https://quotemaker.codecrafters.in/" target="_blank" rel="noopener noreferrer" className="text-[#F5C518]/70 hover:text-[#F5C518] text-sm transition-colors flex items-center gap-1">
+                  Try QuoteMaker Free
+                  <span className="material-symbols-outlined text-xs">open_in_new</span>
+                </a>
+              </li>
+            </ul>
           </div>
 
           {/* Services */}

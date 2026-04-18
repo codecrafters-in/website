@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
+  { label: 'Our Products', to: '/products', highlight: true },
   { label: 'Services', to: '/services' },
   { label: 'AI Forge', to: '/ai-forge' },
   { label: 'Odoo Solutions', to: '/odoo-solutions' },
@@ -58,23 +59,39 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`relative font-semibold tracking-wide uppercase text-[11px] transition-colors duration-200 whitespace-nowrap py-1 ${
-                isActive(link.to)
-                  ? 'text-[#F5C518]'
-                  : 'text-[#A09880] hover:text-white'
-              }`}
-            >
-              {link.label}
-              {isActive(link.to) && (
-                <motion.span
-                  layoutId="nav-indicator"
-                  className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[#F5C518]"
-                />
-              )}
-            </Link>
+            link.highlight ? (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`relative flex items-center gap-1.5 font-semibold tracking-wide uppercase text-[11px] transition-colors duration-200 whitespace-nowrap py-1 ${
+                  isActive(link.to) ? 'text-[#F5C518]' : 'text-[#F5C518]/80 hover:text-[#F5C518]'
+                }`}
+              >
+                {link.label}
+                <span className="text-[8px] font-black uppercase tracking-widest bg-[#F5C518] text-[#131313] px-1.5 py-0.5 leading-none">NEW</span>
+                {isActive(link.to) && (
+                  <motion.span layoutId="nav-indicator" className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[#F5C518]" />
+                )}
+              </Link>
+            ) : (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`relative font-semibold tracking-wide uppercase text-[11px] transition-colors duration-200 whitespace-nowrap py-1 ${
+                  isActive(link.to)
+                    ? 'text-[#F5C518]'
+                    : 'text-[#A09880] hover:text-white'
+                }`}
+              >
+                {link.label}
+                {isActive(link.to) && (
+                  <motion.span
+                    layoutId="nav-indicator"
+                    className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[#F5C518]"
+                  />
+                )}
+              </Link>
+            )
           ))}
         </div>
 
@@ -127,11 +144,12 @@ export default function Navbar() {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className={`font-semibold tracking-wide uppercase text-sm transition-colors py-4 ${
-                      isActive(link.to) ? 'text-[#F5C518]' : 'text-[#A09880] hover:text-white'
+                    className={`flex items-center gap-2 font-semibold tracking-wide uppercase text-sm transition-colors py-4 ${
+                      isActive(link.to) ? 'text-[#F5C518]' : link.highlight ? 'text-[#F5C518]/80 hover:text-[#F5C518]' : 'text-[#A09880] hover:text-white'
                     }`}
                   >
                     {link.label}
+                    {link.highlight && <span className="text-[8px] font-black uppercase tracking-widest bg-[#F5C518] text-[#131313] px-1.5 py-0.5 leading-none">NEW</span>}
                   </Link>
                 ))}
                 <div className="pt-5 pb-2">

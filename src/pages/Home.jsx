@@ -147,6 +147,38 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── PRODUCT SPOTLIGHT ── */}
+        <section className="bg-[#0a0a0a] border-b border-[#f5c518]/15 py-5 px-5 sm:px-8 lg:px-10 xl:px-14">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="hidden sm:flex items-center justify-center w-10 h-10 bg-[#f5c518]/10 border border-[#f5c518]/20 shrink-0">
+                <span className="material-symbols-outlined text-[#f5c518] text-base">description</span>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[8px] font-black uppercase tracking-widest text-[#f5c518] bg-[#f5c518]/10 border border-[#f5c518]/20 px-1.5 py-0.5">New Product</span>
+                  <span className="text-[8px] font-bold uppercase tracking-widest text-green-400">● Live</span>
+                </div>
+                <p className="text-white font-bold text-sm leading-snug">QuoteMaker — Professional Quote Builder</p>
+                <p className="text-[#8A7F6A] text-[11px] mt-0.5">Create & share quotes in minutes. Get notified when clients view or accept.</p>
+              </div>
+            </div>
+            <div className="flex gap-2 shrink-0 pl-14 sm:pl-0">
+              <a href="https://quotemaker.codecrafters.in/" target="_blank" rel="noopener noreferrer">
+                <button className="flex items-center gap-1.5 bg-[#f5c518] text-[#131313] px-4 py-2 font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all whitespace-nowrap">
+                  Try Free
+                  <span className="material-symbols-outlined text-xs">open_in_new</span>
+                </button>
+              </a>
+              <Link to="/products/quotemaker">
+                <button className="border border-[#4e4633]/40 text-[#A09880] px-4 py-2 font-bold text-[10px] uppercase tracking-widest hover:text-white hover:border-[#f5c518]/30 transition-all whitespace-nowrap">
+                  Learn More
+                </button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ── PAIN POINTS ── */}
         <section className="bg-surface-container-low py-24 px-5 sm:px-8 lg:px-10 xl:px-14">
           <InView className="max-w-7xl mx-auto">
@@ -384,6 +416,7 @@ export default function Home() {
                 { cat: 'Analytics', icon: 'monitoring', title: 'Forecasting & Traceability Dashboards', outcome: 'Sales and inventory forecasting dashboards with end-to-end stock traceability — built in Python + OWL for Odoo India.', tags: ['Python', 'OWL', 'Odoo', 'BI'] },
                 { cat: 'Workflow', icon: 'approval', title: 'Portal Order Approval Engine', outcome: 'Multi-stage credit control checks, manager validations, and real-time notifications — editable orders without breaking workflow integrity.', tags: ['Odoo', 'Python', 'OWL'] },
                 { cat: 'ML Research', icon: 'science', title: 'Stock Prediction ML Model', outcome: 'Hybrid LSTM + CNN + ARIMA model with sentiment analysis — published in Elsevier (DOI: 10.1016/j.iswa.2022.200111).', tags: ['LSTM', 'CNN', 'Python', 'Elsevier'] },
+                { cat: 'SaaS Product', icon: 'description', title: 'QuoteMaker — Quote Builder', outcome: 'Create and share professional quotes in minutes. Clients view via link — no login. Instant view and accept notifications.', tags: ['Next.js', 'Supabase', 'Flask', 'SaaS'] },
                 { cat: 'AI + Odoo', icon: 'psychology', title: 'Conversational AI Agent for Odoo', outcome: 'Plain-English queries against live Odoo data — ORM-safe, role-gated, prompt-injection hardened.', tags: ['LLM', 'Claude MCP', 'Odoo', 'Python'] },
                 { cat: 'FinTech', icon: 'account_balance', title: 'Line of Credit Platform', outcome: 'Full lending lifecycle — Plaid bank verification, Stripe disbursements, automated statements and interest engine.', tags: ['Plaid', 'Stripe', 'Odoo', 'React'] },
                 { cat: 'Healthcare', icon: 'health_and_safety', title: 'Healthcare Insurance Automation', outcome: 'OHIP real-time eligibility, MCEDT reconciliation, automated XML/EDI batch claims — zero manual intervention.', tags: ['OHIP API', 'EDI', 'Odoo', 'Python'] },
@@ -396,6 +429,7 @@ export default function Home() {
                 { cat: 'Analytics', icon: 'monitoring', title: 'Forecasting & Traceability Dashboards', outcome: 'Sales and inventory forecasting dashboards with end-to-end stock traceability — built in Python + OWL for Odoo India.', tags: ['Python', 'OWL', 'Odoo', 'BI'] },
                 { cat: 'Workflow', icon: 'approval', title: 'Portal Order Approval Engine', outcome: 'Multi-stage credit control checks, manager validations, and real-time notifications — editable orders without breaking workflow integrity.', tags: ['Odoo', 'Python', 'OWL'] },
                 { cat: 'ML Research', icon: 'science', title: 'Stock Prediction ML Model', outcome: 'Hybrid LSTM + CNN + ARIMA model with sentiment analysis — published in Elsevier (DOI: 10.1016/j.iswa.2022.200111).', tags: ['LSTM', 'CNN', 'Python', 'Elsevier'] },
+                { cat: 'SaaS Product', icon: 'description', title: 'QuoteMaker — Quote Builder', outcome: 'Create and share professional quotes in minutes. Clients view via link — no login. Instant view and accept notifications.', tags: ['Next.js', 'Supabase', 'Flask', 'SaaS'] },
               ].map((p, i) => (
                 <div key={i} className="w-[300px] sm:w-[320px] shrink-0 p-6 bg-[#131313] border border-[#4e4633]/15 hover:border-[#f5c518]/40 transition-colors duration-300 flex flex-col gap-3">
                   <div className="flex items-center justify-between">
