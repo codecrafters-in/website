@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Our Products', to: '/products', highlight: true },
   { label: 'Services', to: '/services' },
   { label: 'AI Forge', to: '/ai-forge' },
+  { label: 'Our Products', to: '/products', highlight: true },
   { label: 'Odoo Solutions', to: '/odoo-solutions' },
   { label: 'Brand Design', to: '/brand-design' },
   { label: 'Case Studies', to: '/portfolio' },

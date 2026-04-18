@@ -47,7 +47,18 @@ export default function Products() {
 
               {/* Visual mockup */}
               <div className="relative min-h-[360px] bg-[#0a0a0a] flex items-center justify-center p-10 overflow-hidden order-1">
-                <div className="absolute inset-0 opacity-10 dot-grid" />
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="w-full h-full opacity-25 mix-blend-luminosity">
+                    <img
+                      src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=80&auto=format&fit=crop"
+                      alt=""
+                      className="w-full h-full object-cover grayscale brightness-50 contrast-125"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a]/80 via-[#0a0a0a]/60 to-[#0a0a0a]/80" />
+                </div>
+                <div className="absolute inset-0 opacity-5 dot-grid" />
                 <div className="absolute top-4 left-4">
                   <span className="text-[9px] font-black uppercase tracking-widest text-[#f5c518] bg-[#f5c518]/10 border border-[#f5c518]/20 px-2 py-1">Featured Product</span>
                 </div>

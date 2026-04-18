@@ -1,7 +1,36 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import SEO from '../components/SEO'
+
+const QUOTEMAKER_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'QuoteMaker',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  url: 'https://quotemaker.codecrafters.in/',
+  description: 'Create professional quotes in minutes. Share via link — no client login needed. Get notified when clients view or accept.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'INR',
+    description: 'Free to start',
+  },
+  author: {
+    '@type': 'Organization',
+    name: 'CodeCrafters',
+    url: 'https://codecrafters.in',
+  },
+  featureList: [
+    'Professional quote builder',
+    'Share via link — no client login',
+    'Real-time view and accept notifications',
+    'Convert quote to invoice',
+    'Product catalog and templates',
+  ],
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -28,11 +57,26 @@ export default function QuoteMaker() {
         keywords="QuoteMaker, professional quote builder, proposal software India, invoice quote tool freelancers, quote and invoice software, share quote link client, quote builder free"
         path="/products/quotemaker"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(QUOTEMAKER_SCHEMA)}</script>
+      </Helmet>
       <main className="pt-24 min-h-screen">
 
         {/* ── HERO ── */}
         <section className="industrial-grid relative overflow-hidden px-5 sm:px-8 lg:px-10 xl:px-14 py-20 md:py-28">
-          <div className="max-w-7xl mx-auto">
+          {/* Background image */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="w-full h-full opacity-20 mix-blend-luminosity overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80&auto=format&fit=crop"
+                alt=""
+                className="w-full h-full object-cover grayscale brightness-50 contrast-125"
+                loading="eager"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#131313]/95 via-[#131313]/70 to-[#131313]/30" />
+          </div>
+          <div className="max-w-7xl mx-auto relative z-10">
             <motion.div variants={stagger} initial="hidden" animate="visible" className="max-w-3xl">
               <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6">
                 <span className="text-[9px] font-black uppercase tracking-widest text-[#f5c518] bg-[#f5c518]/10 border border-[#f5c518]/20 px-2 py-1">SaaS Product by CodeCrafters</span>
@@ -152,8 +196,19 @@ export default function QuoteMaker() {
         </section>
 
         {/* ── HOW IT WORKS ── */}
-        <section className="bg-surface-container-low border-y border-[#4e4633]/15 py-20 px-5 sm:px-8 lg:px-10 xl:px-14">
-          <InView className="max-w-7xl mx-auto">
+        <section className="relative bg-surface-container-low border-y border-[#4e4633]/15 py-20 px-5 sm:px-8 lg:px-10 xl:px-14 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="w-full h-full opacity-10 mix-blend-luminosity">
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80&auto=format&fit=crop"
+                alt=""
+                className="w-full h-full object-cover grayscale brightness-40 contrast-150"
+                loading="lazy"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-surface-container-low/95 to-surface-container-low/98" />
+          </div>
+          <InView className="max-w-7xl mx-auto relative z-10">
             <motion.p variants={fadeUp} className="text-primary-container text-xs font-bold uppercase tracking-[0.3em] mb-4">How It Works</motion.p>
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-black tracking-tighter uppercase text-on-surface mb-14">
               3 Steps to a Closed Deal
