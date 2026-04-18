@@ -64,7 +64,9 @@ export default function Navbar() {
                 key={link.to}
                 to={link.to}
                 className={`relative flex items-center gap-1.5 font-semibold tracking-wide uppercase text-[11px] transition-colors duration-200 whitespace-nowrap py-1 ${
-                  isActive(link.to) ? 'text-[#F5C518]' : 'text-[#F5C518]/80 hover:text-[#F5C518]'
+                  isActive(link.to)
+                    ? 'text-[#F5C518]'
+                    : 'text-[#A09880] hover:text-white'
                 }`}
               >
                 {link.label}
@@ -145,7 +147,11 @@ export default function Navbar() {
                     key={link.to}
                     to={link.to}
                     className={`flex items-center gap-2 font-semibold tracking-wide uppercase text-sm transition-colors py-4 ${
-                      isActive(link.to) ? 'text-[#F5C518]' : link.highlight ? 'text-[#F5C518]/80 hover:text-[#F5C518]' : 'text-[#A09880] hover:text-white'
+                      isActive(link.to)
+                        ? 'text-[#F5C518]'
+                        : link.highlight
+                          ? 'text-[#A09880] hover:text-white'
+                          : 'text-[#A09880] hover:text-white'
                     }`}
                   >
                     {link.label}
