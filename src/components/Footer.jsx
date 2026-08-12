@@ -70,10 +70,10 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://quotemaker.codecrafters.in/" target="_blank" rel="noopener noreferrer" className="text-[#F5C518]/70 hover:text-[#F5C518] text-sm transition-colors flex items-center gap-1">
-                  Try QuoteMaker Free
-                  <span className="material-symbols-outlined text-xs">open_in_new</span>
-                </a>
+                <Link to="/contact" className="text-[#F5C518]/70 hover:text-[#F5C518] text-sm transition-colors flex items-center gap-1">
+                  Request a Demo
+                  <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                </Link>
               </li>
             </ul>
           </div>

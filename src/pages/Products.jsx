@@ -13,8 +13,8 @@ export default function Products() {
     <>
       <SEO
         title="Our Products — QuoteMaker & More | CodeCrafters"
-        description="Products built and shipped by CodeCrafters. QuoteMaker lets you create professional quotes, share via link, and get notified when clients view or accept. Free to start."
-        keywords="QuoteMaker quote builder, professional proposal software India, invoice and quote tool, SaaS products CodeCrafters, quote maker free"
+        description="Products built and shipped by CodeCrafters. QuoteMaker lets you create professional quotes, share via link, and get notified when clients view or accept. Contact us for a demo."
+        keywords="QuoteMaker quote builder, professional proposal software India, invoice and quote tool, SaaS products CodeCrafters"
         path="/products"
       />
       <main className="pt-24 industrial-grid min-h-screen">
@@ -66,7 +66,7 @@ export default function Products() {
                   <div className="bg-[#1c1b1b] border border-[#4e4633]/40 p-6 shadow-2xl">
                     <div className="flex items-center justify-between mb-5">
                       <span className="text-[#f5c518] font-black text-base tracking-tight">QuoteMaker</span>
-                      <span className="text-[9px] bg-green-400/10 text-green-400 px-2 py-0.5 font-bold uppercase tracking-widest border border-green-400/20">● Live</span>
+                      <span className="text-[9px] bg-[#f5c518]/10 text-[#f5c518] px-2 py-0.5 font-bold uppercase tracking-widest border border-[#f5c518]/20">Demo</span>
                     </div>
                     <div className="space-y-1.5 mb-5">
                       <div className="h-1.5 bg-[#4e4633]/30 rounded-full w-2/3" />
@@ -97,7 +97,7 @@ export default function Products() {
               <div className="p-8 md:p-12 flex flex-col justify-center order-2">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-[9px] font-black uppercase tracking-widest text-[#f5c518] bg-[#f5c518]/10 border border-[#f5c518]/20 px-2 py-1">SaaS Product</span>
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-green-400">● Live Now</span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-[#4e4633]">● Available on Request</span>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-black text-on-surface mb-2 tracking-tight">QuoteMaker</h2>
                 <p className="text-primary-container text-sm font-bold mb-4">Professional Quote & Proposal Builder</p>
@@ -120,12 +120,12 @@ export default function Products() {
                 </div>
 
                 <div className="flex flex-wrap gap-3 mb-6">
-                  <a href="https://quotemaker.codecrafters.in/" target="_blank" rel="noopener noreferrer">
+                  <Link to="/contact">
                     <button className="flex items-center gap-2 bg-[#f5c518] text-[#131313] px-6 py-3 font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all">
-                      Try Free
-                      <span className="material-symbols-outlined text-sm">open_in_new</span>
+                      Request a Demo
+                      <span className="material-symbols-outlined text-sm">arrow_forward</span>
                     </button>
-                  </a>
+                  </Link>
                   <Link to="/products/quotemaker">
                     <button className="flex items-center gap-2 border border-[#4e4633]/40 text-on-surface px-6 py-3 font-bold text-xs uppercase tracking-widest hover:bg-surface-container-high transition-all">
                       Full Details

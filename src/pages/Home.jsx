@@ -156,20 +156,19 @@ export default function Home() {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[8px] font-black uppercase tracking-widest text-[#f5c518] bg-[#f5c518]/10 border border-[#f5c518]/20 px-1.5 py-0.5">New Product</span>
-                  <span className="text-[8px] font-bold uppercase tracking-widest text-green-400">● Live</span>
+                  <span className="text-[8px] font-black uppercase tracking-widest text-[#f5c518] bg-[#f5c518]/10 border border-[#f5c518]/20 px-1.5 py-0.5">In-House Product</span>
                 </div>
                 <p className="text-white font-bold text-sm leading-snug">QuoteMaker — Professional Quote Builder</p>
                 <p className="text-[#8A7F6A] text-[11px] mt-0.5">Create & share quotes in minutes. Get notified when clients view or accept.</p>
               </div>
             </div>
             <div className="flex gap-2 shrink-0 pl-14 sm:pl-0">
-              <a href="https://quotemaker.codecrafters.in/" target="_blank" rel="noopener noreferrer">
+              <Link to="/contact">
                 <button className="flex items-center gap-1.5 bg-[#f5c518] text-[#131313] px-4 py-2 font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all whitespace-nowrap">
-                  Try Free
-                  <span className="material-symbols-outlined text-xs">open_in_new</span>
+                  Get In Touch
+                  <span className="material-symbols-outlined text-xs">arrow_forward</span>
                 </button>
-              </a>
+              </Link>
               <Link to="/products/quotemaker">
                 <button className="border border-[#4e4633]/40 text-[#A09880] px-4 py-2 font-bold text-[10px] uppercase tracking-widest hover:text-white hover:border-[#f5c518]/30 transition-all whitespace-nowrap">
                   Learn More

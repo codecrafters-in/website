@@ -69,9 +69,9 @@ const caseStudies = [
   {
     number: '04',
     category: 'SaaS Product',
-    badge: 'Live Product',
+    badge: 'In-House Product',
     title: 'QuoteMaker — Professional Quote Builder',
-    client: 'quotemaker.codecrafters.in',
+    client: 'CodeCrafters — In-House SaaS',
     description: 'Sales teams and freelancers were losing deals because proposals looked unprofessional and went cold unnoticed. QuoteMaker lets you create beautiful, branded quotes in minutes, share them via a single link — no client login required — and get notified the instant a client views or accepts. Built and shipped as a standalone SaaS with auth, billing, and a public-facing quote portal.',
     image: '/images/code-screen.jpg',
     features: [
@@ -79,8 +79,7 @@ const caseStudies = [
       { icon: 'notifications_active', label: 'Instant View & Accept Notifications' },
       { icon: 'link', label: 'Share via Link — No Client Login Needed' },
     ],
-    cta: { label: 'Try QuoteMaker Free', primary: true },
-    externalUrl: 'https://quotemaker.codecrafters.in/',
+    cta: { label: 'Talk to Us About QuoteMaker', primary: true },
     imageRight: true,
     tags: ['Next.js', 'Supabase', 'Flask', 'SaaS'],
   },
@@ -202,27 +201,18 @@ export default function Portfolio() {
                 )}
 
                 {/* CTA */}
-                {study.externalUrl ? (
-                  <a href={study.externalUrl} target="_blank" rel="noopener noreferrer">
-                    <button className="flex items-center gap-2 bg-primary-container text-on-primary-container px-8 py-3 font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all">
+                <Link to="/contact">
+                  {study.cta.primary ? (
+                    <button className="bg-primary-container text-on-primary-container px-8 py-3 font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all">
                       {study.cta.label}
-                      <span className="material-symbols-outlined text-sm">open_in_new</span>
                     </button>
-                  </a>
-                ) : (
-                  <Link to="/contact">
-                    {study.cta.primary ? (
-                      <button className="bg-primary-container text-on-primary-container px-8 py-3 font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all">
-                        {study.cta.label}
-                      </button>
-                    ) : (
-                      <button className="flex items-center gap-3 text-on-surface hover:text-primary-container transition-colors group">
-                        <span className="text-sm font-bold uppercase tracking-widest">{study.cta.label}</span>
-                        <span className="material-symbols-outlined group-hover:translate-x-2 transition-transform">{study.cta.icon}</span>
-                      </button>
-                    )}
-                  </Link>
-                )}
+                  ) : (
+                    <button className="flex items-center gap-3 text-on-surface hover:text-primary-container transition-colors group">
+                      <span className="text-sm font-bold uppercase tracking-widest">{study.cta.label}</span>
+                      <span className="material-symbols-outlined group-hover:translate-x-2 transition-transform">{study.cta.icon}</span>
+                    </button>
+                  )}
+                </Link>
               </div>
             </motion.div>
           </InView>

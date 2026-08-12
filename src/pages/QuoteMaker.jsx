@@ -10,14 +10,8 @@ const QUOTEMAKER_SCHEMA = {
   name: 'QuoteMaker',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
-  url: 'https://quotemaker.codecrafters.in/',
+  url: 'https://codecrafters.in/products/quotemaker',
   description: 'Create professional quotes in minutes. Share via link — no client login needed. Get notified when clients view or accept.',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'INR',
-    description: 'Free to start',
-  },
   author: {
     '@type': 'Organization',
     name: 'CodeCrafters',
@@ -53,8 +47,8 @@ export default function QuoteMaker() {
     <>
       <SEO
         title="QuoteMaker — Professional Quote & Proposal Builder | CodeCrafters"
-        description="Create professional quotes in minutes. Share via link — no client login needed. Get notified when clients view or accept. Free to start. Built by CodeCrafters."
-        keywords="QuoteMaker, professional quote builder, proposal software India, invoice quote tool freelancers, quote and invoice software, share quote link client, quote builder free"
+        description="Create professional quotes in minutes. Share via link — no client login needed. Get notified when clients view or accept. Built by CodeCrafters — get in touch for a demo."
+        keywords="QuoteMaker, professional quote builder, proposal software India, invoice quote tool freelancers, quote and invoice software, share quote link client"
         path="/products/quotemaker"
       />
       <Helmet>
@@ -80,7 +74,7 @@ export default function QuoteMaker() {
             <motion.div variants={stagger} initial="hidden" animate="visible" className="max-w-3xl">
               <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6">
                 <span className="text-[9px] font-black uppercase tracking-widest text-[#f5c518] bg-[#f5c518]/10 border border-[#f5c518]/20 px-2 py-1">SaaS Product by CodeCrafters</span>
-                <span className="text-[9px] font-bold uppercase tracking-widest text-green-400">● Live</span>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-[#4e4633]">● Available on Request</span>
               </motion.div>
               <motion.h1 variants={fadeUp} className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter text-on-surface mb-6 leading-none">
                 CLOSE MORE<br />
@@ -91,19 +85,19 @@ export default function QuoteMaker() {
                 Create professional quotes in minutes. Share via a single link — no client login needed. Know the instant they open it or accept.
               </motion.p>
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
-                <a href="https://quotemaker.codecrafters.in/" target="_blank" rel="noopener noreferrer">
+                <Link to="/contact">
                   <motion.button
                     className="flex items-center gap-2 bg-[#f5c518] text-[#131313] px-8 py-4 font-black text-sm uppercase tracking-widest hover:brightness-110 transition-all"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    Try Free — No Credit Card
+                    Request a Demo
                     <span className="material-symbols-outlined text-base">arrow_forward</span>
                   </motion.button>
-                </a>
+                </Link>
               </motion.div>
               <motion.p variants={fadeUp} className="text-[#4e4633] text-xs mt-4 uppercase tracking-widest">
-                Free to start · No credit card required
+                Talk to us about deploying it for your team
               </motion.p>
             </motion.div>
           </div>
@@ -259,19 +253,19 @@ export default function QuoteMaker() {
                   Stop Losing Deals to<br />Messy Quotes.
                 </h2>
                 <p className="text-[#131313]/70 text-base md:text-lg mb-8 max-w-md mx-auto">
-                  Free to start. Create your first quote in under 5 minutes.
+                  Tell us how your team quotes today — we'll set QuoteMaker up around it.
                 </p>
-                <a href="https://quotemaker.codecrafters.in/" target="_blank" rel="noopener noreferrer">
+                <Link to="/contact">
                   <motion.button
                     className="flex items-center gap-2 bg-[#131313] text-[#f5c518] px-10 py-4 font-black text-sm uppercase tracking-widest hover:bg-[#0a0a0a] transition-all mx-auto"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    Try QuoteMaker Free
-                    <span className="material-symbols-outlined text-base">open_in_new</span>
+                    Contact Us
+                    <span className="material-symbols-outlined text-base">arrow_forward</span>
                   </motion.button>
-                </a>
-                <p className="text-[#131313]/50 text-[10px] uppercase tracking-widest mt-4">No credit card · No commitment · Built by CodeCrafters</p>
+                </Link>
+                <p className="text-[#131313]/50 text-[10px] uppercase tracking-widest mt-4">No commitment · Built by CodeCrafters</p>
               </div>
             </motion.div>
           </InView>
