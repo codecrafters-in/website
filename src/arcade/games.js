@@ -9,19 +9,29 @@ export const games = [
   {
     slug: 'ai-run',
     name: 'AI//RUN',
-    kicker: 'Story · 4 jobs · 8 min',
-    tagline: 'Break in three ways. Discover they were the same way.',
-    blurb:
-      'You are the hands on a four-job breach: crack a password, inject a query, then talk an AI agent into doing it for you. The third one is the point — prompt injection is SQL injection wearing new clothes.',
+    genre: 'Story',
+    tagline: 'Break in three ways. Find out they were one way.',
+    // Read like a cabinet spec plate. Time is first on purpose — it is the
+    // thing a visitor actually needs before deciding to start.
+    specs: [
+      { k: 'Time', v: '8 min' },
+      { k: 'Chapters', v: '4' },
+      { k: 'Players', v: '1' },
+      { k: 'Input', v: 'Mouse' },
+    ],
     load: () => import('./airun/AiRun.jsx'),
   },
   {
     slug: 'bug-blaster',
     name: 'BUG BLASTER',
-    kicker: 'Arcade · endless · 2 min',
+    genre: 'Arcade',
     tagline: 'Shoot the bugs before they ship.',
-    blurb:
-      'A 320×180 pixel shooter with a CRT on top. No lesson, no pitch — it is here because every studio should have one thing on its site that exists purely because someone wanted to build it.',
+    specs: [
+      { k: 'Time', v: '2 min' },
+      { k: 'Mode', v: 'Endless' },
+      { k: 'Players', v: '1' },
+      { k: 'Input', v: '← → SPACE' },
+    ],
     load: () => import('./BugBlaster.jsx'),
   },
 ]

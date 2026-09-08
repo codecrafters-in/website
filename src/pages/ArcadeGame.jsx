@@ -1,8 +1,9 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { ClientOnly } from 'vite-react-ssg'
+import { ClientOnly, Head } from 'vite-react-ssg'
 import SEO, { breadcrumb, webPage } from '../components/SEO.jsx'
 import { Container } from '../components/ui/index.js'
+import Aurora from '../components/Aurora.jsx'
 import BootScreen from '../arcade/BootScreen.jsx'
 import { findGame, games } from '../arcade/games.js'
 
@@ -68,10 +69,20 @@ export function Component() {
           ]),
         ]}
       />
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        />
+      </Head>
 
-      <div className={dark ? 'on-dark bg-surface' : 'bg-surface'}>
-        <Container className="pt-[96px] pb-16">
-          <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+      {/* The page ground stays light on every route. CABINET: DARK scopes
+          `on-dark` to the cabinet frame only — putting it on the page would
+          leave the navbar, which is transparent at rest, dark-on-dark. */}
+      <section className="relative overflow-hidden pt-[72px]">
+        <Aurora variant="soft" />
+        <Container className="relative py-10 md:py-14">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-baseline gap-3">
               <Link
                 to="/arcade"
@@ -87,7 +98,7 @@ export function Component() {
               </h1>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-[11px]">
+            <div className="flex items-center gap-2 font-mono text-[11px]">
               {games
                 .filter((g) => g.slug !== entry.slug)
                 .map((g) => (
@@ -111,7 +122,10 @@ export function Component() {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          {/* the cabinet */}
+          <div
+            className={`${dark ? 'on-dark' : ''} flex justify-center overflow-hidden rounded-xl border border-outline-variant bg-surface-container p-4 text-on-surface md:p-6`}
+          >
             <ClientOnly>
               {() => (
                 <Suspense fallback={<Cabinet label={entry.name} />}>
@@ -120,8 +134,12 @@ export function Component() {
               )}
             </ClientOnly>
           </div>
+
+          <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-outline">
+            {entry.specs.map((sp) => `${sp.k} ${sp.v}`).join('  ·  ')}
+          </p>
         </Container>
-      </div>
+      </section>
     </>
   )
 }

@@ -288,7 +288,7 @@ export default function AiRun() {
   const chapter = i < 0 ? 'prologue' : i >= OPS.length ? 'epilogue' : `${op.num} ${op.title}`
 
   return (
-    <div className="w-[min(96vw,980px)] font-mono text-[13px] leading-relaxed">
+    <div className="w-full max-w-[980px] font-mono text-[13px] leading-relaxed">
       {/* chapter rail — where you are in the story */}
       <ol className="mb-2 flex items-stretch gap-1.5" aria-label="Chapters">
         <RailItem label="Prologue" short="◀" state={i < 0 ? 'now' : 'done'} narrow />

@@ -118,7 +118,7 @@ export default function BugBlaster({ dark = false }) {
   return (
     <div className="flex flex-col items-center">
       <div
-        className={'crt aspect-video w-[min(92vw,960px)] max-h-[70vh] ' + (reduced ? '' : 'crt-on')}
+        className={'crt aspect-video w-full max-w-[960px] max-h-[70vh] ' + (reduced ? '' : 'crt-on')}
         style={{ aspectRatio: '16 / 9' }}
       >
         <div className="absolute inset-0 flex items-center justify-center">
@@ -139,7 +139,7 @@ export default function BugBlaster({ dark = false }) {
         )}
       </div>
 
-      <div className="mt-3 flex w-[min(92vw,960px)] flex-wrap items-center justify-between gap-3 font-mono text-[11px] text-on-surface-variant">
+      <div className="mt-3 flex w-full max-w-[960px] flex-wrap items-center justify-between gap-3 font-mono text-[11px] text-on-surface-variant">
         <div className="hidden sm:block">← → move · SPACE fire · P pause · M sound</div>
         <div className="sm:hidden">drag to move · hold to fire</div>
         <div className="flex items-center gap-3">
@@ -169,7 +169,7 @@ export default function BugBlaster({ dark = false }) {
       )}
 
       {coarse && (
-        <div className="mt-3 flex w-[min(92vw,960px)] items-center gap-2">
+        <div className="mt-3 flex w-full max-w-[960px] items-center gap-2">
           <TouchButton label="◀" name="left" game={gameRef} />
           <TouchButton label="▶" name="right" game={gameRef} />
           <TouchButton label="FIRE" name="fire" game={gameRef} wide />
