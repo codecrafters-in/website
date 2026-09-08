@@ -1,11 +1,12 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ClientOnly, Head } from 'vite-react-ssg'
 import SEO, { breadcrumb, webPage } from '../components/SEO.jsx'
-import { Container } from '../components/ui/index.js'
 import Aurora from '../components/Aurora.jsx'
 import BootScreen from '../arcade/BootScreen.jsx'
 import { findGame, games } from '../arcade/games.js'
+import Marquee from '../arcade/Marquee.jsx'
+import '../arcade/cabinet.css'
 
 /**
  * /arcade/:game — one cabinet, and only one.
@@ -44,6 +45,27 @@ export function Component() {
     })
   }
 
+  // Full screen is the only way this gets meaningfully bigger on a laptop, so
+  // it wraps the whole cabinet — game, HUD and bezel together — rather than the
+  // canvas alone.
+  const cabinetRef = useRef(null)
+  const [full, setFull] = useState(false)
+  const [canFull, setCanFull] = useState(false)
+
+  useEffect(() => {
+    setCanFull(typeof document !== 'undefined' && !!document.documentElement.requestFullscreen)
+    const onChange = () => setFull(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', onChange)
+    return () => document.removeEventListener('fullscreenchange', onChange)
+  }, [])
+
+  const toggleFull = useCallback(() => {
+    const el = cabinetRef.current
+    if (!el) return
+    if (document.fullscreenElement) document.exitFullscreen?.()
+    else el.requestFullscreen?.().catch(() => setCanFull(false))
+  }, [])
+
   // One lazy component per slug. Recreated only when the slug changes.
   const Game = useMemo(() => (entry ? lazy(entry.load) : null), [entry])
 
@@ -81,8 +103,9 @@ export function Component() {
           leave the navbar, which is transparent at rest, dark-on-dark. */}
       <section className="relative overflow-hidden pt-[72px]">
         <Aurora variant="soft" />
-        <Container className="relative py-10 md:py-14">
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        {/* Wider than the site container on purpose: the screen is the point. */}
+        <div className="relative mx-auto w-full max-w-[1700px] px-3 py-5 sm:px-4 md:py-7">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-baseline gap-3">
               <Link
                 to="/arcade"
@@ -98,7 +121,7 @@ export function Component() {
               </h1>
             </div>
 
-            <div className="flex items-center gap-2 font-mono text-[11px]">
+            <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
               {games
                 .filter((g) => g.slug !== entry.slug)
                 .map((g) => (
@@ -119,26 +142,43 @@ export function Component() {
               >
                 {dark ? 'CABINET: DARK' : 'CABINET: LIGHT'}
               </button>
+              {canFull && (
+                <button
+                  type="button"
+                  onClick={toggleFull}
+                  aria-pressed={full}
+                  className="rounded border border-primary-container px-2 py-1 text-primary-container transition hover:bg-brand hover:text-on-primary-fixed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+                >
+                  {full ? 'EXIT FULL SCREEN' : '⛶ FULL SCREEN'}
+                </button>
+              )}
             </div>
           </div>
 
-          {/* the cabinet */}
+          {/* the cabinet — this is the element that goes full screen */}
           <div
-            className={`${dark ? 'on-dark' : ''} flex justify-center overflow-hidden rounded-xl border border-outline-variant bg-surface-container p-4 text-on-surface md:p-6`}
+            ref={cabinetRef}
+            className={`${dark ? 'on-dark' : ''} cabinet flex flex-col items-center gap-3 overflow-hidden rounded-xl border border-outline-variant bg-surface-container p-2 text-on-surface md:p-3`}
           >
-            <ClientOnly>
-              {() => (
-                <Suspense fallback={<Cabinet label={entry.name} />}>
-                  <Game dark={dark} />
-                </Suspense>
-              )}
-            </ClientOnly>
+            {/* marquee on top, the way a cabinet carries its sign */}
+            <Marquee />
+
+            <div className="cabinet-scroll flex w-full justify-center">
+              <ClientOnly>
+                {() => (
+                  <Suspense fallback={<Cabinet label={entry.name} />}>
+                    <Game dark={dark} />
+                  </Suspense>
+                )}
+              </ClientOnly>
+            </div>
           </div>
 
           <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-outline">
             {entry.specs.map((sp) => `${sp.k} ${sp.v}`).join('  ·  ')}
+            {canFull ? '  ·  ⛶ FULL SCREEN' : ''}
           </p>
-        </Container>
+        </div>
       </section>
     </>
   )

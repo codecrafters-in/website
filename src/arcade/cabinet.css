@@ -1,0 +1,94 @@
+/* The cabinet frame — the element the games sit in, and the one that goes full
+   screen. It lives here rather than in crt.css because crt.css only loads with
+   Bug Blaster, and AI//RUN needs the full-screen styling just as much.
+   The frame owns the size so neither game has to know whether it is windowed.
+*/
+
+/* Cap width from height so the screen stays a true 16:9 and grows to fill the
+   vertical room available, rather than going letterbox-wide on a big monitor. */
+.cabinet .crt {
+  max-height: 68vh;
+  max-width: calc(68vh * 16 / 9);
+}
+
+/* Short windows have no room to give, so below ~700px tall the screen takes
+   the width instead and the page scrolls a little. A game that fits the
+   viewport perfectly but is too small to read is the wrong trade. */
+@media (max-height: 700px) {
+  .cabinet .crt {
+    max-height: none;
+    max-width: none;
+  }
+}
+
+.cabinet:fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 0;
+  border-radius: 0;
+  background: rgb(var(--surface));
+}
+
+/* Full screen gives back the vertical room the page chrome was taking, minus
+   what the HUD and the bezel line underneath still need. */
+.cabinet:fullscreen .crt {
+  max-height: calc(100vh - 150px);
+  max-width: calc((100vh - 150px) * 16 / 9);
+}
+
+.cabinet:fullscreen .cabinet-scroll {
+  width: 100%;
+  overflow-y: auto;
+}
+
+/* ── marquee ─────────────────────────────────────────────────────────── */
+/* The illuminated strip across the top of the cabinet. Matched to the screen's
+   width so the two read as one unit. */
+.cabinet-marquee {
+  max-width: calc(68vh * 16 / 9);
+}
+
+.cabinet:fullscreen .cabinet-marquee {
+  max-width: calc((100vh - 150px) * 16 / 9);
+}
+
+@media (max-height: 700px) {
+  .cabinet-marquee {
+    max-width: none;
+  }
+}
+
+@keyframes cabinet-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* The track holds the list twice, so half a track is one seamless loop. */
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  /* Linear and slow: this has to be readable while a game is running. */
+  animation: cabinet-ticker 64s linear infinite;
+}
+
+.ticker-track[data-paused='true'] {
+  animation-play-state: paused;
+}
+
+.ticker-window:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
