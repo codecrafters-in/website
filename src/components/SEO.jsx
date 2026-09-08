@@ -1,80 +1,160 @@
-import { Helmet } from 'react-helmet-async'
+import { Head } from 'vite-react-ssg'
+import { site } from '../data/site.js'
 
-const SITE_NAME = 'CodeCrafters'
-const DEFAULT_OG_IMAGE = 'https://codecrafters.in/images/og-default.jpg'
-const BASE_URL = 'https://codecrafters.in'
+const BASE_URL = site.url
+const DEFAULT_OG_IMAGE = `${BASE_URL}/images/og-default.jpg`
+const DEFAULT_TITLE = 'CodeCrafters — Odoo ERP & AI Automation, Built to Ship'
+const DEFAULT_DESCRIPTION = site.description
 
-const ORG_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'CodeCrafters',
+export const ORG_ID = `${BASE_URL}/#org`
+export const PERSON_ID = `${BASE_URL}/#jaimin`
+export const WEBSITE_ID = `${BASE_URL}/#website`
+
+// ProfessionalService is a subtype of both Organization and LocalBusiness, so a
+// single node stays the referent for every `{'@id': ORG_ID}` elsewhere while
+// becoming eligible for local results ("Odoo developer Ahmedabad").
+const orgNode = {
+  '@type': ['Organization', 'ProfessionalService'],
+  '@id': ORG_ID,
+  name: site.name,
   url: BASE_URL,
-  logo: `${BASE_URL}/images/dark_logo.png`,
+  logo: { '@type': 'ImageObject', url: `${BASE_URL}/images/light_logo.png` },
   image: DEFAULT_OG_IMAGE,
-  description: 'Odoo ERP implementation partner in India. Custom Odoo development, AI automation, module development, and migrations by Jaimin Shah. Ahmedabad, Gujarat.',
-  founder: {
-    '@type': 'Person',
-    name: 'Jaimin Shah',
-    jobTitle: 'Senior Odoo Developer & AI Engineer',
-    url: BASE_URL,
-    sameAs: [
-      'https://linkedin.com/company/codecrafters-in',
-      'https://github.com/codecrafters-in',
-    ],
-  },
+  description: DEFAULT_DESCRIPTION,
+  email: site.email,
+  founder: { '@id': PERSON_ID },
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Ahmedabad',
-    addressRegion: 'Gujarat',
-    addressCountry: 'IN',
+    addressLocality: site.location.city,
+    addressRegion: site.location.region,
+    addressCountry: site.location.country,
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    email: 'hello@codecrafters.in',
-    contactType: 'customer service',
+    email: site.email,
+    contactType: 'sales',
+    availableLanguage: ['English', 'Hindi', 'Gujarati'],
   },
-  areaServed: 'Worldwide',
-  serviceType: ['Odoo ERP Implementation', 'Odoo Customisation', 'Odoo Module Development', 'Odoo Migration', 'AI Automation', 'LLM Integration', 'Odoo AI Agent Development'],
-  priceRange: '$$',
+  areaServed: [
+    { '@type': 'City', name: site.location.city },
+    { '@type': 'AdministrativeArea', name: site.location.region },
+    { '@type': 'Country', name: 'India' },
+    'Worldwide',
+  ],
+  knowsAbout: [
+    'Odoo ERP implementation',
+    'Odoo migration',
+    'Odoo custom module development',
+    'ERP integration',
+    'AI agents',
+    'Retrieval-augmented generation',
+    'LLM pipelines',
+    'B2B commerce platforms',
+  ],
+  priceRange: '$$$',
+  sameAs: Object.values(site.socials),
 }
 
-export default function SEO({ title, description, path = '', image, keywords }) {
-  const fullTitle = title
-    ? `${title} | ${SITE_NAME}`
-    : `${SITE_NAME} — Best Odoo Partner in India | Odoo ERP & AI Automation`
+const websiteNode = {
+  '@type': 'WebSite',
+  '@id': WEBSITE_ID,
+  url: BASE_URL,
+  name: site.name,
+  publisher: { '@id': ORG_ID },
+  inLanguage: 'en',
+}
+
+/** ItemList for index pages (/work, /insights) so the set is machine-readable. */
+export function itemList(name, items) {
+  return {
+    '@type': 'ItemList',
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${BASE_URL}${it.path}`,
+      name: it.name,
+    })),
+  }
+}
+
+/** WebPage node — every page should declare what it is. */
+export function webPage({ name, path = '', description }) {
+  return {
+    '@type': 'WebPage',
+    '@id': `${BASE_URL}${path}#webpage`,
+    url: `${BASE_URL}${path}`,
+    name,
+    description,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: { '@id': ORG_ID },
+    inLanguage: 'en',
+  }
+}
+
+export function breadcrumb(items) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: `${BASE_URL}${it.path}`,
+    })),
+  }
+}
+
+export function faqNode(faqs) {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+}
+
+export default function SEO({
+  title,
+  description = DEFAULT_DESCRIPTION,
+  path = '',
+  image,
+  type = 'website',
+  jsonLd = [],
+  noindex = false,
+  includeOrg = true,
+}) {
+  const clean = title ? String(title).replace(/\s*[|\u2014-]\s*CodeCrafters\s*$/i, '').trim() : ''
+  const fullTitle = clean ? `${clean} | ${site.name}` : DEFAULT_TITLE
   const ogImage = image || DEFAULT_OG_IMAGE
   const canonical = `${BASE_URL}${path}`
+  const graph = [...(includeOrg ? [orgNode, websiteNode] : []), ...jsonLd.filter(Boolean)]
 
   return (
-    <Helmet>
+    <Head>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <meta name="robots" content="index, follow" />
-      <meta name="author" content="Jaimin Shah" />
-      {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
       <link rel="canonical" href={canonical} />
 
-      {/* Geo */}
-      <meta name="geo.region" content="IN-GJ" />
-      <meta name="geo.placename" content="Ahmedabad" />
-
-      {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:url" content={canonical} />
-      <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:type" content={type} />
+      <meta property="og:site_name" content={site.name} />
       <meta property="og:locale" content="en_IN" />
 
-      {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
 
-      {/* JSON-LD */}
-      <script type="application/ld+json">{JSON.stringify(ORG_SCHEMA)}</script>
-    </Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}
+      </script>
+    </Head>
   )
 }

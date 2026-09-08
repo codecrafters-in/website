@@ -1,67 +1,123 @@
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import Icon from './ui/Icon.jsx'
+import { site } from '../data/site.js'
+import { solutions } from '../data/solutions.js'
+import { track } from '../lib/analytics.js'
 
-const CAL_URL = import.meta.env.VITE_CAL_URL || 'https://cal.com'
-const WA_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || ''
-const WA_URL = WA_NUMBER ? `https://wa.me/${WA_NUMBER.replace(/\D/g, '')}` : null
+const WA_NUMBER = site.whatsapp ? site.whatsapp.replace(/\D/g, '') : ''
 
+/**
+ * Context-aware prefill, so the first message already says why they are writing.
+ * Falls back to a plain opener on pages we have no specific line for.
+ */
+function prefillFor(pathname) {
+  if (pathname.startsWith('/work#')) {
+    const slug = pathname.split('#')[1].replace(/-/g, ' ')
+    return `Hi CodeCrafters — tell me more about the ${slug} build. We have something similar.`
+  }
+  if (pathname.startsWith('/work/')) {
+    return `Hi CodeCrafters — I read your case study (${pathname}) and I have something similar. Can we talk?`
+  }
+  if (pathname.startsWith('/solutions/')) {
+    const slug = pathname.replace('/solutions/', '')
+    const name = solutions.find((s) => s.slug === slug)?.title || slug.replace(/-/g, ' ')
+    return `Hi CodeCrafters — I'm looking at ${name}. Can we talk?`
+  }
+  if (pathname.startsWith('/insights/')) {
+    return 'Hi CodeCrafters — I read one of your articles and want to discuss doing this on our systems.'
+  }
+  return 'Hi CodeCrafters — I have an ERP/AI problem I want to talk through.'
+}
+
+export function whatsappUrl(pathname = '/') {
+  if (!WA_NUMBER) return null
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(prefillFor(pathname))}`
+}
+
+/**
+ * Floating contact affordance. WhatsApp is the primary conversion channel, so
+ * it leads and it does not disappear — dismissing collapses the panel to a
+ * compact button rather than removing the channel entirely.
+ */
 export default function BookingFloat() {
   const [visible, setVisible] = useState(false)
-  const [dismissed, setDismissed] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
+  const { pathname } = useLocation()
 
   useEffect(() => {
-    if (sessionStorage.getItem('booking_float_dismissed')) return
-    const t = setTimeout(() => setVisible(true), 4000)
+    try {
+      if (sessionStorage.getItem('booking_float_collapsed')) setCollapsed(true)
+    } catch {
+      /* noop */
+    }
+    // short delay only so it does not compete with LCP
+    const t = setTimeout(() => setVisible(true), 1200)
     return () => clearTimeout(t)
   }, [])
 
-  const dismiss = () => {
-    sessionStorage.setItem('booking_float_dismissed', '1')
-    setDismissed(true)
+  const collapse = () => {
+    try {
+      sessionStorage.setItem('booking_float_collapsed', '1')
+    } catch {
+      /* noop */
+    }
+    setCollapsed(true)
   }
+
+  const wa = whatsappUrl(pathname)
+  if (!site.calUrl && !wa) return null
+
+  const onWhatsApp = () => track('whatsapp_click', { location: 'float', path: pathname })
+  const onBooking = () => track('booking_click', { location: 'float', path: pathname })
 
   return (
     <AnimatePresence>
-      {visible && !dismissed && (
+      {visible && (
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 40 }}
           transition={{ duration: 0.35 }}
-          className="fixed bottom-24 right-5 z-40 flex flex-col gap-2 items-end"
+          className="fixed bottom-20 right-5 z-40 flex flex-col gap-2 items-end"
         >
-          {/* Dismiss */}
-          <button
-            onClick={dismiss}
-            className="text-[#4E4633] hover:text-white transition-colors self-end mb-1"
-            aria-label="Dismiss booking button"
-          >
-            <span className="material-symbols-outlined text-sm">close</span>
-          </button>
-
-          {/* Cal.com */}
-          <a
-            href={CAL_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-3 bg-[#F5C518] text-[#131313] px-4 py-3 font-bold text-xs uppercase tracking-wider hover:bg-white transition-colors shadow-lg group"
-          >
-            <span className="material-symbols-outlined text-base">calendar_month</span>
-            <span className="hidden sm:inline">Book a Call</span>
-          </a>
-
-          {/* WhatsApp — only render if number is configured */}
-          {WA_URL && (
+          {!collapsed && (
+            <>
+              <button
+                onClick={collapse}
+                className="text-outline hover:text-on-surface transition-colors self-end mb-1"
+                aria-label="Collapse contact buttons"
+              >
+                <Icon name="x" size={14} />
+              </button>
+              {site.calUrl && (
+                <a
+                  href={site.calUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={onBooking}
+                  className="flex items-center gap-3 glass-panel text-on-surface px-4 py-3 font-bold text-[11px] uppercase tracking-[0.18em] rounded-sm hover:text-primary transition"
+                >
+                  <Icon name="calendar" size={16} />
+                  <span className="hidden sm:inline">Book a call</span>
+                </a>
+              )}
+            </>
+          )}
+          {wa && (
             <a
-              href={WA_URL}
+              href={wa}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-3 bg-[#25D366] text-white px-4 py-3 font-bold text-xs uppercase tracking-wider hover:bg-[#1ebe5d] transition-colors shadow-lg"
+              onClick={onWhatsApp}
+              aria-label="Message us on WhatsApp"
+              className={`flex items-center gap-3 bg-molten text-on-primary font-bold text-[11px] uppercase tracking-[0.18em] rounded-sm shadow-molten hover:brightness-110 transition ${
+                collapsed ? 'p-4' : 'px-4 py-3'
+              }`}
             >
-              <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              <span className="hidden sm:inline">WhatsApp</span>
+              <Icon name="message-circle" size={collapsed ? 20 : 16} />
+              {!collapsed && <span className="hidden sm:inline">WhatsApp us</span>}
             </a>
           )}
         </motion.div>

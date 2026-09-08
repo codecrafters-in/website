@@ -18,26 +18,26 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-background flex items-center justify-center px-8">
+        <div className="min-h-screen bg-surface flex items-center justify-center px-8">
           <div className="max-w-lg text-center">
-            <div className="text-[#F5C518] text-xs uppercase tracking-widest mb-4 font-black">System Error</div>
-            <h1 className="text-4xl font-black text-white mb-4 tracking-tighter">Something went wrong</h1>
-            <p className="text-[#D1C5AC] mb-8 leading-relaxed">
-              An unexpected error occurred. Our team has been notified. Please try refreshing the page or navigating home.
+            <p className="font-mono text-eyebrow uppercase text-primary-container mb-4">System error</p>
+            <h1 className="font-display text-display-sm text-on-surface mb-4">Something went wrong.</h1>
+            <p className="text-on-surface-variant mb-8 leading-relaxed text-sm">
+              An unexpected error occurred. Try refreshing, or head back home.
             </p>
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-3 justify-center">
               <button
                 onClick={() => window.location.reload()}
-                className="bg-[#F5C518] text-[#131313] px-6 py-3 text-xs font-black uppercase tracking-widest hover:bg-white transition-colors"
+                className="bg-molten text-on-primary px-6 py-3 text-xs font-bold uppercase tracking-[0.18em] rounded-sm hover:brightness-110 transition"
               >
-                Refresh Page
+                Refresh
               </button>
               <Link
                 to="/"
                 onClick={() => this.setState({ hasError: false, error: null })}
-                className="border border-[#4E4633]/40 text-[#D1C5AC] px-6 py-3 text-xs font-black uppercase tracking-widest hover:border-[#F5C518] hover:text-[#F5C518] transition-colors"
+                className="text-on-surface px-6 py-3 text-xs font-bold uppercase tracking-[0.18em] rounded-sm shadow-[inset_0_0_0_1px_rgb(var(--outline-variant))] hover:text-primary transition-colors"
               >
-                Go Home
+                Go home
               </Link>
             </div>
           </div>

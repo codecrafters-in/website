@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const STORAGE_KEY = 'cc_consent'
+import { Link } from 'react-router-dom'
+import Icon from './ui/Icon.jsx'
+import { GTM_ID, getConsent, grantConsent, denyConsent } from '../lib/analytics.js'
 
 export default function PrivacyBanner() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    try {
-      if (!localStorage.getItem(STORAGE_KEY)) {
-        const timer = setTimeout(() => setVisible(true), 2000)
-        return () => clearTimeout(timer)
-      }
-    } catch {
-      // localStorage not available — skip banner
-    }
+    // Nothing to consent to when no analytics container is configured.
+    if (!GTM_ID) return undefined
+    if (getConsent()) return undefined
+    // 3.5s, staggered ahead of BookingFloat so the two do not stack.
+    const timer = setTimeout(() => setVisible(true), 3500)
+    return () => clearTimeout(timer)
   }, [])
 
   const dismiss = (value) => {
-    try { localStorage.setItem(STORAGE_KEY, value) } catch { /* noop */ }
+    if (value === 'accepted') grantConsent()
+    else denyConsent()
     setVisible(false)
   }
 
@@ -30,31 +30,34 @@ export default function PrivacyBanner() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 32 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-sm z-40 bg-[#1c1b1b] border border-[#4E4633]/40 shadow-2xl p-5"
+          className="fixed bottom-5 left-4 right-4 sm:left-5 sm:right-auto sm:max-w-sm z-40 vitreous-glass rounded-lg p-5"
           role="dialog"
           aria-label="Privacy notice"
         >
           <button
             onClick={() => dismiss('declined')}
-            className="absolute top-3 right-3 text-[#4E4633] hover:text-white transition-colors"
+            className="absolute top-3 right-3 text-outline hover:text-on-surface transition-colors"
             aria-label="Close"
           >
-            <span className="material-symbols-outlined text-base">close</span>
+            <Icon name="x" size={14} />
           </button>
-          <p className="text-[#D1C5AC] text-xs leading-relaxed mb-4 pr-4">
-            We use cookies to improve your experience.{' '}
-            <a href="/privacy" className="text-[#F5C518] hover:underline">Privacy Policy</a>
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary-container mb-2">Cookies</p>
+          <p className="text-on-surface-variant text-xs leading-relaxed mb-4 pr-4">
+            We use a couple of cookies to remember your preferences and understand what works. No ad tracking.{' '}
+            <Link to="/privacy" className="text-primary-container hover:underline">
+              Privacy policy
+            </Link>
           </p>
           <div className="flex gap-2">
             <button
               onClick={() => dismiss('declined')}
-              className="flex-1 text-[#D1C5AC] text-xs uppercase tracking-widest font-black py-2 border border-[#4E4633]/40 hover:border-[#F5C518] hover:text-[#F5C518] transition-colors"
+              className="flex-1 text-on-surface-variant text-[10px] uppercase tracking-[0.18em] font-bold py-2.5 rounded-sm shadow-[inset_0_0_0_1px_rgb(var(--outline-variant))] hover:text-primary transition-colors"
             >
               Decline
             </button>
             <button
               onClick={() => dismiss('accepted')}
-              className="flex-1 bg-[#F5C518] text-[#131313] text-xs uppercase tracking-widest font-black py-2 hover:bg-white transition-colors"
+              className="flex-1 bg-molten text-on-primary text-[10px] uppercase tracking-[0.18em] font-bold py-2.5 rounded-sm hover:brightness-110 transition"
             >
               Accept
             </button>

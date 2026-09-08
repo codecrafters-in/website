@@ -1,271 +1,230 @@
-import { motion } from 'framer-motion'
-import { useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { toast } from 'sonner'
-import SEO from '../components/SEO'
+import SEO, { breadcrumb, faqNode, ORG_ID } from '../components/SEO.jsx'
+import { Section, Container, Eyebrow, Heading, Button, GlassCard, Icon, FloatingField, Accordion } from '../components/ui/index.js'
+import Reveal from '../effects/Reveal.jsx'
+import SplitText from '../effects/SplitText.jsx'
+import useCopyToClipboard from '../hooks/useCopyToClipboard.js'
+import { site } from '../data/site.js'
+import { track } from '../lib/analytics.js'
+import { getAttribution } from '../lib/attribution.js'
+import { whatsappUrl } from '../components/BookingFloat.jsx'
+import { solutions } from '../data/solutions.js'
+import { faqByScope } from '../data/faq.js'
+import KeyPoints from '../components/KeyPoints.jsx'
+import { keyPoints } from '../data/keyPoints.js'
+import Aurora from '../components/Aurora.jsx'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-}
-const stagger = { visible: { transition: { staggerChildren: 0.1 } } }
+const BUDGETS = ['Under $25K', '$25K – $50K', '$50K – $100K', '$100K+', 'Not sure yet']
 
-const CAL_URL = import.meta.env.VITE_CAL_URL || 'https://cal.com'
+export function Component() {
+  const [state, setState] = useState('idle')
+  const [copied, copy] = useCopyToClipboard()
+  const [started, setStarted] = useState(false)
+  const faqs = faqByScope('contact').slice(0, 6)
+  const wa = whatsappUrl('/contact')
 
-export default function Contact() {
-  const formRef = useRef(null)
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  // Fires once, on the first field the visitor touches — gives a form-start vs
+  // form-submit funnel so abandonment is measurable.
+  const onFirstInput = () => {
+    if (started) return
+    setStarted(true)
+    track('contact_form_start')
+  }
 
-  const handleSubmit = async (e) => {
+  const submit = async (e) => {
     e.preventDefault()
-    if (formRef.current.botcheck.checked) return
-    setLoading(true)
+    if (state === 'loading') return
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form).entries())
+    setState('loading')
     try {
-      const form = formRef.current
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.user_name.value,
-          email: form.user_email.value,
-          company: form.company.value,
-          budget: form.budget.value,
-          message: form.message.value,
-          botcheck: form.botcheck.checked,
-        }),
+        body: JSON.stringify({ ...data, ...getAttribution() }),
       })
       if (!res.ok) throw new Error()
-      setSubmitted(true)
-      toast.success('Message sent! We\'ll be in touch within 4 hours.')
+      setState('done')
+      track('contact_form_submit', { budget: data.budget || 'unspecified', interest: data.interest || 'unspecified' })
+      // Virtual pageview so Ads/GA4 can use a conversion "page" without the
+      // UX cost of navigating away from the in-page success state.
+      track('virtual_pageview', { page_path: '/thank-you', page_title: 'Enquiry received' })
+      toast.success('Transmission received. We reply within 4 business hours.')
     } catch {
-      toast.error('Something went wrong. Please email us directly at hello@codecrafters.in')
-    } finally {
-      setLoading(false)
+      setState('idle')
+      toast.error(`Could not send. Email us directly at ${site.email}.`)
     }
   }
+
+  const jsonLd = [
+    breadcrumb([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }]),
+    { '@type': 'ContactPage', name: 'Contact CodeCrafters', url: `${site.url}/contact`, about: { '@id': ORG_ID } },
+    faqs.length ? faqNode(faqs) : null,
+  ]
 
   return (
     <>
       <SEO
-        title="Hire Odoo Developer India | Free Odoo ERP Audit"
-        description="Looking for an Odoo ERP partner in India? Book a free 30-min Odoo audit with Jaimin Shah. Clear diagnosis, no sales pitch. Ahmedabad-based, serving clients globally."
-        keywords="hire Odoo developer India, Odoo ERP consultant India, best Odoo partner contact, free Odoo audit, Odoo developer Ahmedabad, Odoo service India"
+        title="Contact — Book a Free 45-Minute Diagnostic"
+        description={`Tell us your biggest bottleneck. We map it, estimate the ROI and tell you honestly whether AI belongs there. ${site.responseTime.toLowerCase()} response.`}
         path="/contact"
+        jsonLd={jsonLd}
       />
-    <main className="min-h-screen pt-24 pb-16 relative overflow-hidden technical-grid">
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary-container/5 rounded-full blur-[128px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary-container/5 rounded-full blur-[128px] pointer-events-none" />
 
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 xl:px-14 relative z-10">
-        <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16 items-start" variants={stagger} initial="hidden" animate="visible">
+      <section className="relative pt-[72px] overflow-hidden">
+        <Aurora variant="soft" />
+        <Container className="relative py-20 md:py-28 grid lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Left */}
+          <div className="lg:col-span-5">
+            <Eyebrow className="mb-7">Free 45-min diagnostic</Eyebrow>
+            <h1 className="font-display font-semibold text-display-lg text-on-surface">
+              <SplitText text="Let's find your" immediate />
+              <br />
+              <span className="molten-text">
+                <SplitText text="biggest win." immediate delay={0.2} />
+              </span>
+            </h1>
+            <p className="mt-7 text-on-surface-variant text-lg leading-relaxed">
+              One call. We map your most expensive bottleneck, estimate what fixing it is worth, and tell you honestly whether AI belongs there. If it does not, we will say so.
+            </p>
 
-          {/* ── Left: Info ── */}
-          <motion.div variants={stagger} className="lg:col-span-1 space-y-10">
-            <div>
-              <motion.span variants={fadeUp} className="inline-block py-1 px-3 border border-[#4e4633]/30 text-primary-container text-[10px] tracking-[0.2em] uppercase font-bold mb-6">
-                Free 45-Min Audit
-              </motion.span>
-              <motion.h1 variants={fadeUp} className="text-5xl font-black tracking-tighter text-on-surface leading-[0.9] mb-5">
-                Let's Find Your<br /><span className="text-primary-container">Biggest Win.</span>
-              </motion.h1>
-              <motion.p variants={fadeUp} className="text-on-surface-variant leading-relaxed text-base">
-                Tell us about your business and current setup. We'll identify your highest-ROI automation opportunity — free, with no commitment.
-              </motion.p>
-            </div>
-
-            {/* Contact Info */}
-            <motion.div variants={stagger} className="space-y-6">
-              {[
-                { icon: 'mail', title: 'Email Us', value: 'hello@codecrafters.in', href: 'mailto:hello@codecrafters.in' },
-                { icon: 'location_on', title: 'Headquarters', value: 'India', href: null },
-                { icon: 'schedule', title: 'Response Time', value: 'Within 4 business hours', href: null },
-              ].map((item) => (
-                <motion.div key={item.title} variants={fadeUp} className="flex items-start gap-4 group">
-                  <div className="mt-0.5 flex items-center justify-center w-9 h-9 border border-[#4e4633]/20 group-hover:border-[#f5c518]/40 transition-colors shrink-0">
-                    <span className="material-symbols-outlined text-primary-container text-sm">{item.icon}</span>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface">{item.title}</h4>
-                    {item.href ? (
-                      <a href={item.href} className="text-sm text-on-surface-variant font-mono hover:text-primary-container transition-colors">{item.value}</a>
-                    ) : (
-                      <p className="text-sm text-on-surface-variant font-mono">{item.value}</p>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Cal.com direct booking */}
-            <motion.div variants={fadeUp}>
-              <p className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-3">Prefer to book directly?</p>
-              <a
-                href={CAL_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 w-full border border-[#F5C518]/30 bg-[#F5C518]/5 hover:bg-[#F5C518]/10 hover:border-[#F5C518]/60 transition-all p-4 group"
+            <div className="mt-10 flex flex-col gap-3">
+              {wa && (
+                <a
+                  href={wa}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => track('whatsapp_click', { location: 'contact' })}
+                  className="bg-molten text-on-primary rounded-lg p-5 flex items-center justify-between shadow-molten hover:brightness-110 transition"
+                >
+                  <span>
+                    <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-on-primary/70">Fastest route</span>
+                    <span className="block font-bold text-base mt-1">Message us on WhatsApp</span>
+                  </span>
+                  <Icon name="message-circle" size={22} />
+                </a>
+              )}
+              <button
+                type="button"
+                onClick={() => {
+                  copy(site.email)
+                  track('email_copy', { location: 'contact' })
+                }}
+                className="group glass-card rounded-lg p-5 flex items-center justify-between text-left hover:shadow-edge-strong transition"
               >
-                <span className="material-symbols-outlined text-primary-container text-xl">calendar_month</span>
-                <div>
-                  <p className="text-sm font-bold text-on-surface">Book on Cal.com</p>
-                  <p className="text-[10px] text-on-surface-variant">Pick a time that works for you</p>
-                </div>
-                <span className="material-symbols-outlined text-[#4e4633] group-hover:text-primary-container transition-colors ml-auto">arrow_outward</span>
-              </a>
-            </motion.div>
-
-            {/* Quick links */}
-            <motion.div variants={fadeUp} className="space-y-2">
-              <p className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-3">Or explore first:</p>
-              {[
-                { label: 'View Case Studies', to: '/portfolio' },
-                { label: 'AI Forge Services', to: '/ai-forge' },
-                { label: 'Odoo Solutions', to: '/odoo-solutions' },
-              ].map((l) => (
-                <Link key={l.to} to={l.to} className="flex items-center gap-2 text-sm text-on-surface-variant hover:text-primary-container transition-colors group">
-                  <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">chevron_right</span>
-                  {l.label}
-                </Link>
-              ))}
-            </motion.div>
-
-            {/* Status */}
-            <motion.div variants={fadeUp} className="p-5 bg-surface-container-low glass-edge border border-[#4e4633]/10">
-              <h5 className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-3">Availability</h5>
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary-container animate-pulse shadow-[0_0_8px_#f5c518]" />
-                <span className="text-xs font-mono text-on-surface">ACCEPTING NEW CLIENTS // Q2 2026</span>
+                <span>
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-outline">Email</span>
+                  <span className="block text-on-surface text-base mt-1">{site.email}</span>
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary-container inline-flex items-center gap-1.5">
+                  {copied ? <Icon name="check" size={14} /> : <Icon name="copy" size={14} />}
+                  {copied ? 'Copied' : 'Copy'}
+                </span>
+              </button>
+              <div className="grid grid-cols-2 gap-3">
+                <GlassCard padding="p-5" lift={false}>
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-outline">Response</span>
+                  <span className="block text-on-surface text-sm mt-1">{site.responseTime}</span>
+                </GlassCard>
+                <GlassCard padding="p-5" lift={false}>
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-outline">Based in</span>
+                  <span className="block text-on-surface text-sm mt-1">{site.location.label} · IST</span>
+                </GlassCard>
               </div>
-              <p className="text-on-surface-variant text-[10px] mt-2">Limited to 3 new enterprise engagements per quarter to maintain quality.</p>
-            </motion.div>
-          </motion.div>
-
-          {/* ── Right: Form ── */}
-          <motion.div variants={fadeUp} className="lg:col-span-2">
-            <div className="bg-[#3a3939]/80 backdrop-blur-[24px] p-8 md:p-12 lg:p-14 glass-edge border border-[#4e4633]/20 relative">
-              <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-[#4e4633] select-none">CC-FORM-882-TR</div>
-
-              {submitted ? (
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="py-16 text-center space-y-6">
-                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: 'spring' }}>
-                    <span className="material-symbols-outlined text-primary-container text-6xl" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                  </motion.div>
-                  <h3 className="text-3xl font-black text-on-surface uppercase tracking-tighter">Transmission Received.</h3>
-                  <p className="text-on-surface-variant max-w-sm mx-auto">We'll review your submission and reach out within 4 business hours to schedule your free audit call.</p>
-                  <a href={CAL_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-primary-container text-sm font-bold hover:underline">
-                    <span className="material-symbols-outlined text-sm">calendar_month</span>
-                    Or book a time directly on Cal.com
-                  </a>
-                  <div className="pt-4 space-y-3">
-                    <p className="text-on-surface-variant text-xs uppercase tracking-widest">While you wait, explore:</p>
-                    <div className="flex flex-wrap justify-center gap-3">
-                      <Link to="/portfolio"><button className="border border-[#4e4633]/40 text-on-surface text-xs px-5 py-2.5 uppercase tracking-widest hover:bg-surface-container-high transition-all">Case Studies</button></Link>
-                      <Link to="/ai-forge"><button className="border border-[#4e4633]/40 text-on-surface text-xs px-5 py-2.5 uppercase tracking-widest hover:bg-surface-container-high transition-all">AI Forge</button></Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ) : (
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
-                  {/* Honeypot — hidden from humans, catches bots */}
-                  <input type="checkbox" name="botcheck" style={{ display: 'none' }} tabIndex={-1} />
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-2 group">
-                      <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">Your Name *</label>
-                      <input required type="text" name="user_name" placeholder="FULL NAME" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
-                    </div>
-                    <div className="space-y-2 group">
-                      <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">Work Email *</label>
-                      <input required type="email" name="user_email" placeholder="EMAIL@COMPANY.COM" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-2 group">
-                      <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">Company</label>
-                      <input type="text" name="company" placeholder="COMPANY NAME" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm outline-none transition-colors" />
-                    </div>
-                    <div className="space-y-2 group">
-                      <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">Budget Range</label>
-                      <select name="budget" className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface py-3 font-mono text-sm outline-none transition-colors appearance-none cursor-pointer">
-                        <option value="" className="bg-[#1c1b1b]">SELECT RANGE</option>
-                        <option value="Under $25K" className="bg-[#1c1b1b]">Under $25K</option>
-                        <option value="$25K – $50K" className="bg-[#1c1b1b]">$25K – $50K</option>
-                        <option value="$50K – $100K" className="bg-[#1c1b1b]">$50K – $100K</option>
-                        <option value="$100K+" className="bg-[#1c1b1b]">$100K+</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 group">
-                    <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant group-focus-within:text-primary-container transition-colors">What Are You Trying to Solve? *</label>
-                    <textarea required name="message" placeholder="DESCRIBE YOUR CURRENT SETUP, BIGGEST BOTTLENECKS, AND WHAT SUCCESS LOOKS LIKE..." rows={4} className="w-full bg-surface-container-lowest border-0 border-b border-[#9a9078]/30 focus:border-primary-container text-on-surface placeholder:text-[#4e4633]/50 py-3 font-mono text-sm resize-none outline-none transition-colors" />
-                  </div>
-
-                  <div className="pt-2">
-                    <motion.button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full molten-gradient group relative overflow-hidden text-on-primary font-bold uppercase tracking-[0.2em] text-sm py-5 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
-                      whileHover={loading ? {} : { scale: 1.01 }}
-                      whileTap={loading ? {} : { scale: 0.98 }}
-                    >
-                      <span className="relative z-10 flex items-center justify-center gap-3">
-                        {loading ? (
-                          <>
-                            <motion.span className="block w-4 h-4 border-2 border-[#131313]/40 border-t-[#131313] rounded-full" animate={{ rotate: 360 }} transition={{ duration: 0.7, repeat: Infinity, ease: 'linear' }} />
-                            Sending...
-                          </>
-                        ) : (
-                          <>
-                            Book My Free Audit
-                            <span className="material-symbols-outlined text-xl">bolt</span>
-                          </>
-                        )}
-                      </span>
-                      {!loading && <div className="absolute inset-0 bg-white/15 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />}
-                    </motion.button>
-                    <p className="mt-4 text-center text-[10px] text-on-surface-variant font-mono uppercase tracking-widest opacity-50">
-                      No commitment. 45-min call. Written summary delivered same day.
-                    </p>
-                  </div>
-                </form>
+              {site.calUrl && (
+                <a
+                  href={site.calUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => track('booking_click', { location: 'contact' })}
+                  className="glass-card rounded-lg p-5 flex items-center justify-between hover:shadow-edge-strong transition"
+                >
+                  <span>
+                    <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-outline">Prefer a calendar?</span>
+                    <span className="block text-on-surface text-base mt-1">Book a 45-minute slot directly</span>
+                  </span>
+                  <Icon name="calendar" size={20} className="text-primary-container" />
+                </a>
               )}
             </div>
-          </motion.div>
-        </motion.div>
+
+            <p className="mt-8 inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-60" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-container" />
+              </span>
+              {site.availability.label} · {site.availability.period}
+            </p>
+            <p className="mt-2 text-on-surface-variant text-xs">{site.availability.note}.</p>
+          </div>
+
+          {/* Right: form */}
+          <div className="lg:col-span-7">
+            <Reveal delay={100}>
+              <div className="glass-card rounded-lg p-6 md:p-10">
+                {state === 'done' ? (
+                  <div className="text-center py-16">
+                    <Icon name="circle-check" size={40} className="text-primary-container mx-auto" />
+                    <Heading as="p" size="sm" className="mt-6">
+                      Transmission received.
+                    </Heading>
+                    <p className="text-on-surface-variant mt-3 max-w-sm mx-auto">We read every message ourselves and reply within four business hours. Talk soon.</p>
+                    <Button to="/work" variant="link" icon="arrow-right" className="mt-8">
+                      Browse the work meanwhile
+                    </Button>
+                  </div>
+                ) : (
+                  <form onSubmit={submit} onFocusCapture={onFirstInput} className="flex flex-col gap-5" noValidate={false}>
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <FloatingField id="name" name="name" label="Your name" required autoComplete="name" />
+                      <FloatingField id="email" name="email" type="email" label="Work email" required autoComplete="email" />
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <FloatingField id="company" name="company" label="Company" autoComplete="organization" />
+                      <FloatingField id="budget" name="budget" as="select" label="Budget" options={['', ...BUDGETS].map((b) => ({ value: b, label: b || 'Select a range' }))} defaultValue="" />
+                    </div>
+                    <FloatingField
+                      id="interest"
+                      name="interest"
+                      as="select"
+                      label="What are you exploring?"
+                      defaultValue=""
+                      options={[{ value: '', label: 'Pick one (or leave blank)' }, ...solutions.map((s) => ({ value: s.title, label: s.title })), { value: 'Something else', label: 'Something else' }]}
+                    />
+                    <FloatingField id="message" name="message" as="textarea" label="What is slowing you down?" required rows={5} />
+                    <input type="text" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-outline max-w-xs">
+                        NDA available on request. Nothing you write here is used for marketing.
+                      </p>
+                      <Button as="button" type="submit" size="lg" disabled={state === 'loading'} icon={state === 'loading' ? null : 'arrow-right'}>
+                        {state === 'loading' ? 'Sending…' : 'Send it'}
+                      </Button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </Reveal>
+          </div>
+        </Container>
       </section>
 
-      {/* ── Global Visual ── */}
-      <section className="mt-24 max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 xl:px-14">
-        <motion.div
-          className="h-[320px] md:h-[380px] w-full bg-surface-container-lowest relative overflow-hidden glass-edge group"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <img src="/images/contact-global.jpg" onError={(e) => { e.target.style.display = 'none' }} alt="Global Network" className="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100" />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0e0e0e] via-[#131313] to-[#1a1400]" style={{ zIndex: -1 }} />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-          <div className="absolute inset-0 flex items-center justify-center p-8">
-            <div className="max-w-2xl text-center space-y-5">
-              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-on-surface">Global Execution Capability</h3>
-              <p className="text-on-surface-variant leading-relaxed text-sm">We operate across timezones to provide responsive engineering coverage for our clients worldwide.</p>
-              <div className="flex flex-wrap justify-center gap-8 mt-6">
-                {[{ code: 'IND_01', label: 'Main Cluster' }, { code: 'UAE_04', label: 'Logic Node' }, { code: 'UK_09', label: 'Visual Core' }].map((node) => (
-                  <div key={node.code} className="text-center">
-                    <span className="block text-primary-container font-mono text-lg">{node.code}</span>
-                    <span className="text-[10px] text-on-surface-variant uppercase tracking-widest">{node.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-    </main>
+      <KeyPoints items={keyPoints.contact} />
+
+      <Section tone="low">
+        <Container className="grid lg:grid-cols-3 gap-10 lg:gap-16">
+          <Reveal>
+            <Eyebrow className="mb-5">Before you write</Eyebrow>
+            <Heading size="md">The things people ask first.</Heading>
+          </Reveal>
+          <Reveal className="lg:col-span-2" delay={80}>
+            <Accordion items={faqs} defaultOpen={0} />
+          </Reveal>
+        </Container>
+      </Section>
     </>
   )
 }
+
+export default Component

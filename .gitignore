@@ -43,3 +43,7 @@ vite.config.js.timestamp-*
 .cache/
 .eslintcache
 .stylelintcache
+
+# local smoke/scratch
+*.tmp.mjs
+.ssr-smoke.tmp.mjs

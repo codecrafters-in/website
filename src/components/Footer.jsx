@@ -1,171 +1,143 @@
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { toast } from 'sonner'
+import Icon from './ui/Icon.jsx'
+import { site, footerColumns } from '../data/site.js'
+import { track } from '../lib/analytics.js'
+
+const WA_URL = site.whatsapp ? `https://wa.me/${site.whatsapp.replace(/\D/g, '')}` : null
 
 export default function Footer() {
   const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
+  const [state, setState] = useState('idle')
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault()
-    if (email) setSubscribed(true)
+    if (!email || state === 'loading') return
+    setState('loading')
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'Footer newsletter' }),
+      })
+      if (!res.ok) throw new Error('bad status')
+      setState('done')
+      track('lead_magnet_submit', { location: 'Footer newsletter' })
+      toast.success("You're in. Watch your inbox.")
+    } catch {
+      setState('idle')
+      toast.error('Could not subscribe right now. Try again in a minute.')
+    }
   }
 
   return (
-    <footer className="bg-[#0E0E0E] w-full pt-16 pb-8 border-t border-[#4E4633]/20">
-      <div className="max-w-screen-2xl mx-auto px-5 sm:px-8 lg:px-10 xl:px-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12">
-
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Link to="/" className="inline-block mb-5 hover:opacity-80 transition-opacity" aria-label="CodeCrafters home">
-              <img
-                src="/images/dark_logo.png"
-                alt="CodeCrafters"
-                className="h-14 w-auto object-contain"
-              />
+    <footer className="relative bg-surface-container-lowest w-full pt-20 pb-8 overflow-hidden">
+      <div className="site-container relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+          <div className="lg:col-span-4">
+            <Link to="/" className="inline-block mb-6 hover:opacity-80 transition-opacity" aria-label={`${site.name} home`}>
+              <img src="/images/light_logo.png" alt={site.name} width="220" height="56" className="h-14 w-auto object-contain" />
             </Link>
-            <p className="text-[#8A7F6A] text-sm leading-relaxed mb-6 max-w-xs">
-              We forge AI-powered systems and Odoo ERP infrastructure that cut costs, eliminate bottlenecks, and scale with your ambitions.
-            </p>
-            <div className="flex items-center gap-4">
-              <a href="https://linkedin.com/company/codecrafters-in" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-[#4E4633] hover:text-[#F5C518] transition-colors">
-                <span className="material-symbols-outlined text-xl">hub</span>
-              </a>
-              <a href="https://github.com/codecrafters-in" target="_blank" rel="noreferrer" aria-label="GitHub" className="text-[#4E4633] hover:text-[#F5C518] transition-colors">
-                <span className="material-symbols-outlined text-xl">terminal</span>
-              </a>
-              <a href="mailto:hello@codecrafters.in" aria-label="Email" className="text-[#4E4633] hover:text-[#F5C518] transition-colors">
-                <span className="material-symbols-outlined text-xl">mail</span>
-              </a>
-              {import.meta.env.VITE_WHATSAPP_NUMBER && (
+            <p className="text-on-surface-variant text-sm leading-relaxed mb-6 max-w-xs">{site.tagline}. {site.description}</p>
+            <div className="flex items-center gap-3">
+              {[
+                { href: site.socials.linkedin, icon: 'linkedin', label: 'LinkedIn' },
+                { href: site.socials.github, icon: 'github', label: 'GitHub' },
+                { href: `mailto:${site.email}`, icon: 'mail', label: 'Email' },
+                ...(WA_URL ? [{ href: WA_URL, icon: 'message-circle', label: 'WhatsApp' }] : []),
+              ].map((s) => (
                 <a
-                  href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER.replace(/\D/g, '')}`}
-                  target="_blank"
+                  key={s.label}
+                  href={s.href}
+                  target={s.href.startsWith('http') ? '_blank' : undefined}
                   rel="noreferrer"
-                  aria-label="WhatsApp"
-                  className="text-[#4E4633] hover:text-[#F5C518] transition-colors"
+                  aria-label={s.label}
+                  className="w-10 h-10 rounded-sm bg-surface-container-low shadow-edge flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:shadow-edge-strong transition"
                 >
-                  <span className="material-symbols-outlined text-xl">chat</span>
+                  <Icon name={s.icon} size={16} />
                 </a>
-              )}
+              ))}
             </div>
           </div>
 
-          {/* Our Products */}
-          <div>
-            <h5 className="text-white font-bold text-[10px] uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
-              Our Products
-              <span className="text-[7px] font-black uppercase tracking-widest bg-[#F5C518] text-[#131313] px-1.5 py-0.5 leading-none">NEW</span>
-            </h5>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/products" className="text-[#8A7F6A] hover:text-[#F5C518] text-sm transition-colors">
-                  All Products
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/quotemaker" className="text-[#8A7F6A] hover:text-[#F5C518] text-sm transition-colors">
-                  QuoteMaker
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-[#F5C518]/70 hover:text-[#F5C518] text-sm transition-colors flex items-center gap-1">
-                  Request a Demo
-                  <span className="material-symbols-outlined text-xs">arrow_forward</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {footerColumns.map((col) => (
+            <div key={col.title} className="lg:col-span-2">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface mb-5">{col.title}</h2>
+              <ul className="space-y-3">
+                {col.links.map((l) => (
+                  <li key={l.label}>
+                    {l.to.startsWith('http') ? (
+                      <a href={l.to} className="text-on-surface-variant hover:text-primary-container text-sm transition-colors">{l.label}</a>
+                    ) : (
+                      <Link to={l.to} className="text-on-surface-variant hover:text-primary-container text-sm transition-colors">{l.label}</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-          {/* Services */}
-          <div>
-            <h5 className="text-white font-bold text-[10px] uppercase tracking-[0.15em] mb-5">Services</h5>
-            <ul className="space-y-3">
-              {[
-                { label: 'AI Automation & LLMs', to: '/ai-forge' },
-                { label: 'Odoo ERP Architecture', to: '/odoo-solutions' },
-                { label: 'Cloud Infrastructure', to: '/services' },
-                { label: 'Smart Dashboards', to: '/services' },
-                { label: 'Cyber Security', to: '/services' },
-              ].map((item) => (
-                <li key={item.label}>
-                  <Link to={item.to} className="text-[#8A7F6A] hover:text-[#F5C518] text-sm transition-colors">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h5 className="text-white font-bold text-[10px] uppercase tracking-[0.15em] mb-5">Company</h5>
-            <ul className="space-y-3">
-              {[
-                { label: 'About Us', to: '/about' },
-                { label: 'Case Studies', to: '/portfolio' },
-                { label: 'Contact Us', to: '/contact' },
-                { label: 'Book a Free Audit', to: '/contact' },
-                { label: 'Privacy Policy', to: '/privacy' },
-              ].map((item) => (
-                <li key={item.label}>
-                  <Link to={item.to} className="text-[#8A7F6A] hover:text-[#F5C518] text-sm transition-colors">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h5 className="text-white font-bold text-[10px] uppercase tracking-[0.15em] mb-5">Get Insights</h5>
-            <p className="text-[#8A7F6A] text-xs leading-relaxed mb-5">
-              Bi-weekly tactical insights on AI automation and Odoo strategy — straight to your inbox.
+          <div className="sm:col-span-2 lg:col-span-2">
+            <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface mb-5">Insights, monthly</h2>
+            <p className="text-on-surface-variant text-xs leading-relaxed mb-5">
+              One email a month on shipping AI inside real companies. No newsletters-about-newsletters.
             </p>
-            {subscribed ? (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-[#F5C518] text-sm font-bold flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-base">check_circle</span>
-                You're in. Watch your inbox.
-              </motion.div>
+            {state === 'done' ? (
+              <p className="text-primary-container text-sm font-semibold flex items-center gap-2">
+                <Icon name="circle-check" size={16} /> You&apos;re in.
+              </p>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex border border-[#4e4633]/30 focus-within:border-[#F5C518]/60 transition-colors">
+              <form onSubmit={handleSubscribe} className="flex rounded-sm bg-surface-container-low shadow-edge focus-within:shadow-edge-strong transition">
+                <label htmlFor="footer-email" className="sr-only">Work email</label>
                 <input
+                  id="footer-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your work email"
+                  placeholder="Work email"
                   required
-                  className="bg-transparent text-xs text-white flex-1 py-3 px-3 focus:ring-0 focus:outline-none placeholder:text-[#4e4633]"
+                  className="bg-transparent text-sm text-on-surface flex-1 py-3 px-3 focus:outline-none placeholder:text-outline min-w-0"
                 />
-                <button type="submit" className="px-3 text-[#F5C518] hover:text-white transition-colors border-l border-[#4e4633]/30">
-                  <span className="material-symbols-outlined text-base">arrow_forward</span>
+                <button
+                  type="submit"
+                  disabled={state === 'loading'}
+                  aria-label="Subscribe"
+                  className="px-3 text-primary-container hover:text-on-surface transition-colors disabled:opacity-50"
+                >
+                  <Icon name="arrow-right" size={16} />
                 </button>
               </form>
             )}
-
-            <div className="mt-8 p-4 border border-[#4e4633]/20 bg-[#1c1b1b]/40">
-              <p className="text-[#4E4633] text-[10px] uppercase tracking-widest mb-1.5">Free First Step</p>
-              <Link to="/contact" className="text-[#F5C518] text-xs font-bold hover:underline">
-                Get your free technical audit →
-              </Link>
-            </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-[#4E4633]/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-[#4E4633] text-[11px]">
-            © {new Date().getFullYear()} CodeCrafters. All rights reserved. · codecrafters.in
+        {/* A verifiable legal identity — registered name, GST, address, phone —
+            is one of the cheapest trust signals there is. Renders only once the
+            fields in site.legal are filled in. */}
+        {(site.legal?.registeredName || site.legal?.gstin || site.legal?.addressLine || site.legal?.phone) && (
+          <div className="mt-16 pt-6 shadow-[inset_0_1px_0_rgb(var(--outline-variant))] flex flex-wrap gap-x-8 gap-y-2 font-mono text-[10px] uppercase tracking-[0.18em] text-outline">
+            {site.legal.registeredName && <span>{site.legal.registeredName}</span>}
+            {site.legal.gstin && <span>GSTIN {site.legal.gstin}</span>}
+            {site.legal.addressLine && <span>{site.legal.addressLine}</span>}
+            {site.legal.phone && (
+              <a href={`tel:${site.legal.phone.replace(/\s/g, '')}`} className="hover:text-primary-container transition-colors">
+                {site.legal.phone}
+              </a>
+            )}
+          </div>
+        )}
+
+        <div className="mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-[inset_0_1px_0_rgb(var(--outline-variant))]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-outline">
+            © {new Date().getFullYear()} {site.name} · {site.location.label}
           </p>
-          <div className="flex gap-6">
-            <Link to="/privacy" className="text-[#4E4633] text-[11px] hover:text-[#F5C518] transition-colors">Privacy</Link>
-            <Link to="/terms" className="text-[#4E4633] text-[11px] hover:text-[#F5C518] transition-colors">Terms</Link>
+          <div className="flex items-center gap-6">
+            <Link to="/privacy" className="font-mono text-[10px] uppercase tracking-[0.18em] text-outline hover:text-primary-container transition-colors">Privacy</Link>
+            <Link to="/terms" className="font-mono text-[10px] uppercase tracking-[0.18em] text-outline hover:text-primary-container transition-colors">Terms</Link>
+            <span className="font-mono text-[10px] tracking-[0.3em] text-outline select-none" title="Try it" aria-hidden="true">
+              {site.konamiHint}
+            </span>
           </div>
         </div>
       </div>
