@@ -57,7 +57,9 @@ const SMALL_TEXT = /text-\[(9|10|11|12|13)px\]|text-xs|text-sm|text-eyebrow/
 async function collectUsages() {
   const usages = new Map() // token -> { small: bool }
   for await (const file of walk(path.join(ROOT, 'src'))) {
-    if (file.includes(`${path.sep}arcade${path.sep}`)) continue // scoped .on-dark
+    // The arcade used to be a permanently dark overlay. It is a light page now,
+    // so only the canvas-internal game modules are exempt.
+    if (file.includes(`${path.sep}arcade${path.sep}game${path.sep}`)) continue
     const src = await readFile(file, 'utf8')
     for (const m of src.matchAll(/className=(?:"([^"]*)"|\{`([^`]*)`\})/g)) {
       const cls = m[1] || m[2] || ''

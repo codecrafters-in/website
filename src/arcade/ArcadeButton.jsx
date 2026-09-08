@@ -1,14 +1,11 @@
-import { useArcade } from './index.js'
+import { Link } from 'react-router-dom'
 
-/** 36px pixel-art gamepad that toggles the Bug Blaster overlay. */
+/** 36px pixel-art gamepad linking to the arcade. */
 export default function ArcadeButton({ className = '' }) {
-  const { toggleArcade, open } = useArcade()
   return (
-    <button
-      type="button"
-      onClick={toggleArcade}
-      aria-label="Open Bug Blaster arcade"
-      aria-pressed={open}
+    <Link
+      to="/arcade"
+      aria-label="Open the arcade"
       title="Insert coin"
       className={
         'group inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-on-surface-variant ' +
@@ -43,6 +40,6 @@ export default function ArcadeButton({ className = '' }) {
         <path fill="#f5c518" d="M7 1h4v3H7z" />
         <path fill="#ffe5a0" d="M8 1h1v1H8z" />
       </svg>
-    </button>
+    </Link>
   )
 }

@@ -1,0 +1,77 @@
+/* Pixel-head animation. Kept out of Tailwind config — this is one easter egg,
+   not a site-wide motion vocabulary. All of it stops under reduced motion. */
+
+/* The mouth opens and closes while a character is speaking. Steps, not easing:
+   a pixel face should never tween. */
+@keyframes ph-chatter {
+  0%,
+  49% {
+    transform: translateY(0) scaleY(1);
+  }
+  50%,
+  100% {
+    transform: translateY(0.5px) scaleY(0.35);
+  }
+}
+
+/* Ghost has no mouth, so the visor blinks instead. */
+@keyframes ph-flicker {
+  0%,
+  60% {
+    opacity: 1;
+  }
+  61%,
+  100% {
+    opacity: 0.45;
+  }
+}
+
+/* A small lean-in while talking. */
+@keyframes ph-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes ph-dot {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.ph-talk .ph-mouth {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: ph-chatter 0.26s steps(1, end) infinite;
+}
+
+/* Only the mouthless heads flicker their eyes — otherwise both would fire. */
+.ph-talk:not(:has(.ph-mouth)) .ph-eye {
+  animation: ph-flicker 0.42s steps(1, end) infinite;
+}
+
+.ph-bob {
+  display: inline-block;
+  animation: ph-bob 0.9s ease-in-out infinite;
+}
+
+.ph-dot {
+  animation: ph-dot 1.1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-talk .ph-mouth,
+  .ph-talk .ph-eye,
+  .ph-bob,
+  .ph-dot {
+    animation: none;
+  }
+}

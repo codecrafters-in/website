@@ -25,10 +25,20 @@ export function createInput({ canvas, W = 320, H = 180, onEvent } = {}) {
     touch.left = touch.right = touch.fire = false
   }
 
+  // The overlay hosts two cabinets on one window. While the other one is on
+  // screen this input must go quiet — it binds `window` keydown and calls
+  // preventDefault(), so a live listener would eat the other game's keys.
+  let enabled = true
+  function setEnabled(v) {
+    enabled = !!v
+    if (!enabled) reset()
+  }
+
   const hasDom = typeof window !== 'undefined' && typeof document !== 'undefined'
-  if (!hasDom) return { state, touch, setTouch, reset, destroy() {} }
+  if (!hasDom) return { state, touch, setTouch, setEnabled, reset, destroy() {} }
 
   function onKeyDown(e) {
+    if (!enabled) return
     if (isTyping(document.activeElement)) return
     const key = e.key
     let handled = true
@@ -72,6 +82,7 @@ export function createInput({ canvas, W = 320, H = 180, onEvent } = {}) {
   }
 
   function onKeyUp(e) {
+    if (!enabled) return
     switch (e.key) {
       case 'ArrowLeft':
       case 'a':
@@ -99,6 +110,7 @@ export function createInput({ canvas, W = 320, H = 180, onEvent } = {}) {
   }
 
   function onPointerDown(e) {
+    if (!enabled) return
     if (e.button !== undefined && e.button !== 0) return
     e.preventDefault()
     try {
@@ -150,5 +162,5 @@ export function createInput({ canvas, W = 320, H = 180, onEvent } = {}) {
     reset()
   }
 
-  return { state, touch, setTouch, reset, destroy }
+  return { state, touch, setTouch, setEnabled, reset, destroy }
 }

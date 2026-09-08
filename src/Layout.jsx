@@ -10,8 +10,7 @@ import PrivacyBanner from './components/PrivacyBanner.jsx'
 import BookingFloat from './components/BookingFloat.jsx'
 import ClientEffects from './components/ClientEffects.jsx'
 import AnimatedOutlet from './effects/PageTransition.jsx'
-import { ArcadeProvider } from './arcade/index.js'
-import ArcadeGate from './arcade/ArcadeGate.jsx'
+import KonamiJump from './arcade/index.js'
 import BootScreen from './arcade/BootScreen.jsx'
 
 function RouteLoading() {
@@ -35,35 +34,33 @@ function RouteLoading() {
 
 export default function Layout() {
   return (
-    <ArcadeProvider>
-      <ErrorBoundary>
-        <div className="bg-surface min-h-screen overflow-x-clip">
-          <a href="#main-content" className="skip-nav">Skip to main content</a>
-          <Navbar />
-          <main id="main-content">
-            <AnimatedOutlet />
-          </main>
-          <Footer />
-          <ScrollToTop />
-          <BookingFloat />
-          <PrivacyBanner />
-          <RouteLoading />
-          <ArcadeGate />
-          <ClientOnly>{() => <ClientEffects />}</ClientOnly>
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              style: {
-                background: '#ffffff',
-                border: '1px solid #ded8c9',
-                boxShadow: '0 12px 32px -16px rgba(60,52,34,0.18)',
-                color: '#544f46',
-                fontFamily: '"DM Sans", sans-serif',
-              },
-            }}
-          />
-        </div>
-      </ErrorBoundary>
-    </ArcadeProvider>
+    <ErrorBoundary>
+      <div className="bg-surface min-h-screen overflow-x-clip">
+        <a href="#main-content" className="skip-nav">Skip to main content</a>
+        <Navbar />
+        <main id="main-content">
+          <AnimatedOutlet />
+        </main>
+        <Footer />
+        <ScrollToTop />
+        <BookingFloat />
+        <PrivacyBanner />
+        <RouteLoading />
+        <KonamiJump />
+        <ClientOnly>{() => <ClientEffects />}</ClientOnly>
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: '#ffffff',
+              border: '1px solid #ded8c9',
+              boxShadow: '0 12px 32px -16px rgba(60,52,34,0.18)',
+              color: '#544f46',
+              fontFamily: '"DM Sans", sans-serif',
+            },
+          }}
+        />
+      </div>
+    </ErrorBoundary>
   )
 }

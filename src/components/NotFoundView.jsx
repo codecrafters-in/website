@@ -2,12 +2,10 @@ import { lazy, Suspense } from 'react'
 import { ClientOnly, Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { Container, Button } from './ui/index.js'
-import { useArcade } from '../arcade/index.js'
 
 const GameOverCountdown = lazy(() => import('./GameOverCountdown.jsx'))
 
 export default function NotFoundView() {
-  const { openArcade } = useArcade()
   return (
     <>
       <Head>
@@ -36,7 +34,7 @@ export default function NotFoundView() {
             <Button to="/" size="lg">
               Continue → Home
             </Button>
-            <Button as="button" onClick={openArcade} variant="outline" size="lg" icon="gamepad">
+            <Button to="/arcade" variant="outline" size="lg" icon="gamepad">
               Insert coin
             </Button>
             <Button to="/contact" variant="link" icon="arrow-right">

@@ -1,53 +1,26 @@
-// Arcade context — deliberately tiny and free of game imports so it can live in the main bundle.
-import { createContext, createElement, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+// Konami handling only. The arcade itself lives at /arcade, so there is no
+// overlay state to hold and no provider to mount — the cheat code is now just a
+// shortcut to a URL that already exists.
+import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+import useKonami from './useKonami.js'
 
-// window CustomEvent name. Dispatch `new CustomEvent(ARCADE_EVENT, { detail: { action: 'open' | 'close' | 'toggle' } })`
-// from anywhere (no React needed) to drive the arcade; the provider also emits it with `{ open }` on every change.
-export const ARCADE_EVENT = 'cc:arcade'
+export const ARCADE_PATH = '/arcade'
 
-const ArcadeContext = createContext(null)
+/** Mount once near the app root. Renders nothing; listens for ↑↑↓↓←→←→BA. */
+export default function KonamiJump() {
+  const navigate = useNavigate()
 
-export function ArcadeProvider({ children }) {
-  const [open, setOpen] = useState(false)
-
-  const openArcade = useCallback(() => setOpen(true), [])
-  const closeArcade = useCallback(() => setOpen(false), [])
-  const toggleArcade = useCallback(() => setOpen((v) => !v), [])
-
-  // External control + broadcast.
-  useEffect(() => {
-    if (typeof window === 'undefined') return undefined
-    const onEvent = (e) => {
-      const action = e && e.detail && e.detail.action
-      if (action === 'open') setOpen(true)
-      else if (action === 'close') setOpen(false)
-      else if (action === 'toggle') setOpen((v) => !v)
-    }
-    window.addEventListener(ARCADE_EVENT, onEvent)
-    return () => window.removeEventListener(ARCADE_EVENT, onEvent)
-  }, [])
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
+  const onKonami = useCallback(() => {
     try {
-      window.dispatchEvent(new CustomEvent(ARCADE_EVENT, { detail: { open } }))
+      toast('CHEAT CODE ACCEPTED — INSERT COIN')
     } catch {
-      /* CustomEvent unavailable — nothing to broadcast */
+      /* toaster not mounted */
     }
-  }, [open])
+    navigate(ARCADE_PATH)
+  }, [navigate])
 
-  const value = useMemo(
-    () => ({ open, openArcade, closeArcade, toggleArcade }),
-    [open, openArcade, closeArcade, toggleArcade],
-  )
-
-  return createElement(ArcadeContext.Provider, { value }, children)
-}
-
-const NOOP = () => {}
-const FALLBACK = { open: false, openArcade: NOOP, closeArcade: NOOP, toggleArcade: NOOP }
-
-export function useArcade() {
-  // Fallback keeps ArcadeButton/ArcadeGate harmless if mounted outside the provider.
-  return useContext(ArcadeContext) || FALLBACK
+  useKonami(onKonami)
+  return null
 }

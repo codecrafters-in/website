@@ -632,6 +632,19 @@ export function createGame({ canvas, onState, onScore, audio, reducedMotion = fa
     pause,
     resume,
     stop: stopLoop,
+    /**
+     * Suspends the cabinet entirely when the player switches to the other game.
+     * Stops the rAF loop and silences the input, which is bound to `window` and
+     * calls preventDefault() — leaving it live would swallow the other game's keys.
+     */
+    setActive(active) {
+      input.setEnabled?.(active)
+      if (active) startLoop()
+      else {
+        pause()
+        stopLoop()
+      }
+    },
     destroy() {
       stopLoop()
       input.destroy()

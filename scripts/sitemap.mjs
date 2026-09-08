@@ -41,6 +41,8 @@ export async function buildSitemapEntries() {
     gitDate('src/pages/Contact.jsx'),
     gitDate('src/pages/legalContent.js'),
   ])
+  // The hub only. The two game pages are noindex — thin, and nothing to rank for.
+  const arcadeD = await gitDate('src/arcade/games.js')
   const entries = [
     { loc: '/', changefreq: 'weekly', priority: '1.0', lastmod: homeD || d },
     { loc: '/solutions', changefreq: 'weekly', priority: '0.9', lastmod: solD || d },
@@ -50,6 +52,7 @@ export async function buildSitemapEntries() {
     { loc: '/contact', changefreq: 'monthly', priority: '0.8', lastmod: contactD || d },
     { loc: '/privacy', changefreq: 'yearly', priority: '0.3', lastmod: legalD || d },
     { loc: '/terms', changefreq: 'yearly', priority: '0.3', lastmod: legalD || d },
+    { loc: '/arcade', changefreq: 'yearly', priority: '0.3', lastmod: arcadeD || d },
     ...solutions.map((s) => ({ loc: `/solutions/${s.slug}`, changefreq: 'monthly', priority: '0.85', lastmod: solD || d })),
     ...work.filter((w) => w.body).map((w) => ({ loc: `/work/${w.slug}`, changefreq: 'monthly', priority: '0.8', lastmod: workD || d })),
     ...insights.map((a) => ({ loc: `/insights/${a.slug}`, changefreq: 'monthly', priority: '0.7', lastmod: a.updated || a.date || d })),
