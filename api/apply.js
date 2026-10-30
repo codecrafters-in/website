@@ -1,4 +1,5 @@
 import { sendMail, ownerInbox } from './_mail.js'
+import { applyConfirmationHtml, applyConfirmationText } from './_applyEmail.js'
 
 const escape = (s) =>
   String(s ?? '')
@@ -64,6 +65,19 @@ export default async function handler(req, res) {
 
   const rows = FIELDS.map(([k, label]) => [label, clip(body[k]) || 'N/A'])
 
+  const slug = String(body.roleSlug || '')
+  const roleUrl = /^[a-z0-9-]{1,120}$/.test(slug)
+    ? `https://codecrafters.in/careers/${slug}`
+    : 'https://codecrafters.in/careers'
+  // What the candidate sees echoed back: only the fields they actually filled in.
+  const confirmation = {
+    name: clip(name, 80),
+    role: clip(role, 120),
+    roleUrl,
+    details: rows.filter(([label, v]) => label !== 'Role' && v !== 'N/A'),
+    resumeName: clip(resume.name, 120),
+  }
+
   try {
     // 1. The application itself, to the team inbox. This is the send that must work.
     await sendMail({
@@ -91,23 +105,9 @@ export default async function handler(req, res) {
         fromName: 'CodeCrafters Careers',
         to: email,
         replyTo: process.env.CAREERS_EMAIL || 'hello@codecrafters.in',
-        subject: `We received your application — ${clip(role, 120)}`,
-        text: [
-          `Hi ${clip(name, 80)},`,
-          '',
-          `Thanks for applying for the ${clip(role, 120)} role at CodeCrafters. Your application and resume reached us.`,
-          'We read every application ourselves and will get back to you if there is a fit.',
-          '',
-          '— The CodeCrafters team',
-        ].join('\n'),
-        html: `
-          <div style="font-family:sans-serif;font-size:14px;line-height:1.6;color:#131313">
-            <p>Hi ${escape(clip(name, 80))},</p>
-            <p>Thanks for applying for the <strong>${escape(clip(role, 120))}</strong> role at CodeCrafters. Your application and resume reached us.</p>
-            <p>We read every application ourselves and will get back to you if there is a fit.</p>
-            <p style="color:#54504a">— The CodeCrafters team</p>
-          </div>
-        `,
+        subject: `Application received: ${clip(role, 120)} at CodeCrafters`,
+        text: applyConfirmationText(confirmation),
+        html: applyConfirmationHtml(confirmation),
       })
     } catch (ackErr) {
       console.error('apply: applicant confirmation failed', ackErr?.message)

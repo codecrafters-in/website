@@ -66,6 +66,7 @@ function ApplyForm({ job }) {
         body: JSON.stringify({
           ...data,
           role: job.title,
+          roleSlug: job.slug,
           resume: { name: resume.name, type: resume.type, content: await readAsBase64(resume) },
         }),
       })
