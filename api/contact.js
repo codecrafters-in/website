@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import { sendMail, ownerInbox } from './_mail.js'
 
 const escape = (s) =>
   String(s ?? '')
@@ -46,17 +46,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    })
-
-    await transporter.sendMail({
-      from: `"CodeCrafters Website" <${process.env.MAIL_FROM || process.env.GMAIL_USER}>`,
-      to: process.env.CONTACT_EMAIL || process.env.GMAIL_USER,
+    await sendMail({
+      fromName: 'CodeCrafters Website',
+      to: ownerInbox(process.env.CONTACT_EMAIL),
       replyTo: email,
       subject: `New enquiry from ${name}${company ? ` (${company})` : ''}${interest ? ` — ${interest}` : ''}`,
       text: [

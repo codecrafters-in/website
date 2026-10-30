@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import { sendMail, ownerInbox } from './_mail.js'
 
 const escape = (s) =>
   String(s ?? '')
@@ -65,17 +65,10 @@ export default async function handler(req, res) {
   const rows = FIELDS.map(([k, label]) => [label, clip(body[k]) || 'N/A'])
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    })
-
-    await transporter.sendMail({
-      from: `"CodeCrafters Careers" <${process.env.MAIL_FROM || process.env.GMAIL_USER}>`,
-      to: process.env.CAREERS_EMAIL || 'hello@codecrafters.in',
+    // 1. The application itself, to the team inbox. This is the send that must work.
+    await sendMail({
+      fromName: 'CodeCrafters Careers',
+      to: ownerInbox(process.env.CAREERS_EMAIL || process.env.CONTACT_EMAIL),
       replyTo: email,
       subject: `Job application: ${clip(role, 120)} — ${clip(name, 80)}`,
       text: [...rows.map(([l, v]) => `${l}: ${v}`), '', `About their work:\n${message}`, '', `Resume attached: ${safeName}`].join('\n'),
@@ -90,6 +83,36 @@ export default async function handler(req, res) {
       `,
       attachments: [{ filename: safeName, content: file, contentType: RESUME_TYPES[ext] }],
     })
+
+    // 2. Confirmation to the applicant. Best-effort: the application is already
+    //    with the team, so a failure here must not report the submission failed.
+    try {
+      await sendMail({
+        fromName: 'CodeCrafters Careers',
+        to: email,
+        replyTo: process.env.CAREERS_EMAIL || 'hello@codecrafters.in',
+        subject: `We received your application — ${clip(role, 120)}`,
+        text: [
+          `Hi ${clip(name, 80)},`,
+          '',
+          `Thanks for applying for the ${clip(role, 120)} role at CodeCrafters. Your application and resume reached us.`,
+          'We read every application ourselves and will get back to you if there is a fit.',
+          '',
+          '— The CodeCrafters team',
+        ].join('\n'),
+        html: `
+          <div style="font-family:sans-serif;font-size:14px;line-height:1.6;color:#131313">
+            <p>Hi ${escape(clip(name, 80))},</p>
+            <p>Thanks for applying for the <strong>${escape(clip(role, 120))}</strong> role at CodeCrafters. Your application and resume reached us.</p>
+            <p>We read every application ourselves and will get back to you if there is a fit.</p>
+            <p style="color:#54504a">— The CodeCrafters team</p>
+          </div>
+        `,
+      })
+    } catch (ackErr) {
+      console.error('apply: applicant confirmation failed', ackErr?.message)
+    }
+
     return res.status(200).json({ ok: true })
   } catch (err) {
     console.error('apply: mail failed', err?.message)

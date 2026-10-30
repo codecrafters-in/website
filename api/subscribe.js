@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import { sendMail, ownerInbox } from './_mail.js'
 import { checklistHtml, checklistText } from './_checklist.js'
 
 const escape = (s) =>
@@ -25,20 +25,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    })
-
     // 1. Deliver the checklist to the person who asked for it. The UI promises
     //    "check your inbox", so this send is the one that must not be skipped.
-    await transporter.sendMail({
-      from: `"CodeCrafters" <${process.env.MAIL_FROM || process.env.GMAIL_USER}>`,
+    await sendMail({
+      fromName: 'CodeCrafters',
       to: email,
-      replyTo: process.env.CONTACT_EMAIL || process.env.GMAIL_USER,
+      replyTo: process.env.CONTACT_EMAIL || 'hello@codecrafters.in',
       subject: 'Your AI Readiness Checklist',
       text: checklistText(),
       html: checklistHtml(),
@@ -47,9 +39,9 @@ export default async function handler(req, res) {
     // 2. Notify the owner. Best-effort: if this fails the subscriber already
     //    has what they asked for, so do not fail the request.
     try {
-      await transporter.sendMail({
-        from: `"CodeCrafters Website" <${process.env.MAIL_FROM || process.env.GMAIL_USER}>`,
-        to: process.env.CONTACT_EMAIL || process.env.GMAIL_USER,
+      await sendMail({
+        fromName: 'CodeCrafters Website',
+        to: ownerInbox(process.env.CONTACT_EMAIL),
         replyTo: email,
         subject: `Subscribe / checklist request — ${escape(source || 'Website')}`,
         html: `
