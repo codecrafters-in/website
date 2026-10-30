@@ -65,18 +65,7 @@ export default async function handler(req, res) {
 
   const rows = FIELDS.map(([k, label]) => [label, clip(body[k]) || 'N/A'])
 
-  const slug = String(body.roleSlug || '')
-  const roleUrl = /^[a-z0-9-]{1,120}$/.test(slug)
-    ? `https://codecrafters.in/careers/${slug}`
-    : 'https://codecrafters.in/careers'
-  // What the candidate sees echoed back: only the fields they actually filled in.
-  const confirmation = {
-    name: clip(name, 80),
-    role: clip(role, 120),
-    roleUrl,
-    details: rows.filter(([label, v]) => label !== 'Role' && v !== 'N/A'),
-    resumeName: clip(resume.name, 120),
-  }
+  const confirmation = { name: clip(name, 80), role: clip(role, 120) }
 
   try {
     // 1. The application itself, to the team inbox. This is the send that must work.
