@@ -12,7 +12,7 @@ export const insights = [
     updated: '2026-06-09',
     tags: ['AI strategy', 'Automation', 'Operations'],
     readingTime: '6 min',
-    author: 'Jaimin Shah',
+    author: 'CodeCrafters',
     seo: {
       title: 'AI Readiness Audit: 14 Questions',
       description:
@@ -151,7 +151,7 @@ export const insights = [
       {
         type: 'quote',
         text: "The model is the cheapest part of the system to replace. The data, the process and the owner are not.",
-        cite: 'Jaimin Shah, Founder & Principal Engineer, CodeCrafters',
+        cite: 'CodeCrafters engineering',
       },
       { type: 'h2', text: 'Scoring yourself', id: 'scoring-yourself' },
       {
@@ -186,7 +186,7 @@ export const insights = [
     updated: '2026-07-01',
     tags: ['AI agents', 'Automation', 'Architecture'],
     readingTime: '6 min',
-    author: 'Jaimin Shah',
+    author: 'CodeCrafters',
     seo: {
       title: 'Agents vs. Workflows in Ops',
       description:
@@ -279,7 +279,7 @@ export const insights = [
       {
         type: 'quote',
         text: "If you can draw the flowchart, you do not need an agent. You need a workflow with a model in the box you could not draw.",
-        cite: 'Jaimin Shah',
+        cite: 'CodeCrafters engineering',
       },
       { type: 'h2', text: 'When we do build agents', id: 'when-we-do-build-agents' },
       {
@@ -306,7 +306,7 @@ export const insights = [
     updated: '2026-07-21',
     tags: ['Case study', 'Automation', 'OCR', 'ERP'],
     readingTime: '7 min',
-    author: 'Jaimin Shah',
+    author: 'CodeCrafters',
     seo: {
       title: '4 Hours to 8 Minutes: A Teardown',
       description:
@@ -413,7 +413,7 @@ kill_switch: ORDERS_AUTOPOST_ENABLED`,
       {
         type: 'quote',
         text: "Confidence is the model telling you how sure it is. It is not the model telling you it is right. Those are different numbers and only one of them is available.",
-        cite: 'Jaimin Shah',
+        cite: 'CodeCrafters engineering',
       },
       { type: 'h2', text: 'Results', id: 'results' },
       {
@@ -455,7 +455,7 @@ kill_switch: ORDERS_AUTOPOST_ENABLED`,
     updated: '2026-08-12',
     tags: ['Security', 'AI agents', 'ERP', 'Architecture'],
     readingTime: '7 min',
-    author: 'Jaimin Shah',
+    author: 'CodeCrafters',
     seo: {
       title: 'Prompt-Injection Hardening for Data Agents',
       description:
@@ -571,7 +571,7 @@ const tools = {
       {
         type: 'quote',
         text: "A secure agent is not one that cannot be tricked. It is one where being tricked does not matter.",
-        cite: 'Jaimin Shah, CodeCrafters',
+        cite: 'CodeCrafters engineering',
       },
       {
         type: 'p',

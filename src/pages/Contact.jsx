@@ -8,7 +8,6 @@ import useCopyToClipboard from '../hooks/useCopyToClipboard.js'
 import { site } from '../data/site.js'
 import { track } from '../lib/analytics.js'
 import { getAttribution } from '../lib/attribution.js'
-import { whatsappUrl } from '../components/BookingFloat.jsx'
 import { solutions } from '../data/solutions.js'
 import { faqByScope } from '../data/faq.js'
 import KeyPoints from '../components/KeyPoints.jsx'
@@ -22,7 +21,6 @@ export function Component() {
   const [copied, copy] = useCopyToClipboard()
   const [started, setStarted] = useState(false)
   const faqs = faqByScope('contact').slice(0, 6)
-  const wa = whatsappUrl('/contact')
 
   // Fires once, on the first field the visitor touches — gives a form-start vs
   // form-submit funnel so abandonment is measurable.
@@ -90,21 +88,6 @@ export function Component() {
             </p>
 
             <div className="mt-10 flex flex-col gap-3">
-              {wa && (
-                <a
-                  href={wa}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => track('whatsapp_click', { location: 'contact' })}
-                  className="bg-molten text-on-primary rounded-lg p-5 flex items-center justify-between shadow-molten hover:brightness-110 transition"
-                >
-                  <span>
-                    <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-on-primary/70">Fastest route</span>
-                    <span className="block font-bold text-base mt-1">Message us on WhatsApp</span>
-                  </span>
-                  <Icon name="message-circle" size={22} />
-                </a>
-              )}
               <button
                 type="button"
                 onClick={() => {

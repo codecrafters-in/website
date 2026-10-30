@@ -40,7 +40,7 @@ export const faq = [
   {
     id: 'team',
     q: 'Who actually does the work?',
-    a: 'Founder-led. Jaimin Shah scopes and architects every engagement and stays on the account. No offshore handoffs, no juniors on your project. Senior engineers end to end.',
+    a: 'Senior-led. A principal engineer scopes and architects every engagement and stays on the account. No offshore handoffs, no juniors on your project. Senior engineers end to end.',
     scope: ['home', 'contact', 'solutions:security'],
   },
   {

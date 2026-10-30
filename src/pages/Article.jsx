@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import SEO, { breadcrumb, ORG_ID, PERSON_ID } from '../components/SEO.jsx'
+import SEO, { breadcrumb, ORG_ID } from '../components/SEO.jsx'
 import Blocks from '../components/blocks/Blocks.jsx'
 import NotFoundView from '../components/NotFoundView.jsx'
 import InsightCard from '../components/cards/InsightCard.jsx'
@@ -31,7 +31,7 @@ export function Component() {
       description: a.excerpt,
       datePublished: a.date,
       dateModified: a.updated || a.date,
-      author: { '@type': 'Person', '@id': PERSON_ID, name: founder.name, url: `${site.url}/about` },
+      author: { '@id': ORG_ID },
       publisher: { '@id': ORG_ID },
       mainEntityOfPage: `${site.url}/insights/${a.slug}`,
       image: [`${site.url}/images/og-default.jpg`],
@@ -90,7 +90,6 @@ export function Component() {
             <GlassCard className="mt-16" padding="p-6 md:p-8" lift={false}>
               <Eyebrow className="mb-3">Written by</Eyebrow>
               <p className="font-display text-xl text-on-surface">{founder.name}</p>
-              <p className="text-on-surface-variant text-sm mt-1">{founder.role}, {site.name}</p>
               <p className="text-on-surface-variant text-sm leading-relaxed mt-4">{founder.bio[0]}</p>
               <div className="mt-5 flex gap-4">
                 <Button to="/about" variant="link" icon="arrow-right">

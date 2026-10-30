@@ -5,8 +5,6 @@ import Icon from './ui/Icon.jsx'
 import { site, footerColumns } from '../data/site.js'
 import { track } from '../lib/analytics.js'
 
-const WA_URL = site.whatsapp ? `https://wa.me/${site.whatsapp.replace(/\D/g, '')}` : null
-
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [state, setState] = useState('idle')
@@ -45,7 +43,6 @@ export default function Footer() {
                 { href: site.socials.linkedin, icon: 'linkedin', label: 'LinkedIn' },
                 { href: site.socials.github, icon: 'github', label: 'GitHub' },
                 { href: `mailto:${site.email}`, icon: 'mail', label: 'Email' },
-                ...(WA_URL ? [{ href: WA_URL, icon: 'message-circle', label: 'WhatsApp' }] : []),
               ].map((s) => (
                 <a
                   key={s.label}
@@ -112,19 +109,14 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* A verifiable legal identity — registered name, GST, address, phone —
+        {/* A verifiable legal identity — registered name, GST, address —
             is one of the cheapest trust signals there is. Renders only once the
             fields in site.legal are filled in. */}
-        {(site.legal?.registeredName || site.legal?.gstin || site.legal?.addressLine || site.legal?.phone) && (
+        {(site.legal?.registeredName || site.legal?.gstin || site.legal?.addressLine) && (
           <div className="mt-16 pt-6 shadow-[inset_0_1px_0_rgb(var(--outline-variant))] flex flex-wrap gap-x-8 gap-y-2 font-mono text-[10px] uppercase tracking-[0.18em] text-outline">
             {site.legal.registeredName && <span>{site.legal.registeredName}</span>}
             {site.legal.gstin && <span>GSTIN {site.legal.gstin}</span>}
             {site.legal.addressLine && <span>{site.legal.addressLine}</span>}
-            {site.legal.phone && (
-              <a href={`tel:${site.legal.phone.replace(/\s/g, '')}`} className="hover:text-primary-container transition-colors">
-                {site.legal.phone}
-              </a>
-            )}
           </div>
         )}
 

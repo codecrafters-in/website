@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import SEO, { breadcrumb, PERSON_ID, ORG_ID } from '../components/SEO.jsx'
+import SEO, { breadcrumb } from '../components/SEO.jsx'
 import SectionHeader from '../components/SectionHeader.jsx'
 import CTASection from '../components/CTASection.jsx'
 import {Section, Container, Eyebrow, Heading, GlassCard, Icon, Stat} from '../components/ui/index.js'
@@ -51,14 +51,6 @@ export function Component() {
 
   const jsonLd = [
     breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }]),
-    {
-      '@type': 'Person',
-      '@id': PERSON_ID,
-      name: founder.name,
-      jobTitle: founder.role,
-      worksFor: { '@id': ORG_ID },
-      url: `${site.url}/about`,
-    },
   ]
 
   return (
@@ -129,13 +121,13 @@ export function Component() {
         </Container>
       </Section>
 
-      {/* Founder */}
+      {/* Team */}
       <Section tone="lowest" className="overflow-hidden">
         <Container className="relative grid lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
               <Reveal>
-                <Eyebrow className="mb-5">Led by</Eyebrow>
+                <Eyebrow className="mb-5">Who you work with</Eyebrow>
                 <Heading as="h2" size="md">
                   {founder.name}
                 </Heading>

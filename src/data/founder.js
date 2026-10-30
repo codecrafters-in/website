@@ -1,7 +1,7 @@
-// Founder profile for the About page.
+// Team profile for the About page. Company voice only — no personal identity.
 export const founder = {
-  name: 'Jaimin Shah',
-  role: 'Founder & Principal Engineer',
+  name: 'The CodeCrafters engineering team',
+  role: 'Senior engineers',
   tagline: 'Research rigour, applied to production systems.',
   // Shown as "who you actually work with", not as a resume header.
   standfirst: 'Small, senior, and accountable to the thing still running a year later.',
@@ -11,13 +11,6 @@ export const founder = {
     'CodeCrafters exists because most enterprise software is fragile, and the reason is almost never the software. It is the depth of thinking behind it. We were built out of years spent inside a major ERP vendor watching rollouts that technically shipped and never actually landed.',
     'So we work the other way round. Every engagement is scoped and architected by the person who will build it, and that person stays on the account until it is running. No discovery team handing a deck to a delivery team. No handoffs.',
     'The research background matters here in a practical way: peer-reviewed machine learning work means we know the difference between a model that demos well and one that holds up against real data. That is the same judgement we apply to an ERP rollout or an AI agent going near production.',
-  ],
-  // NOTE (owner to verify): schools come from the index.html JSON-LD `alumniOf` list.
-  // The Master's is assigned to MSU (which runs an M.E. in Automatic Control & Robotics)
-  // and the undergraduate degree to Adani Institute; confirm degree names and years.
-  education: [
-    { degree: "Master's in Automatic Control & Robotics", school: 'The Maharaja Sayajirao University of Baroda' },
-    { degree: "Bachelor's in Engineering", school: 'Adani Institute of Infrastructure Engineering' },
   ],
   // NOTE (owner to verify): sources conflict on which paper is the Elsevier one.
   // The portfolio Achievements section labels the EMG paper "Elsevier", while the old

@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     // 1. Deliver the checklist to the person who asked for it. The UI promises
     //    "check your inbox", so this send is the one that must not be skipped.
     await transporter.sendMail({
-      from: `"Jaimin Shah — CodeCrafters" <${process.env.GMAIL_USER}>`,
+      from: `"CodeCrafters" <${process.env.MAIL_FROM || process.env.GMAIL_USER}>`,
       to: email,
       replyTo: process.env.CONTACT_EMAIL || process.env.GMAIL_USER,
       subject: 'Your AI Readiness Checklist',
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     //    has what they asked for, so do not fail the request.
     try {
       await transporter.sendMail({
-        from: `"CodeCrafters Website" <${process.env.GMAIL_USER}>`,
+        from: `"CodeCrafters Website" <${process.env.MAIL_FROM || process.env.GMAIL_USER}>`,
         to: process.env.CONTACT_EMAIL || process.env.GMAIL_USER,
         replyTo: email,
         subject: `Subscribe / checklist request — ${escape(source || 'Website')}`,

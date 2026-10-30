@@ -7,7 +7,6 @@ const DEFAULT_TITLE = 'CodeCrafters — Odoo ERP & AI Automation, Built to Ship'
 const DEFAULT_DESCRIPTION = site.description
 
 export const ORG_ID = `${BASE_URL}/#org`
-export const PERSON_ID = `${BASE_URL}/#jaimin`
 export const WEBSITE_ID = `${BASE_URL}/#website`
 
 // ProfessionalService is a subtype of both Organization and LocalBusiness, so a
@@ -22,7 +21,6 @@ const orgNode = {
   image: DEFAULT_OG_IMAGE,
   description: DEFAULT_DESCRIPTION,
   email: site.email,
-  founder: { '@id': PERSON_ID },
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.location.city,

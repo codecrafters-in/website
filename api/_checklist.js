@@ -74,7 +74,7 @@ export function checklistText() {
     '',
     'Reply to this email if you want us to run it with you. No pitch.',
     '',
-    '— Jaimin Shah, CodeCrafters',
+    '— The CodeCrafters team',
   )
   return lines.join('\n')
 }
@@ -116,7 +116,7 @@ export function checklistHtml() {
     </p>
     <p style="font-family:sans-serif;font-size:14px;line-height:1.6;color:#54504a;margin:16px 0 0">
       Reply to this email if you want us to run it with you. No pitch.<br><br>
-      — Jaimin Shah, CodeCrafters
+      — The CodeCrafters team
     </p>
   </div>`
 }

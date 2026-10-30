@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import GlassCard from '../ui/GlassCard.jsx'
 import Icon from '../ui/Icon.jsx'
 import FactChips from '../FactChips.jsx'
-import { whatsappUrl } from '../BookingFloat.jsx'
 import { coverSources } from '../../lib/format.js'
 import { track } from '../../lib/analytics.js'
 
@@ -16,9 +15,6 @@ const GRADIENTS = [
 
 export default function WorkCard({ item, index = 0, featured = false, className = '' }) {
   const hasDetail = Boolean(item.body)
-  // Cards without a write-up used to end nowhere. A prefilled WhatsApp opener
-  // is more useful than a page we would have to invent.
-  const ask = hasDetail || item.link ? null : whatsappUrl(`/work#${item.slug}`)
   const cover = coverSources(item.image)
   const sizes = featured ? '(min-width: 1024px) 900px, 100vw' : '(min-width: 1024px) 440px, 100vw'
   const inner = (
@@ -101,16 +97,15 @@ export default function WorkCard({ item, index = 0, featured = false, className 
             Read the paper <Icon name="external-link" size={15} />
           </a>
         )}
-        {!hasDetail && !item.link && ask && (
-          <a
-            href={ask}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => track('whatsapp_click', { location: 'work_card', slug: item.slug })}
+        {/* Cards without a write-up used to end nowhere — point them at a conversation. */}
+        {!hasDetail && !item.link && (
+          <Link
+            to="/contact"
+            onClick={() => track('work_card_ask', { slug: item.slug })}
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-container hover:text-primary"
           >
-            Ask about this build <Icon name="message-circle" size={15} />
-          </a>
+            Ask about this build <Icon name="arrow-right" size={15} />
+          </Link>
         )}
       </div>
     </GlassCard>

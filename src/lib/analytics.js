@@ -96,7 +96,7 @@ export function denyConsent() {
 /**
  * Push a conversion event. Safe to call anywhere, any time.
  *
- *   track('whatsapp_click', { location: 'hero' })
+ *   track('booking_click', { location: 'hero' })
  */
 export function track(event, params = {}) {
   const dl = dataLayer()

@@ -2,8 +2,6 @@ import Container from '../ui/Container.jsx'
 import Aurora from '../Aurora.jsx'
 import Icon from '../ui/Icon.jsx'
 import KeyPoints from '../KeyPoints.jsx'
-import { whatsappUrl } from '../BookingFloat.jsx'
-import { track } from '../../lib/analytics.js'
 import { heroAssurance } from '../../data/keyPoints.js'
 
 /**
@@ -33,31 +31,17 @@ export function HeroFrame({ children, align = 'center', pad = 'py-20 md:py-24' }
   )
 }
 
-/** Primary WhatsApp CTA + secondary link + the assurance chips. */
-export function HeroCta({ label = 'Tell us what is broken', variant = 'default', align = 'left' }) {
-  const wa = whatsappUrl('/')
+/** Primary contact CTA + secondary link + the assurance chips. */
+export function HeroCta({ label = 'Tell us what is broken', align = 'left' }) {
   return (
     <>
       <div className={`mt-10 flex flex-wrap items-center gap-4 ${align === 'center' ? 'justify-center' : ''}`}>
-        {wa ? (
-          <a
-            href={wa}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => track('whatsapp_click', { location: 'hero', variant })}
-            className="inline-flex items-center justify-center gap-3 rounded-lg bg-brand px-8 py-4 text-base font-semibold text-on-primary-fixed shadow-molten transition hover:brightness-110"
-          >
-            <Icon name="message-circle" size={19} />
-            {label}
-          </a>
-        ) : (
-          <a
-            href="/contact"
-            className="inline-flex items-center justify-center gap-3 rounded-lg bg-brand px-8 py-4 text-base font-semibold text-on-primary-fixed shadow-molten transition hover:brightness-110"
-          >
-            {label}
-          </a>
-        )}
+        <a
+          href="/contact"
+          className="inline-flex items-center justify-center gap-3 rounded-lg bg-brand px-8 py-4 text-base font-semibold text-on-primary-fixed shadow-molten transition hover:brightness-110"
+        >
+          {label}
+        </a>
         <a
           href="/work"
           className="inline-flex items-center gap-2 text-base font-semibold text-on-surface underline decoration-outline-variant decoration-2 underline-offset-[6px] transition hover:decoration-primary-container"
