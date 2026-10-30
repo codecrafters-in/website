@@ -65,7 +65,7 @@ export const nav = [
   { label: 'Work', to: '/work' },
   { label: 'Insights', to: '/insights' },
   { label: 'About', to: '/about' },
-  { label: 'Careers', to: '/careers' },
+  { label: 'Careers', to: '/careers', badge: 'Hiring' },
 ]
 
 export const footerColumns = [

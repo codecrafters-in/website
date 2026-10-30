@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import SEO, { breadcrumb, ORG_ID } from '../components/SEO.jsx'
@@ -10,6 +10,7 @@ import Aurora from '../components/Aurora.jsx'
 import { careerBySlug } from '../data/careers.js'
 import { site } from '../data/site.js'
 import { track } from '../lib/analytics.js'
+import { scrollToTarget } from '../lib/scrollLock.js'
 
 // Must stay in step with api/apply.js — the function rejects anything larger.
 const MAX_RESUME_BYTES = 3 * 1024 * 1024
@@ -33,6 +34,36 @@ function List({ items }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+/**
+ * Phones get the form only after a long description, so keep a way to jump to
+ * it on screen until the form itself scrolls into view.
+ */
+function MobileApplyBar() {
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    const form = document.getElementById('apply')
+    if (!form || typeof IntersectionObserver === 'undefined') return undefined
+    const io = new IntersectionObserver(([entry]) => setShow(entry.boundingClientRect.top > window.innerHeight))
+    io.observe(form)
+    return () => io.disconnect()
+  }, [])
+
+  if (!show) return null
+  return (
+    // right-[76px] leaves room for the scroll-to-top button at bottom-right.
+    <div className="lg:hidden fixed bottom-6 left-4 right-[76px] z-40">
+      <button
+        type="button"
+        onClick={() => scrollToTarget('#apply')}
+        className="w-full h-11 inline-flex items-center justify-center gap-2 rounded-lg bg-brand text-on-primary-fixed font-semibold text-sm shadow-molten"
+      >
+        Apply now <Icon name="chevron-down" size={16} />
+      </button>
+    </div>
   )
 }
 
@@ -255,6 +286,8 @@ export function Component() {
           </aside>
         </Container>
       </Section>
+
+      <MobileApplyBar />
     </>
   )
 }
