@@ -26,10 +26,11 @@ async function gitDate(file) {
 const newest = (dates) => dates.filter(Boolean).sort().at(-1)
 
 export async function buildSitemapEntries() {
-  const [{ solutions }, { work }, { insights }] = await Promise.all([
+  const [{ solutions }, { work }, { insights }, { careers }] = await Promise.all([
     import('../src/data/solutions.js'),
     import('../src/data/work.js'),
     import('../src/data/insights.js'),
+    import('../src/data/careers.js'),
   ])
   const d = today()
   const insightDates = insights.map((a) => a.updated || a.date)
@@ -49,12 +50,14 @@ export async function buildSitemapEntries() {
     { loc: '/work', changefreq: 'weekly', priority: '0.9', lastmod: workD || d },
     { loc: '/about', changefreq: 'monthly', priority: '0.7', lastmod: aboutD || d },
     { loc: '/insights', changefreq: 'weekly', priority: '0.8', lastmod: newest(insightDates) || d },
+    { loc: '/careers', changefreq: 'weekly', priority: '0.6', lastmod: newest(careers.map((c) => c.posted)) || d },
     { loc: '/contact', changefreq: 'monthly', priority: '0.8', lastmod: contactD || d },
     { loc: '/privacy', changefreq: 'yearly', priority: '0.3', lastmod: legalD || d },
     { loc: '/terms', changefreq: 'yearly', priority: '0.3', lastmod: legalD || d },
     { loc: '/arcade', changefreq: 'yearly', priority: '0.3', lastmod: arcadeD || d },
     ...solutions.map((s) => ({ loc: `/solutions/${s.slug}`, changefreq: 'monthly', priority: '0.85', lastmod: solD || d })),
     ...work.filter((w) => w.body).map((w) => ({ loc: `/work/${w.slug}`, changefreq: 'monthly', priority: '0.8', lastmod: workD || d })),
+    ...careers.map((c) => ({ loc: `/careers/${c.slug}`, changefreq: 'monthly', priority: '0.6', lastmod: c.posted || d })),
     ...insights.map((a) => ({ loc: `/insights/${a.slug}`, changefreq: 'monthly', priority: '0.7', lastmod: a.updated || a.date || d })),
   ]
   return entries

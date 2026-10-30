@@ -7,6 +7,7 @@ import { redirects } from './data/redirects.js'
 const solutionPaths = async () => (await import('./data/solutions.js')).solutions.map((s) => `solutions/${s.slug}`)
 const workPaths = async () => (await import('./data/work.js')).work.filter((w) => w.body).map((w) => `work/${w.slug}`)
 const insightPaths = async () => (await import('./data/insights.js')).insights.map((a) => `insights/${a.slug}`)
+const careerPaths = async () => (await import('./data/careers.js')).careers.map((c) => `careers/${c.slug}`)
 const arcadePaths = async () => (await import('./arcade/games.js')).gameSlugs.map((g) => `arcade/${g}`)
 
 export const routes = [
@@ -24,6 +25,8 @@ export const routes = [
       { path: 'insights', lazy: () => import('./pages/Insights.jsx') },
       { path: 'insights/:slug', lazy: () => import('./pages/Article.jsx'), getStaticPaths: insightPaths },
       { path: 'contact', lazy: () => import('./pages/Contact.jsx') },
+      { path: 'careers', lazy: () => import('./pages/Careers.jsx') },
+      { path: 'careers/:slug', lazy: () => import('./pages/CareerDetail.jsx'), getStaticPaths: careerPaths },
       { path: 'arcade', lazy: () => import('./pages/Arcade.jsx') },
       { path: 'arcade/:game', lazy: () => import('./pages/ArcadeGame.jsx'), getStaticPaths: arcadePaths },
       { path: 'privacy', lazy: () => import('./pages/Privacy.jsx') },

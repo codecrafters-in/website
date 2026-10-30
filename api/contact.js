@@ -55,7 +55,7 @@ export default async function handler(req, res) {
     })
 
     await transporter.sendMail({
-      from: `"CodeCrafters Website" <${process.env.GMAIL_USER}>`,
+      from: `"CodeCrafters Website" <${process.env.MAIL_FROM || process.env.GMAIL_USER}>`,
       to: process.env.CONTACT_EMAIL || process.env.GMAIL_USER,
       replyTo: email,
       subject: `New enquiry from ${name}${company ? ` (${company})` : ''}${interest ? ` — ${interest}` : ''}`,

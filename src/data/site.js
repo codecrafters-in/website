@@ -17,13 +17,6 @@ export const site = {
     github: 'https://github.com/codecrafters-in',
   },
   calUrl: env.VITE_CAL_URL || '',
-  whatsapp: env.VITE_WHATSAPP_NUMBER || '',
-  founder: {
-    name: 'Jaimin Shah',
-    title: 'Founder & Principal Engineer',
-    linkedin: 'https://linkedin.com/in/jaiminshah198',
-    github: 'https://github.com/ByteShah',
-  },
   responseTime: 'Within 4 business hours',
   // Shown in the footer. Fill these in — a verifiable legal identity is one of
   // the cheapest trust signals available and every serious agency publishes it.
@@ -31,7 +24,6 @@ export const site = {
     registeredName: '',   // e.g. 'CodeCrafters Technologies LLP'
     gstin: '',            // e.g. '24ABCDE1234F1Z5'
     addressLine: '',      // street / area, Ahmedabad, Gujarat, India
-    phone: '',            // e.g. '+91 98765 43210'
   },
   availability: {
     label: 'Accepting new engagements',
@@ -73,6 +65,7 @@ export const nav = [
   { label: 'Work', to: '/work' },
   { label: 'Insights', to: '/insights' },
   { label: 'About', to: '/about' },
+  { label: 'Careers', to: '/careers' },
 ]
 
 export const footerColumns = [
@@ -93,6 +86,7 @@ export const footerColumns = [
       { label: 'About', to: '/about' },
       { label: 'Work', to: '/work' },
       { label: 'Insights', to: '/insights' },
+      { label: 'Careers', to: '/careers' },
       { label: 'Contact', to: '/contact' },
       { label: 'Book a diagnostic', to: '/contact' },
     ],
