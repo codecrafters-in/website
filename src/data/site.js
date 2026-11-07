@@ -81,6 +81,11 @@ export const footerColumns = [
       { label: 'Odoo Customisation', to: '/solutions/odoo-customization' },
       { label: 'AI for Odoo', to: '/solutions/ai' },
       { label: 'Odoo Reports & Dashboards', to: '/solutions/data-dashboards' },
+      { label: 'Odoo POS', to: '/solutions/odoo-pos' },
+      { label: 'Odoo for Retail', to: '/solutions/odoo-retail' },
+      { label: 'Odoo Manufacturing', to: '/solutions/odoo-manufacturing' },
+      { label: 'Odoo Accounting & Billing', to: '/solutions/odoo-accounting-billing' },
+      { label: 'Odoo in Ahmedabad & Gandhinagar', to: '/solutions/odoo-ahmedabad' },
     ],
   },
   {

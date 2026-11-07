@@ -1,5 +1,7 @@
 // Solution lines: five Odoo-first core services plus three other services. `icon` values map to a separate Icon component (lucide names).
-export const solutions = [
+import { odooUseCases } from './odooUseCases.js'
+
+const baseSolutions = [
   {
     slug: 'odoo',
     core: true,
@@ -484,11 +486,15 @@ export const solutions = [
   },
 ]
 
+export const solutions = [...baseSolutions, ...odooUseCases]
+
 export const solutionBySlug = Object.fromEntries(solutions.map((s) => [s.slug, s]))
 
 // Odoo-first services shown in the menu, homepage and contact form. The rest stay
 // reachable (and indexed) but are listed as "Other services".
-export const coreSolutions = solutions.filter((s) => s.core)
-export const otherSolutions = solutions.filter((s) => !s.core)
+export const coreSolutions = solutions.filter((s) => s.core === true)
+export const otherSolutions = solutions.filter((s) => s.core === false)
+// "Odoo for your business": use-case and location pages.
+export const useCaseSolutions = solutions.filter((s) => s.group === 'usecase')
 
 export default solutions

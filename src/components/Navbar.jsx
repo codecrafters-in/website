@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Icon from './ui/Icon.jsx'
 import ArcadeButton from '../arcade/ArcadeButton.jsx'
 import { nav, site } from '../data/site.js'
-import { coreSolutions, otherSolutions } from '../data/solutions.js'
+import { coreSolutions, otherSolutions, useCaseSolutions } from '../data/solutions.js'
 import { lockScroll, unlockScroll } from '../lib/scrollLock.js'
 
 function NavBadge({ children }) {
@@ -139,7 +139,18 @@ export default function Navbar() {
                               <span className="block text-on-surface-variant text-xs leading-relaxed mt-1">How we work, timelines and engagement models.</span>
                             </span>
                           </Link>
-                          <p className="col-span-2 mt-1 px-4 py-3 rounded-sm bg-surface-container-lowest/70 text-xs text-on-surface-variant">
+                          <div className="col-span-2 mt-1 px-4 py-3 rounded-sm bg-surface-container-lowest/70">
+                            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-outline mb-2">Odoo for your business</p>
+                            <div className="flex flex-wrap gap-2">
+                              {useCaseSolutions.map((s) => (
+                                <Link key={s.slug} to={`/solutions/${s.slug}`} className="inline-flex items-center gap-1.5 rounded-full bg-surface px-3 py-1.5 text-xs font-semibold text-on-surface shadow-edge hover:text-primary transition-colors">
+                                  <Icon name={s.icon} size={13} className="text-primary-container" />
+                                  {s.navTitle || s.title}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                          <p className="col-span-2 px-4 py-2 text-xs text-on-surface-variant">
                             <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-outline mr-2">Also</span>
                             {otherSolutions.map((s, i) => (
                               <span key={s.slug}>
@@ -233,7 +244,7 @@ export default function Navbar() {
                     <div className="grid transition-[grid-template-rows] duration-400" style={{ gridTemplateRows: mobileSolutions ? '1fr' : '0fr' }}>
                       <div className="overflow-hidden">
                         <ul className="pb-3 pl-1 flex flex-col">
-                          {coreSolutions.map((s) => (
+                          {[...coreSolutions, ...useCaseSolutions].map((s) => (
                             <li key={s.slug}>
                               <Link to={`/solutions/${s.slug}`} className="flex items-center gap-3 py-2.5 text-on-surface-variant text-base">
                                 <Icon name={s.icon} size={16} className="text-primary-container" />

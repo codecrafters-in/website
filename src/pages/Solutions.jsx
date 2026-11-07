@@ -9,6 +9,7 @@ import { Section, Container, Eyebrow, Heading, Button, GlassCard, Icon, Tag } fr
 import Reveal from '../effects/Reveal.jsx'
 import SplitText from '../effects/SplitText.jsx'
 import { coreSolutions, otherSolutions } from '../data/solutions.js'
+import UseCaseLinks from '../components/UseCaseLinks.jsx'
 import { pricing } from '../data/pricing.js'
 import { faq } from '../data/faq.js'
 import { workBySlug } from '../data/work.js'
@@ -163,6 +164,7 @@ export function Component() {
       {/* Still offered and still indexed, but not the focus, so listed compactly. */}
       <Section tone="lowest">
         <Container>
+          <UseCaseLinks className="mb-14" />
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-outline">Other services</p>
           <p className="mt-3 max-w-2xl text-on-surface-variant">Odoo is our focus. For existing clients we also cover the layers around it.</p>
           <div className="mt-8 grid sm:grid-cols-3 gap-4">

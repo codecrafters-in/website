@@ -31,7 +31,7 @@ export function Component() {
       name: s.title,
       description: s.seo?.description || s.intro,
       provider: { '@id': ORG_ID },
-      areaServed: 'Worldwide',
+      areaServed: s.areaServed || 'Worldwide',
       serviceType: s.title,
       url: `https://www.codecrafters.in/solutions/${s.slug}`,
     },

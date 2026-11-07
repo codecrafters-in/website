@@ -21,6 +21,7 @@ import { site } from '../data/site.js'
 import { coreSolutions } from '../data/solutions.js'
 import SmeFit from '../components/SmeFit.jsx'
 import ClientStrip from '../components/ClientStrip.jsx'
+import UseCaseLinks from '../components/UseCaseLinks.jsx'
 import { featuredWork } from '../data/work.js'
 import { testimonials, testimonialNote } from '../data/testimonials.js'
 import { painPoints } from '../data/painPoints.js'
@@ -150,6 +151,7 @@ export function Component() {
               </div>
             ))}
           </Reveal>
+          <UseCaseLinks className="mt-12" />
         </Container>
       </Section>
 
