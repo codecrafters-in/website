@@ -91,7 +91,7 @@ export const founder = {
   ],
   stats: [
     { value: '8+', label: 'AI systems in production' },
-    { value: '120+', label: 'Custom modules shipped' },
+    { value: '120+', label: 'Custom Odoo modules' },
     { value: '30+', label: 'Projects delivered' },
     { value: '2', label: 'Peer-reviewed papers behind the work' },
   ],

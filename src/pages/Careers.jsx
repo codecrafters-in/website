@@ -28,19 +28,25 @@ export function Component() {
         <Container className="relative py-24 md:py-32">
           <Eyebrow className="mb-7">Careers</Eyebrow>
           <h1 className="font-display font-semibold text-display-xl text-on-surface max-w-4xl">
-            <SplitText text="Build things" immediate />
+            <SplitText text="Build things" immediate />{' '}
             <br />
             <span className="molten-text">
               <SplitText text="that actually ship." immediate delay={0.2} />
             </span>
           </h1>
           <p className="mt-7 text-on-surface-variant text-lg leading-relaxed max-w-2xl">
-            We are a small team building ERP systems and AI products for real businesses. If you care about the problem as much as the code, we would like to hear from you.
+            We are a small team building Odoo systems and AI for real businesses. If you care about the problem as much as the code, we would like to hear from you.
           </p>
+          <a
+            href="#open-roles"
+            className="mt-9 inline-flex min-h-[48px] items-center gap-2 rounded-lg bg-brand px-7 py-3 text-base font-semibold text-on-primary-fixed shadow-molten transition hover:brightness-110"
+          >
+            See {careers.length} open {careers.length === 1 ? 'role' : 'roles'} <Icon name="arrow-right" size={17} />
+          </a>
         </Container>
       </section>
 
-      <Section tone="low">
+      <Section tone="low" id="open-roles" className="scroll-mt-24">
         <Container>
           <div className="flex items-end justify-between gap-6 flex-wrap">
             <div>

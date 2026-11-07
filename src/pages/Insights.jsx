@@ -16,7 +16,7 @@ export function Component() {
     <>
       <SEO
         title="AI & ERP Insights for Business Leaders"
-        description="Practical writing for CTOs and ops leaders: AI readiness, agents versus workflows, automation teardowns, and prompt-injection hardening for enterprise data agents."
+        description="Practical writing for business owners and ops teams: AI readiness, agents versus workflows, automation teardowns, and prompt-injection hardening for enterprise data agents."
         path="/insights"
         jsonLd={[
           webPage({ name: 'Insights', path: '/insights', description: 'Field notes on shipping ERP and AI systems.' }),
@@ -32,7 +32,7 @@ export function Component() {
         <Container className="relative py-24 md:py-32">
           <Eyebrow className="mb-7">Insights</Eyebrow>
           <h1 className="font-display font-semibold text-display-xl text-on-surface max-w-4xl">
-            <SplitText text="Field notes from" immediate />
+            <SplitText text="Field notes from" immediate />{' '}
             <br />
             <span className="molten-text">
               <SplitText text="shipping AI." immediate delay={0.2} />

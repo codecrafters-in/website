@@ -36,7 +36,7 @@ export default function HeroProblem() {
         <div className="lg:col-span-7">
           <Eyebrow className="mb-7">Odoo ERP · AI automation · Ahmedabad</Eyebrow>
           <h1 className="font-display text-display-xl font-semibold text-on-surface">
-            <SplitText text="Your ERP works." immediate stagger={0.05} />
+            <SplitText text="Your ERP works." immediate stagger={0.05} />{' '}
             <br />
             <span className="molten-text">
               <SplitText text="Your team still doesn't." immediate delay={0.25} stagger={0.05} />

@@ -5,15 +5,19 @@ const env = (typeof import.meta !== 'undefined' && import.meta.env) || {}
 export const site = {
   name: 'CodeCrafters',
   legalName: 'CodeCrafters',
-  url: 'https://codecrafters.in',
-  tagline: 'Odoo ERP and AI automation, engineered to last.',
+  url: 'https://www.codecrafters.in',
+  tagline: 'Odoo for growing businesses, set up so your team actually uses it.',
   description:
-    'Odoo ERP implementation, migration and AI automation from Ahmedabad, India. Founder-led engineering: 120+ custom modules, 15+ migrations, agents and RAG wired into the systems you already run.',
+    'Odoo implementation, migration and customisation for growing businesses, from Ahmedabad, India. 120+ custom Odoo modules and 15+ migrations, plus AI that saves hours inside Odoo.',
   email: 'hello@codecrafters.in',
+  phone: '+91 70438 31200',
+  phoneE164: '+917043831200',
+  // wa.me link with a prefilled first line, so the chat opens with context.
+  whatsappUrl: 'https://wa.me/917043831200?text=' + encodeURIComponent('Hi CodeCrafters, I have a question about Odoo.'),
   legalEmail: 'legal@codecrafters.in',
   location: { city: 'Ahmedabad', region: 'Gujarat', country: 'IN', label: 'Ahmedabad, India' },
   socials: {
-    linkedin: 'https://linkedin.com/company/codecrafters-in',
+    linkedin: 'https://www.linkedin.com/company/codecraftersin/',
     github: 'https://github.com/codecrafters-in',
   },
   calUrl: env.VITE_CAL_URL || '',
@@ -28,7 +32,7 @@ export const site = {
   availability: {
     label: 'Accepting new engagements',
     period: 'Q4 2026',
-    note: 'Limited to 3 new enterprise engagements per quarter',
+    note: 'We take on a limited number of new projects each quarter',
   },
   industries: [
     'Logistics & Supply Chain',
@@ -61,7 +65,7 @@ export const site = {
 }
 
 export const nav = [
-  { label: 'Solutions', to: '/solutions', mega: true },
+  { label: 'Odoo Services', to: '/solutions', mega: true },
   { label: 'Work', to: '/work' },
   { label: 'Insights', to: '/insights' },
   { label: 'About', to: '/about' },
@@ -70,14 +74,13 @@ export const nav = [
 
 export const footerColumns = [
   {
-    title: 'Solutions',
+    title: 'Odoo services',
     links: [
-      { label: 'Odoo & Enterprise Platforms', to: '/solutions/enterprise-platforms' },
-      { label: 'AI Solutions', to: '/solutions/ai' },
-      { label: 'Data & Dashboards', to: '/solutions/data-dashboards' },
-      { label: 'Cloud & DevOps', to: '/solutions/cloud-devops' },
-      { label: 'Security', to: '/solutions/security' },
-      { label: 'Brand & Design', to: '/solutions/brand-design' },
+      { label: 'Odoo Implementation', to: '/solutions/odoo' },
+      { label: 'Odoo Migration & Upgrades', to: '/solutions/odoo-migration' },
+      { label: 'Odoo Customisation', to: '/solutions/odoo-customization' },
+      { label: 'AI for Odoo', to: '/solutions/ai' },
+      { label: 'Odoo Reports & Dashboards', to: '/solutions/data-dashboards' },
     ],
   },
   {
@@ -92,8 +95,11 @@ export const footerColumns = [
     ],
   },
   {
-    title: 'Resources',
+    title: 'More',
     links: [
+      { label: 'Cloud & DevOps', to: '/solutions/cloud-devops' },
+      { label: 'Security', to: '/solutions/security' },
+      { label: 'Brand & Design', to: '/solutions/brand-design' },
       { label: 'AI Readiness Checklist', to: '/#checklist' },
       { label: 'Privacy', to: '/privacy' },
       { label: 'Terms', to: '/terms' },

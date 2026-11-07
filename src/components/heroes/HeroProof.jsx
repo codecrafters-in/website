@@ -18,7 +18,7 @@ import { founder } from '../../data/founder.js'
 const paper = founder.publications.find((p) => p.url)
 
 const PROOF = [
-  { ...statById.modules, icon: 'database', to: '/solutions/enterprise-platforms' },
+  { ...statById.modules, icon: 'database', to: '/solutions/odoo' },
   { ...statById.migrations, icon: 'workflow', to: '/work' },
   { ...statById.projects, icon: 'circle-check', to: '/work' },
   { value: '2', label: 'Peer-reviewed papers', icon: 'book-open', href: paper?.url },
@@ -30,7 +30,7 @@ export default function HeroProof() {
       <div className="mx-auto max-w-4xl text-center">
         <Eyebrow className="mb-7 justify-center">Odoo ERP · AI automation · Ahmedabad</Eyebrow>
         <h1 className="font-display text-display-xl font-semibold text-on-surface">
-          <SplitText text="Fifteen ERP migrations." immediate stagger={0.05} />
+          <SplitText text="Fifteen ERP migrations." immediate stagger={0.05} />{' '}
           <br />
           <span className="molten-text">
             <SplitText text="Zero records lost." immediate delay={0.25} stagger={0.05} />

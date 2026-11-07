@@ -20,55 +20,55 @@ import Reveal from '../effects/Reveal.jsx'
 const LAYERS = [
   {
     id: 'agentic',
-    term: 'Agentic tool-calling',
-    tech: 'Claude MCP',
+    term: 'Ask Odoo in plain English',
+    tech: 'AI agent',
     body:
-      'The agent does not get database credentials. It calls a tool, the ORM decides whether that call is allowed, and the result comes back. Model proposes, runtime disposes.',
+      '"Which invoices are overdue?" gets a real answer from your live Odoo. The AI never gets database access: Odoo checks each request against that user\'s permissions first.',
     from: { label: 'ERP agent', to: '/work/conversational-ai-agent-erp' },
     icon: 'workflow',
   },
   {
     id: 'rag',
-    term: 'Retrieval-augmented generation',
-    tech: 'RAG',
+    term: 'Answers from your own data',
+    tech: 'Grounded answers',
     body:
-      'Answers grounded in your documents and tables rather than the model’s memory, so a wrong answer is a retrieval bug you can fix — not a hallucination you can only apologise for.',
+      'The AI answers from your documents and Odoo records, not from guesswork, so if an answer is wrong we can trace exactly where it came from and fix it.',
     from: { label: 'AI solutions', to: '/solutions/ai' },
     icon: 'database',
   },
   {
     id: 'structured',
-    term: 'Structured outputs',
-    tech: 'Zod-validated',
+    term: 'Checked before it is saved',
+    tech: 'Validation',
     body:
-      'Every model response is parsed against a schema before anything downstream trusts it. Wrong shape, rejected — it never reaches your database as a half-parsed string.',
+      'Everything the AI reads from an email or PDF is checked against strict rules before it is saved. If it does not fit, it is rejected instead of creating a messy record.',
     from: { label: 'Email intelligence', to: '/work/email-intelligence-saas' },
     icon: 'shield-check',
   },
   {
     id: 'guardrails',
-    term: 'Prompt-injection hardening',
+    term: 'Safe from trick emails',
     tech: 'Guardrails',
     body:
-      'Untrusted text — an email body, a PDF, a form field — is treated as data, never as instructions. We wrote up what this does and does not defend against.',
+      'Text from outside (an email, a PDF, a form) is treated as data, never as instructions, so nobody can trick the AI into doing something it should not. We wrote up how.',
     from: { label: 'Read the teardown', to: '/insights/prompt-injection-hardening-enterprise-agents' },
     icon: 'lock',
   },
   {
     id: 'hitl',
-    term: 'Human in the loop',
-    tech: 'Confidence thresholds',
+    term: 'People check the unclear cases',
+    tech: 'Human review',
     body:
-      'Confidence scoring routes the uncertain cases to a person and lets the rest through. Your team reviews the edge cases instead of every row.',
+      'When the AI is unsure, it sends the case to a person; the clear ones go straight through. Your team reviews the odd few instead of every row.',
     from: { label: 'OCR engine', to: '/work' },
     icon: 'users',
   },
   {
     id: 'routing',
-    term: 'Model routing',
-    tech: 'AI Gateway',
+    term: 'No lock-in to one AI company',
+    tech: 'Any AI provider',
     body:
-      'Five providers behind one registry, so a price change, a rate limit or a better model is a config change — not a rewrite and not a lock-in.',
+      'We can switch between AI providers with a settings change, so a price rise or a better model never means rebuilding your system.',
     from: { label: 'Email intelligence', to: '/work/email-intelligence-saas' },
     icon: 'cpu',
   },
@@ -79,8 +79,8 @@ export default function AIStack() {
     <Section tone="base">
       <Container>
         <SectionHeader
-          eyebrow="The AI layer"
-          title="Named properly, because the details are the difference."
+          eyebrow="AI on top of Odoo"
+          title="Once Odoo works, AI takes the repetitive work."
           lede="Six things that separate a system you can put in front of staff from a demo. Each one is from a build that is running now."
           size="md"
         />

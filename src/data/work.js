@@ -58,7 +58,7 @@ export const work = [
       'A natural-language interface over live ERP data. Non-technical staff ask plain-English questions and get ORM-safe, role-gated answers in seconds.',
     metrics: [
       { value: 'NL→SQL', label: 'Plain English to live data' },
-      { value: '100%', label: 'Prompt-injection hardened' },
+      { value: 'Tested', label: 'Against prompt-injection attacks' },
       { value: 'Seconds', label: 'From question to answer' },
     ],
     tags: ['LLM', 'Claude MCP', 'Odoo', 'Python', 'AI Agents'],
@@ -84,7 +84,7 @@ export const work = [
           'AI-driven report generation from query results',
         ],
       },
-      { type: 'stat', items: [{ value: 'NL→SQL', label: 'Plain English to live data' }, { value: '100%', label: 'Prompt-injection hardened' }] },
+      { type: 'stat', items: [{ value: 'NL→SQL', label: 'Plain English to live data' }, { value: 'Tested', label: 'Against prompt-injection attacks' }] },
       { type: 'h2', text: 'Why it is safe to hand to non-technical staff' },
       { type: 'p', text: 'The model never gets direct database access. It proposes, the ORM layer disposes. Every query is scoped to what the user could already see in the UI, and adversarial inputs are caught before they reach the runtime.' },
       { type: 'p', text: 'Result: answers in seconds, developers off the report queue, and an audit trail on every question asked.' },
@@ -123,7 +123,7 @@ export const work = [
     ],
     tags: ['OHIP API', 'EDI', 'Odoo', 'Python', 'Healthcare'],
     stack: ['Python', 'Odoo', 'OHIP API', 'MCEDT / WSDL', 'XML / EDI'],
-    services: ['enterprise-platforms', 'ai'],
+    services: ['odoo', 'ai'],
     problem:
       'A Canadian healthcare platform was processing OHIP insurance claims by hand. Eligibility checks, payment reconciliation and EDI batch submissions each needed a person in the loop.',
     approach:
@@ -166,7 +166,7 @@ export const work = [
     image: '/images/work/line-of-credit-platform.jpg',
     imageCredit: 'Himmel S / Unsplash',
     title: 'Line of Credit Lending Platform',
-    client: 'Lending enterprise',
+    client: 'Jaza.ai · lending platform',
     industry: 'Financial services',
     category: ['platforms'],
     featured: true,
@@ -180,7 +180,7 @@ export const work = [
     ],
     tags: ['Plaid', 'Stripe', 'FinTech', 'Odoo', 'Accounting'],
     stack: ['Odoo', 'Python', 'Plaid', 'Stripe', 'React', 'PostgreSQL'],
-    services: ['enterprise-platforms', 'security'],
+    services: ['odoo', 'security'],
     problem:
       'The client was running a lending business out of spreadsheets. Disbursements, repayments, statements and interest lived in cells that only one person understood.',
     approach:
@@ -231,7 +231,7 @@ export const work = [
     ],
     tags: ['Next.js', 'Supabase', 'Flask', 'SaaS', 'Tailwind CSS'],
     stack: ['Next.js', 'React', 'Supabase', 'Flask', 'Tailwind CSS'],
-    services: ['enterprise-platforms', 'cloud-devops'],
+    services: ['odoo', 'cloud-devops'],
     problem:
       'Sales teams and freelancers lose deals to quotes sent as WhatsApp messages and Google Docs. They look unprofessional, and nobody knows if the client opened them.',
     approach:
@@ -265,13 +265,13 @@ export const work = [
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       // Route moved from /products/quotemaker to /work/quotemaker (see redirects.js).
-      url: 'https://codecrafters.in/work/quotemaker',
+      url: 'https://www.codecrafters.in/work/quotemaker',
       description:
         'Create professional quotes in minutes. Share via link, no client login needed. Get notified when clients view or accept.',
       author: {
         '@type': 'Organization',
         name: 'CodeCrafters',
-        url: 'https://codecrafters.in',
+        url: 'https://www.codecrafters.in',
       },
       featureList: [
         'Professional quote builder',
@@ -351,7 +351,7 @@ export const work = [
     image: '/images/work/textile-wholesale-erp-b2b.jpg',
     imageCredit: 'Arum Visuals / Unsplash',
     title: 'Textile Wholesale ERP & B2B Commerce',
-    client: 'Textile wholesaler, India',
+    client: 'Yash Handicraft · textile wholesaler, India',
     industry: 'Textiles & wholesale',
     category: ['platforms'],
     featured: true,
@@ -364,7 +364,7 @@ export const work = [
     ],
     tags: ['Odoo', 'Python', 'B2B', 'ERP', 'OWL'],
     stack: ['Odoo', 'Python', 'OWL', 'PostgreSQL'],
-    services: ['enterprise-platforms', 'data-dashboards'],
+    services: ['odoo', 'data-dashboards'],
     problem:
       'A textile wholesaler ran sales through agents, catalogues and phone calls. Pricing lived in heads, commissions in spreadsheets, and stock in a system nobody trusted.',
     approach:
@@ -466,7 +466,7 @@ export const work = [
     ],
     tags: ['OCR', 'Odoo', 'Python', 'ML'],
     stack: ['Python', 'Odoo', 'OCR'],
-    services: ['ai', 'enterprise-platforms'],
+    services: ['ai', 'odoo'],
     testimonialId: 'ocr',
   },
   {
@@ -531,7 +531,7 @@ export const work = [
     ],
     tags: ['Odoo', 'OWL', 'GoCardless', 'Stripe', 'eCommerce'],
     stack: ['Odoo', 'OWL', 'Bootstrap', 'Stripe', 'GoCardless'],
-    services: ['enterprise-platforms', 'cloud-devops'],
+    services: ['odoo', 'cloud-devops'],
     testimonialId: 'scale',
   },
   {
@@ -559,7 +559,7 @@ export const work = [
     ],
     tags: ['Odoo v14–v19', 'OWL', 'PostgreSQL', 'ETL'],
     stack: ['Odoo', 'Python', 'OWL', 'PostgreSQL', 'ETL framework'],
-    services: ['enterprise-platforms'],
+    services: ['odoo'],
     testimonialId: 'migration',
   },
   {
@@ -582,7 +582,7 @@ export const work = [
     ],
     tags: ['LLM', 'Odoo CRM', 'Python'],
     stack: ['Python', 'Odoo', 'LLM'],
-    services: ['ai', 'enterprise-platforms'],
+    services: ['ai', 'odoo'],
   },
   {
     slug: 'portal-order-approval-engine',
@@ -611,7 +611,7 @@ export const work = [
     ],
     tags: ['Odoo', 'Python', 'OWL', 'Workflow'],
     stack: ['Odoo', 'Python', 'OWL', 'PostgreSQL'],
-    services: ['enterprise-platforms'],
+    services: ['odoo'],
     testimonialId: 'logistics',
   },
   {
@@ -634,7 +634,7 @@ export const work = [
     ],
     tags: ['Odoo', 'Python', 'OWL', 'Helpdesk'],
     stack: ['Odoo', 'Python', 'OWL'],
-    services: ['enterprise-platforms'],
+    services: ['odoo'],
   },
   {
     slug: 'saaskit-automation-devops',
@@ -677,7 +677,7 @@ export const work = [
     ],
     tags: ['Claude MCP', 'Odoo', 'Python', 'Async'],
     stack: ['Python', 'Claude MCP', 'Odoo', 'PostgreSQL'],
-    services: ['ai', 'enterprise-platforms'],
+    services: ['ai', 'odoo'],
   },
   {
     slug: 'stock-prediction-research',

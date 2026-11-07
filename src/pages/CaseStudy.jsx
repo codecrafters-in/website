@@ -37,7 +37,7 @@ export function Component() {
       author: { '@id': ORG_ID },
       about: w.industry,
       keywords: (w.tags || []).join(', '),
-      url: `https://codecrafters.in/work/${w.slug}`,
+      url: `https://www.codecrafters.in/work/${w.slug}`,
     },
   ]
 
@@ -45,10 +45,10 @@ export function Component() {
     <>
       <SEO
         title={w.title}
-        description={w.challenge ? `${w.challenge} ${w.summary}`.slice(0, 158) : w.summary}
+        description={w.metaDescription || clampAtWord(w.challenge ? `${w.challenge} ${w.summary}` : w.summary, 158)}
         path={`/work/${w.slug}`}
         type="article"
-        image={w.image ? `https://codecrafters.in${w.image}` : undefined}
+        image={w.image ? `https://www.codecrafters.in${w.image}` : undefined}
         jsonLd={jsonLd}
       />
 
@@ -239,6 +239,15 @@ export function Component() {
       <CTASection title="Discuss a similar build." lede="Tell us what your version of this problem looks like. The first 45 minutes are free and specific." />
     </>
   )
+}
+
+
+// Trim to `max` characters at a word boundary so meta descriptions never end mid-word.
+function clampAtWord(text, max) {
+  if (!text || text.length <= max) return text
+  const cut = text.slice(0, max - 1)
+  const end = cut.lastIndexOf(' ')
+  return `${(end > 80 ? cut.slice(0, end) : cut).replace(/[\s,;:.\u2014-]+$/, '')}\u2026`
 }
 
 export default Component

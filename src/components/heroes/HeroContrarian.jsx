@@ -35,7 +35,7 @@ export default function HeroContrarian() {
         <div className="lg:col-span-7">
           <Eyebrow className="mb-7">Odoo ERP · AI automation · Ahmedabad</Eyebrow>
           <h1 className="font-display text-display-xl font-semibold text-on-surface">
-            <SplitText text="Most Odoo problems" immediate stagger={0.05} />
+            <SplitText text="Most Odoo problems" immediate stagger={0.05} />{' '}
             <br />
             <span className="molten-text">
               <SplitText text="are not Odoo problems." immediate delay={0.25} stagger={0.05} />

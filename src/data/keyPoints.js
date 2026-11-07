@@ -20,7 +20,7 @@ export const keyPoints = {
     {
       icon: 'database',
       value: '120+',
-      label: 'Odoo modules shipped',
+      label: 'Custom Odoo modules',
       note: 'Custom ERP solutions across textiles, logistics, healthcare and retail.',
     },
     {
@@ -42,13 +42,13 @@ export const keyPoints = {
       icon: 'database',
       label: 'Odoo & ERP solutions',
       note: 'Implementation, migration and custom modules for businesses already running Odoo.',
-      to: '/solutions/enterprise-platforms',
+      to: '/solutions/odoo',
       cta: 'ERP solutions',
     },
     {
       icon: 'brain',
       label: 'AI solutions on your own data',
-      note: 'Agents, RAG and LLM pipelines wired into the systems you already run.',
+      note: 'AI that answers questions and reads documents using your own Odoo data.',
       to: '/solutions/ai',
       cta: 'AI solutions',
     },
@@ -62,7 +62,7 @@ export const keyPoints = {
     {
       icon: 'users',
       label: 'One engineer, start to finish',
-      note: 'Forward-deployed. The person who scopes your solution is the person who builds it.',
+      note: 'The person who scopes your project is the person who builds it.',
       to: '/about',
       cta: 'How we work',
     },
@@ -71,7 +71,7 @@ export const keyPoints = {
   about: [
     {
       icon: 'map-pin',
-      label: 'An AI and ERP company in Ahmedabad',
+      label: 'An Odoo and AI company in Ahmedabad',
       note: 'Working with businesses across India, Canada and Australia.',
     },
     {
@@ -82,8 +82,8 @@ export const keyPoints = {
     },
     {
       icon: 'users',
-      value: 'FDE',
-      label: 'Forward-deployed engineering',
+      value: '1:1',
+      label: 'Straight to the engineer',
       note: 'No account managers, no handoffs, no juniors learning on your project.',
     },
     {
@@ -150,10 +150,10 @@ export const heroAssurance = [
 export const credentials = [
   { icon: 'database', label: 'Odoo v14–v19' },
   { icon: 'workflow', label: 'ERP migrations' },
-  { icon: 'brain', label: 'Agents & RAG' },
+  { icon: 'brain', label: 'AI on your Odoo data' },
   { icon: 'book-open', label: 'Peer-reviewed research' },
   { icon: 'lock', label: 'AES-256-GCM' },
-  { icon: 'shield-check', label: 'Prompt-injection hardened' },
+  { icon: 'shield-check', label: 'Tested against prompt injection' },
   { icon: 'map-pin', label: 'Ahmedabad · IST' },
   { icon: 'globe', label: 'India · Canada · Australia' },
 ]

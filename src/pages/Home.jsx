@@ -18,7 +18,9 @@ import TestimonialCard from '../components/cards/TestimonialCard.jsx'
 import { Section, Container, Eyebrow, Button, GlassCard, Stat, Marquee, DragScroller, Icon } from '../components/ui/index.js'
 import Reveal from '../effects/Reveal.jsx'
 import { site } from '../data/site.js'
-import { solutions } from '../data/solutions.js'
+import { coreSolutions } from '../data/solutions.js'
+import SmeFit from '../components/SmeFit.jsx'
+import ClientStrip from '../components/ClientStrip.jsx'
 import { featuredWork } from '../data/work.js'
 import { testimonials, testimonialNote } from '../data/testimonials.js'
 import { painPoints } from '../data/painPoints.js'
@@ -67,7 +69,7 @@ export function Component() {
   const faqs = faqByScope('home')
 
   const jsonLd = [
-    webPage({ name: 'Odoo ERP & AI Automation', path: '/', description: site.description }),
+    webPage({ name: 'Odoo Implementation for Growing Businesses', path: '/', description: site.description }),
     breadcrumb([{ name: 'Home', path: '/' }]),
     faqs.length ? faqNode(faqs) : null,
   ]
@@ -75,13 +77,15 @@ export function Component() {
   return (
     <>
       <SEO
-        title="AI & Odoo ERP Solutions, Built to Ship"
+        title="Odoo Implementation, Migration & Customisation for SMEs"
         description={site.description}
         path="/"
         jsonLd={jsonLd}
       />
 
       <Hero />
+
+      <ClientStrip />
 
       <TrustBar />
 
@@ -128,19 +132,19 @@ export function Component() {
         </div>
       </Section>
 
-      {/* ── SOLUTIONS BENTO ── */}
+      {/* ── ODOO SERVICES ── */}
       <Section tone="low">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <SectionHeader eyebrow="What we do" title="One partner. Every layer of the stack." lede="AI on top, platforms in the middle, cloud and security underneath. We own the whole thing so nothing falls between vendors." />
+            <SectionHeader eyebrow="What we do" title="Everything Odoo, from first setup to AI." lede="One team for the whole Odoo journey: set it up, move your data in, build what is missing, keep it upgraded, and add AI once the basics work." />
             <Reveal delay={100}>
               <Button to="/solutions" variant="link" icon="arrow-right">
-                All solutions
+                All Odoo services
               </Button>
             </Reveal>
           </div>
           <Reveal stagger={90} className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-            {solutions.map((s, i) => (
+            {coreSolutions.map((s, i) => (
               <div key={s.slug} className={i === 0 ? 'md:col-span-2' : ''}>
                 <SolutionCard item={s} size={i === 0 ? 'lg' : 'md'} />
               </div>
@@ -148,6 +152,8 @@ export function Component() {
           </Reveal>
         </Container>
       </Section>
+
+      <SmeFit />
 
       <AIStack />
 
@@ -209,11 +215,14 @@ export function Component() {
         </Container>
 
         <div className="mt-20">
-          <Marquee duration={70} gap="gap-5" className="py-2">
-            {testimonials.map((t) => (
-              <TestimonialCard key={t.id} item={t} />
-            ))}
-          </Marquee>
+          {/* Rendered once (a drag strip, not a looping marquee) so each quote appears a single time. */}
+          <Container>
+            <DragScroller className="py-2">
+              {testimonials.map((t) => (
+                <TestimonialCard key={t.id} item={t} className="shrink-0 snap-start" />
+              ))}
+            </DragScroller>
+          </Container>
           <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-outline text-center mt-5">{testimonialNote}</p>
         </div>
       </Section>
@@ -247,7 +256,7 @@ export function Component() {
       <Section tone="low">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <SectionHeader eyebrow="Insights" title="Field notes from shipping AI." size="md" />
+            <SectionHeader eyebrow="Insights" title="Field notes from Odoo and AI projects." size="md" />
             <Reveal delay={100}>
               <Link to="/insights" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-primary-container hover:text-primary">
                 All articles <Icon name="arrow-right" size={13} />

@@ -192,10 +192,15 @@ export function Component() {
     {
       '@type': 'JobPosting',
       title: job.title,
-      description: [...job.about, ...job.required].join(' '),
+      // Google wants HTML here: paragraphs for the role, a list for requirements.
+      description: `${job.about.map((p) => `<p>${p}</p>`).join('')}<p><strong>Requirements</strong></p><ul>${job.required.map((r) => `<li>${r}</li>`).join('')}</ul>`,
+      identifier: { '@type': 'PropertyValue', name: site.name, value: job.slug },
       datePosted: job.posted,
+      // Listings without an end date look stale to Google Jobs; default to 60 days.
+      validThrough: job.closes || new Date(Date.parse(job.posted) + 60 * 864e5).toISOString().slice(0, 10),
       employmentType: 'FULL_TIME',
-      hiringOrganization: { '@id': ORG_ID },
+      directApply: true,
+      hiringOrganization: { '@id': ORG_ID, '@type': 'Organization', name: site.name, sameAs: site.url, logo: `${site.url}/images/light_logo.png` },
       jobLocation: {
         '@type': 'Place',
         address: {

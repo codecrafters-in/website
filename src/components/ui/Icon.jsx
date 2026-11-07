@@ -5,6 +5,8 @@ import {
   Clock, Database, TrendingDown, TrendingUp, Receipt, UserX, EyeOff, Inbox, ServerCrash, FileText,
   Bot, HeartPulse, Lock, Users, MapPin, Phone, Globe, Quote, Star, CircleCheck, Volume2, VolumeX,
   BookOpen, Award, GraduationCap, Briefcase, Cpu, Workflow, Boxes, Building2, Plus, Minus,
+  ShoppingCart, Package, Calculator, Factory, Store, Headset, Truck, Wrench, RefreshCw, Puzzle, Shirt,
+  Warehouse, Handshake, ListChecks, Contact, ShoppingBag, IdCard, Sheet, LayoutGrid, Megaphone,
 } from 'lucide-react'
 
 // Brand marks are not shipped by lucide-react 1.x, so they live here as inline SVGs.
@@ -26,7 +28,14 @@ const Linkedin = (props) => (
   </BrandSvg>
 )
 
+const Whatsapp = (props) => (
+  <BrandSvg {...props}>
+    <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43a9.37 9.37 0 0 1 6.67 2.77 9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.27 11.27 0 0 0 12.05.7C5.8.7.7 5.8.7 12.07c0 2 .52 3.95 1.52 5.67L.6 23.3l5.7-1.5a11.33 11.33 0 0 0 5.75 1.47h.01c6.26 0 11.36-5.1 11.36-11.37 0-3.04-1.18-5.89-3.33-8.04z" />
+  </BrandSvg>
+)
+
 const ICONS = {
+  whatsapp: Whatsapp,
   'arrow-right': ArrowRight, 'arrow-up-right': ArrowUpRight, 'arrow-up': ArrowUp, 'arrow-left': ArrowLeft,
   x: X, close: X, menu: Menu, check: Check, mail: Mail, calendar: Calendar, 'message-circle': MessageCircle,
   github: Github, linkedin: Linkedin, 'chevron-down': ChevronDown, 'chevron-right': ChevronRight, play: Play,
@@ -40,6 +49,10 @@ const ICONS = {
   quote: Quote, star: Star, 'circle-check': CircleCheck, 'volume-2': Volume2, 'volume-x': VolumeX,
   'book-open': BookOpen, award: Award, 'graduation-cap': GraduationCap, briefcase: Briefcase, cpu: Cpu,
   workflow: Workflow, boxes: Boxes, building: Building2, plus: Plus, minus: Minus,
+  cart: ShoppingCart, package: Package, calculator: Calculator, factory: Factory, store: Store, headset: Headset,
+  truck: Truck, wrench: Wrench, refresh: RefreshCw, puzzle: Puzzle, shirt: Shirt, warehouse: Warehouse,
+  handshake: Handshake, 'list-checks': ListChecks, contact: Contact, 'shopping-bag': ShoppingBag, 'id-card': IdCard,
+  sheet: Sheet, grid: LayoutGrid, megaphone: Megaphone,
 }
 
 export default function Icon({ name, size = 18, strokeWidth = 1.75, className = '', ...rest }) {

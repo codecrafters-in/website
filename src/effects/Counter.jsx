@@ -11,7 +11,8 @@ export function formatNumber(n, decimals = 0) {
 
 /**
  * Animated statistic. The final value is in the prerendered HTML; on the
- * client it counts up from 0 once scrolled into view.
+ * client it counts up from 0 once scrolled into view (the value stays in the
+ * DOM until then).
  */
 export default function Counter({
   value,
@@ -34,13 +35,16 @@ export default function Counter({
 
     const obj = { v: 0 }
     const step = decimals > 0 ? 1 / 10 ** decimals : 1
-    el.textContent = formatNumber(0, decimals)
-
+    // Keep the real value in the DOM until the tween actually starts, so
+    // crawlers and anyone who never scrolls to it never see "0".
     const tween = gsap.to(obj, {
       v: target,
       duration,
       ease: 'power2.out',
       snap: { v: step },
+      onStart: () => {
+        el.textContent = formatNumber(0, decimals)
+      },
       onUpdate: () => {
         el.textContent = formatNumber(obj.v, decimals)
       },

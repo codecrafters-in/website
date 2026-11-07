@@ -25,7 +25,7 @@ export function Component() {
   const next = solutions[(idx + 1) % solutions.length]
 
   const jsonLd = [
-    breadcrumb([{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions' }, { name: s.title, path: `/solutions/${s.slug}` }]),
+    breadcrumb([{ name: 'Home', path: '/' }, { name: 'Odoo services', path: '/solutions' }, { name: s.title, path: `/solutions/${s.slug}` }]),
     {
       '@type': 'Service',
       name: s.title,
@@ -33,7 +33,7 @@ export function Component() {
       provider: { '@id': ORG_ID },
       areaServed: 'Worldwide',
       serviceType: s.title,
-      url: `https://codecrafters.in/solutions/${s.slug}`,
+      url: `https://www.codecrafters.in/solutions/${s.slug}`,
     },
     faqs.length ? faqNode(faqs) : null,
   ]
@@ -46,7 +46,7 @@ export function Component() {
         <Aurora variant="soft" />
         <Container className="relative py-24 md:py-32">
           <Link to="/solutions" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary-container transition-colors">
-            <Icon name="arrow-left" size={13} /> All solutions
+            <Icon name="arrow-left" size={13} /> All Odoo services
           </Link>
           <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.25em] text-outline">
             {s.num} <span className="text-primary-container">/</span> {s.eyebrow}
@@ -150,7 +150,7 @@ export function Component() {
         </Section>
       )}
 
-      <FAQ items={faqs} tone="base" title={`Questions about ${s.title.toLowerCase()}.`} />
+      <FAQ items={faqs} tone="base" title={`Questions about ${s.title}`} />
 
       <Section tone="low" padded={false} className="py-8">
         <Container className="flex items-center justify-between gap-6">

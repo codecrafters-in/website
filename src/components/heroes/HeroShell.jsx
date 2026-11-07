@@ -32,7 +32,7 @@ export function HeroFrame({ children, align = 'center', pad = 'py-20 md:py-24' }
 }
 
 /** Primary contact CTA + secondary link + the assurance chips. */
-export function HeroCta({ label = 'Tell us what is broken', align = 'left' }) {
+export function HeroCta({ label = 'Tell us what is broken', align = 'left', secondaryLabel = 'See what we shipped', secondaryTo = '/work' }) {
   return (
     <>
       <div className={`mt-10 flex flex-wrap items-center gap-4 ${align === 'center' ? 'justify-center' : ''}`}>
@@ -43,10 +43,10 @@ export function HeroCta({ label = 'Tell us what is broken', align = 'left' }) {
           {label}
         </a>
         <a
-          href="/work"
+          href={secondaryTo}
           className="inline-flex items-center gap-2 text-base font-semibold text-on-surface underline decoration-outline-variant decoration-2 underline-offset-[6px] transition hover:decoration-primary-container"
         >
-          See what we shipped <Icon name="arrow-right" size={17} />
+          {secondaryLabel} <Icon name="arrow-right" size={17} />
         </a>
       </div>
       <KeyPoints

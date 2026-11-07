@@ -47,3 +47,6 @@ vite.config.js.timestamp-*
 # local smoke/scratch
 *.tmp.mjs
 .ssr-smoke.tmp.mjs
+
+# SEO audit output (claude-seo): reports, screenshots, raw data
+codecrafters.in-audit/

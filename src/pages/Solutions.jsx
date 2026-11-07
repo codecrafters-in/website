@@ -8,7 +8,7 @@ import WorkCard from '../components/cards/WorkCard.jsx'
 import { Section, Container, Eyebrow, Heading, Button, GlassCard, Icon, Tag } from '../components/ui/index.js'
 import Reveal from '../effects/Reveal.jsx'
 import SplitText from '../effects/SplitText.jsx'
-import { solutions } from '../data/solutions.js'
+import { coreSolutions, otherSolutions } from '../data/solutions.js'
 import { pricing } from '../data/pricing.js'
 import { faq } from '../data/faq.js'
 import { workBySlug } from '../data/work.js'
@@ -19,9 +19,9 @@ import Aurora from '../components/Aurora.jsx'
 const solutionFaqs = faq.filter((f) => f.scope?.some((s) => s === 'solutions' || s.startsWith('solutions:'))).slice(0, 6)
 
 function StickyNav() {
-  const [active, setActive] = useState(solutions[0].slug)
+  const [active, setActive] = useState(coreSolutions[0].slug)
   useEffect(() => {
-    const els = solutions.map((s) => document.getElementById(s.slug)).filter(Boolean)
+    const els = coreSolutions.map((s) => document.getElementById(s.slug)).filter(Boolean)
     if (!els.length || typeof IntersectionObserver === 'undefined') return undefined
     const io = new IntersectionObserver(
       (entries) => {
@@ -35,9 +35,9 @@ function StickyNav() {
     return () => io.disconnect()
   }, [])
   return (
-    <nav className="sticky top-[72px] z-30 bg-surface/80 glass-blur shadow-edge hidden md:block" aria-label="Solutions sections">
+    <nav className="sticky top-[72px] z-30 bg-surface/80 glass-blur shadow-edge hidden md:block" aria-label="Odoo services sections">
       <Container className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-2">
-        {solutions.map((s) => (
+        {coreSolutions.map((s) => (
           <a
             key={s.slug}
             href={`#${s.slug}`}
@@ -60,27 +60,27 @@ export function Component() {
   return (
     <>
       <SEO
-        title="AI, ERP & Business Solutions"
-        description="AI solutions, Odoo ERP solutions and business solutions from one accountable team: agents and RAG, ERP implementation and migration, dashboards, cloud and security."
+        title="Odoo Services: Implementation, Migration, Customisation & AI"
+        description="Odoo services for growing businesses: implementation, version upgrades and migrations, custom modules, reports and AI inside Odoo. One accountable team in Ahmedabad, India."
         path="/solutions"
-        jsonLd={[breadcrumb([{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions' }]), faqNode(solutionFaqs)]}
+        jsonLd={[breadcrumb([{ name: 'Home', path: '/' }, { name: 'Odoo services', path: '/solutions' }]), faqNode(solutionFaqs)]}
       />
 
       <section className="relative pt-[72px] overflow-hidden">
         <Aurora variant="soft" />
         <Container className="relative py-24 md:py-32 grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-8">
-            <Eyebrow className="mb-7">Solutions</Eyebrow>
+            <Eyebrow className="mb-7">Odoo services</Eyebrow>
             <h1 className="font-display font-semibold text-display-xl text-on-surface">
-              <SplitText text="One partner." immediate />
+              <SplitText text="Everything Odoo." immediate />{' '}
               <br />
               <span className="molten-text">
-                <SplitText text="Every layer of the stack." immediate delay={0.2} />
+                <SplitText text="From setup to AI." immediate delay={0.2} />
               </span>
             </h1>
           </div>
           <p className="lg:col-span-4 text-on-surface-variant text-lg leading-relaxed lg:pb-3">
-            Most AI projects fail on the boring layers: data, platforms, infrastructure, security. We own all of them, so the intelligent part actually reaches production.
+            For growing businesses with 20 to 500 people. We set up Odoo, move your data in, build what is missing, keep it upgraded, and add AI once the basics work.
           </p>
         </Container>
       </section>
@@ -89,7 +89,7 @@ export function Component() {
 
       <StickyNav />
 
-      {solutions.map((s, i) => (
+      {coreSolutions.map((s, i) => (
         <Section key={s.slug} id={s.slug} tone={i % 2 === 0 ? 'base' : 'low'} className="scroll-mt-32">
           <Container className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div className="lg:col-span-5">
@@ -159,6 +159,27 @@ export function Component() {
           </Container>
         </Section>
       ))}
+
+      {/* Still offered and still indexed, but not the focus, so listed compactly. */}
+      <Section tone="lowest">
+        <Container>
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-outline">Other services</p>
+          <p className="mt-3 max-w-2xl text-on-surface-variant">Odoo is our focus. For existing clients we also cover the layers around it.</p>
+          <div className="mt-8 grid sm:grid-cols-3 gap-4">
+            {otherSolutions.map((s) => (
+              <Link key={s.slug} to={`/solutions/${s.slug}`} className="group glass-card rounded-lg p-5 flex items-start gap-4 hover:shadow-edge-strong transition">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-surface-container-lowest shadow-edge text-primary-container">
+                  <Icon name={s.icon} size={18} />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-on-surface group-hover:text-primary transition-colors">{s.title}</span>
+                  <span className="block text-xs leading-relaxed text-on-surface-variant mt-1">{s.short}</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
       {/* Engagement models */}
       <Section id="engagement" tone="lowest" className="scroll-mt-24 overflow-hidden">

@@ -37,11 +37,12 @@ export default function Footer() {
             <Link to="/" className="inline-block mb-6 hover:opacity-80 transition-opacity" aria-label={`${site.name} home`}>
               <img src="/images/light_logo.png" alt={site.name} width="220" height="56" className="h-14 w-auto object-contain" />
             </Link>
-            <p className="text-on-surface-variant text-sm leading-relaxed mb-6 max-w-xs">{site.tagline}. {site.description}</p>
+            <p className="text-on-surface-variant text-sm leading-relaxed mb-6 max-w-xs">{site.tagline} {site.description}</p>
             <div className="flex items-center gap-3">
               {[
                 { href: site.socials.linkedin, icon: 'linkedin', label: 'LinkedIn' },
                 { href: site.socials.github, icon: 'github', label: 'GitHub' },
+                { href: site.whatsappUrl, icon: 'whatsapp', label: 'WhatsApp' },
                 { href: `mailto:${site.email}`, icon: 'mail', label: 'Email' },
               ].map((s) => (
                 <a
@@ -119,6 +120,12 @@ export default function Footer() {
             {site.legal.addressLine && <span>{site.legal.addressLine}</span>}
           </div>
         )}
+
+        {/* Odoo brand guidelines: the name may be used to describe our services, but
+            partner logos are for official partners only, so we state our status plainly. */}
+        <p className="mt-10 text-xs leading-relaxed text-outline max-w-3xl">
+          Odoo is a registered trademark of Odoo S.A. {site.name} is an independent Odoo service provider and is not an official Odoo partner or affiliated with Odoo S.A.
+        </p>
 
         <div className="mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-[inset_0_1px_0_rgb(var(--outline-variant))]">
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-outline">

@@ -47,7 +47,7 @@ export const SCORING = [
   ['22–28', 'Automate. Build the pipeline and set confidence thresholds from your own measured baseline.'],
 ]
 
-const BASE_URL = 'https://codecrafters.in'
+const BASE_URL = 'https://www.codecrafters.in'
 
 /** Plain-text body, for clients that do not render HTML. */
 export function checklistText() {

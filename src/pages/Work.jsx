@@ -41,7 +41,7 @@ export function Component() {
           <div className="lg:col-span-7">
             <Eyebrow className="mb-7">Work</Eyebrow>
             <h1 className="font-display font-semibold text-display-xl text-on-surface">
-              <SplitText text="Proof," immediate />
+              <SplitText text="Proof," immediate />{' '}
               <br />
               <span className="molten-text">
                 <SplitText text="not promises." immediate delay={0.2} />

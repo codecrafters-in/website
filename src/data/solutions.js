@@ -1,86 +1,209 @@
-// Six solution lines. `icon` values map to a separate Icon component (lucide names).
+// Solution lines: five Odoo-first core services plus three other services. `icon` values map to a separate Icon component (lucide names).
 export const solutions = [
   {
-    slug: 'enterprise-platforms',
-    order: 2,
+    slug: 'odoo',
+    core: true,
+    order: 1,
     num: '01',
-    eyebrow: 'Operations',
-    title: 'Enterprise Platforms',
-    short: 'ERP, CRM, B2B commerce and custom platforms your team actually adopts.',
-    headline: 'One platform. Zero silos. Total control.',
+    eyebrow: 'Odoo implementation',
+    title: 'Odoo Implementation',
+    short: 'Odoo set up around how your business really works, and a team that actually uses it.',
+    headline: 'Odoo implementation for growing businesses.',
     intro:
-      '80% of ERP rollouts fail on adoption, not software. We re-engineer workflows around the platform, migrate every record, and stay until 90% of your team uses it daily. Odoo, NetSuite-class ERPs or fully custom platforms — we build on what your operations already run on.',
-    icon: 'layers',
+      'We set up Odoo for growing businesses with 20 to 500 people: sales, stock, purchase, accounting, manufacturing and invoicing in one system. We map how you work first, move your data across, train your team, and stay until the spreadsheets are gone.',
+    icon: 'grid',
     bullets: [
-      'Full ERP and CRM implementation',
-      'B2B commerce with gated pricing and approvals',
-      'Custom modules and workflow engines',
-      'Legacy and version migrations with zero data loss',
-      'Third-party API integrations',
+      'Odoo setup for sales, CRM, inventory, purchase, accounting and manufacturing',
+      'Moving off Tally, spreadsheets or an old ERP, with every record checked',
+      'Multi-company and multi-warehouse setups',
+      'Customer portals and B2B ordering on top of Odoo',
+      'Training and support until your team runs it without us',
+      'Fixed-price projects from $5,000',
     ],
     deliverables: [
       {
-        title: 'ERP implementation',
-        desc: 'CRM, inventory, accounting, manufacturing, HR. Configured to how your business actually works, not to a template.',
+        title: 'Sales and CRM',
+        desc: 'Leads, quotations, sales orders and customer-specific pricing in one place, so nothing lives in someone’s head.',
       },
       {
-        title: 'B2B commerce platforms',
-        desc: 'Gated storefronts, customer-specific pricing, agent commissions, barcode tablet sales and batch payouts.',
+        title: 'Inventory and purchase',
+        desc: 'Stock that matches the shelf: multiple warehouses, barcodes, reordering rules and supplier purchase orders.',
       },
       {
-        title: 'Custom modules',
-        desc: '120+ shipped. Approval engines, credit control, helpdesks, portals, built inside the platform you run.',
+        title: 'Accounting and invoicing',
+        desc: 'Invoices created from orders, not retyped. Payments, reconciliation and tax reports from the same data.',
       },
       {
-        title: 'Migrations',
-        desc: 'Version upgrades and legacy transitions on a reusable ETL framework. 15+ delivered. Every record validated and reconciled.',
+        title: 'Manufacturing',
+        desc: 'Bills of materials, work orders and costing for businesses that make what they sell.',
       },
       {
-        title: 'Integrations',
-        desc: 'Payments (Stripe, Plaid, GoCardless), healthcare APIs, accounting systems, carriers. All talking to one source of truth.',
+        title: 'Portals and B2B ordering',
+        desc: 'Customers and agents order online with their own prices, approvals and commissions built in.',
       },
       {
-        title: 'Adoption and training',
-        desc: 'Stakeholder interviews before design, staged rollout, and training until the spreadsheets disappear.',
+        title: 'Training and adoption',
+        desc: 'Staged rollout, hands-on training and support until your team uses Odoo every day.',
       },
     ],
     process: [
-      { num: '01', title: 'Audit', desc: 'We map your current state: tools, workflows, data, pain points.' },
-      { num: '02', title: 'Blueprint', desc: 'A custom architecture plan. Every module, every integration, every workflow.' },
-      { num: '03', title: 'Configure', desc: 'We build the system in staging. You test it before it goes live.' },
-      { num: '04', title: 'Migrate', desc: 'Clean, validated data migration. Every record accounted for.' },
-      { num: '05', title: 'Launch', desc: 'Phased rollout with your team. No big-bang launches. Zero disruption.' },
-      { num: '06', title: 'Optimize', desc: 'Ongoing improvements. The system gets better as you use it.' },
+      { num: '01', title: 'Understand', desc: 'We sit with your team and map how orders, stock and money actually move today.' },
+      { num: '02', title: 'Plan', desc: 'Which Odoo apps you need, what to configure, what (if anything) needs a custom module.' },
+      { num: '03', title: 'Set up', desc: 'We build it in a test copy. Your team tries it with real examples before go-live.' },
+      { num: '04', title: 'Move your data', desc: 'Customers, products, stock and opening balances moved across and checked.' },
+      { num: '05', title: 'Go live', desc: 'One team or one warehouse at a time. No big-bang switchover.' },
+      { num: '06', title: 'Improve', desc: 'We fix what slows people down in the first weeks and keep improving it.' },
     ],
     stats: [
+      { value: '120+', label: 'Custom Odoo modules' },
+      { value: '15+', label: 'ERP migrations delivered' },
       { value: '96%', label: 'Faster order processing' },
-      { value: '120+', label: 'Custom modules shipped' },
+    ],
+    tech: ['Odoo 14–19', 'Community', 'Enterprise', 'Sales', 'CRM', 'Inventory', 'Purchase', 'Accounting', 'Manufacturing', 'eCommerce', 'Helpdesk'],
+    related: ['textile-wholesale-erp-b2b', 'portal-order-approval-engine', 'erp-migration-v14-v19'],
+    faq: ['odoo-edition', 'odoo-rescue', 'pricing', 'timelines'],
+    seo: {
+      title: 'Odoo Implementation Services for Growing Businesses | CodeCrafters',
+      description:
+        'Odoo implementation in Ahmedabad, India for businesses with 20 to 500 people: sales, stock, accounting and manufacturing set up so your team uses it.',
+    },
+  },
+  {
+    slug: 'odoo-migration',
+    core: true,
+    order: 2,
+    num: '02',
+    eyebrow: 'Odoo migration',
+    title: 'Odoo Migration & Upgrades',
+    short: 'Upgrade to the latest Odoo, or move from Tally or another system, without losing data.',
+    headline: 'Upgrade Odoo without stopping the business.',
+    intro:
+      'Stuck on an old Odoo version, or still running on Tally and spreadsheets? We move you to current Odoo (up to v19), rewrite custom modules that would break, and check every record before you switch. 15+ migrations delivered with zero data loss.',
+    icon: 'refresh',
+    bullets: [
+      'Odoo version upgrades, v14 to v19',
+      'Custom modules rewritten for the new version',
+      'Moving from Tally, spreadsheets or another ERP into Odoo',
+      'Community to Enterprise moves',
+      'Every record reconciled before go-live',
+    ],
+    deliverables: [
+      {
+        title: 'Version upgrades',
+        desc: 'From older Odoo versions to the current one, including the jumps that change how modules are built.',
+      },
+      {
+        title: 'Custom module rewrites',
+        desc: 'Your custom features rebuilt for the new version, with deprecated code replaced, not patched.',
+      },
+      {
+        title: 'Moving off Tally and spreadsheets',
+        desc: 'Customers, products, stock and balances moved into Odoo, with the numbers checked against your books.',
+      },
+      {
+        title: 'Data checks',
+        desc: 'Every record counted and reconciled on a repeatable migration framework before anyone switches over.',
+      },
+      {
+        title: 'Business keeps running',
+        desc: 'We plan the cutover around your trading, so orders and invoicing do not stop.',
+      },
+    ],
+    process: [
+      { num: '01', title: 'Audit', desc: 'We list every module, customisation and integration you run today.' },
+      { num: '02', title: 'Plan', desc: 'What upgrades cleanly, what needs rewriting, and the cutover date.' },
+      { num: '03', title: 'Test run', desc: 'A full trial migration on a copy, checked by your team.' },
+      { num: '04', title: 'Switch', desc: 'The real move, timed around your business, with a fallback ready.' },
+    ],
+    stats: [
+      { value: '15+', label: 'ERP migrations delivered' },
+      { value: 'v14→v19', label: 'Across five Odoo versions' },
       { value: '0', label: 'Records lost in migration to date' },
     ],
-    tech: ['Odoo', 'Python', 'OWL', 'PostgreSQL', 'React', 'Stripe', 'Plaid', 'GoCardless', 'REST APIs', 'ETL'],
-    related: ['textile-wholesale-erp-b2b', 'line-of-credit-platform', 'erp-migration-v14-v19'],
-    faq: ['existing-systems', 'timelines', 'support'],
+    tech: ['Odoo 14–19', 'OWL', 'Python', 'PostgreSQL', 'Tally', 'Excel / CSV', 'ETL'],
+    related: ['erp-migration-v14-v19', 'textile-wholesale-erp-b2b', 'multi-vendor-ecommerce'],
+    faq: ['odoo-rescue', 'odoo-edition', 'timelines'],
     seo: {
-      title: 'Enterprise ERP, CRM & B2B Platforms | CodeCrafters',
+      title: 'Odoo Migration & Upgrade Services (v14 to v19) | CodeCrafters',
       description:
-        'ERP and CRM implementation, B2B commerce and custom platforms built for adoption. 120+ modules, 15+ migrations, zero data loss. Book a free diagnostic.',
+        'Odoo version upgrades and migrations from Tally or spreadsheets. Custom modules rewritten, every record reconciled. 15+ migrations, zero data loss.',
+    },
+  },
+  {
+    slug: 'odoo-customization',
+    core: true,
+    order: 3,
+    num: '03',
+    eyebrow: 'Odoo customisation',
+    title: 'Odoo Customisation & Modules',
+    short: 'Custom Odoo modules when standard Odoo does not fit how you work.',
+    headline: 'When standard Odoo does not fit, we build what does.',
+    intro:
+      'Most businesses need a few things Odoo does not do out of the box: an approval step, a commission rule, a portal, a link to another system. We build them as proper Odoo modules that survive upgrades. 120+ shipped.',
+    icon: 'puzzle',
+    bullets: [
+      'Custom Odoo modules and workflows',
+      'Approval engines and credit control',
+      'Customer, agent and vendor portals',
+      'Integrations with payments, carriers and other software',
+      'Odoo Studio clean-up and rebuilds',
+    ],
+    deliverables: [
+      {
+        title: 'Approvals and credit control',
+        desc: 'Multi-step order approvals and credit checks that run inside Odoo, with alerts to the right person.',
+      },
+      {
+        title: 'Portals',
+        desc: 'Customer, agent and vendor portals with their own prices, orders and documents.',
+      },
+      {
+        title: 'Helpdesk and service',
+        desc: 'Ticket routing by team and workload, so requests reach someone who can act.',
+      },
+      {
+        title: 'Integrations',
+        desc: 'Payments (Stripe, GoCardless), carriers, accounting and industry systems connected to Odoo.',
+      },
+      {
+        title: 'Reports and documents',
+        desc: 'The invoices, delivery notes, catalogues and reports your business actually needs.',
+      },
+      {
+        title: 'Built to upgrade',
+        desc: 'Written as standard Odoo modules, so your next version upgrade does not break them.',
+      },
+    ],
+    stats: [
+      { value: '120+', label: 'Custom Odoo modules' },
+      { value: '17', label: 'Modules in one wholesale build' },
+      { value: '30+', label: 'Projects delivered' },
+    ],
+    tech: ['Odoo 14–19', 'Python', 'OWL', 'QWeb', 'PostgreSQL', 'REST APIs', 'Stripe', 'GoCardless'],
+    related: ['portal-order-approval-engine', 'multi-team-helpdesk', 'textile-wholesale-erp-b2b'],
+    faq: ['odoo-rescue', 'existing-systems', 'pricing'],
+    seo: {
+      title: 'Odoo Customisation & Custom Module Development | CodeCrafters',
+      description:
+        'Custom Odoo modules for approvals, portals, commissions and integrations, built to survive upgrades. 120+ modules shipped from Ahmedabad, India.',
     },
   },
   {
     slug: 'ai',
-    order: 1,
-    num: '02',
-    eyebrow: 'Intelligence',
-    title: 'AI Solutions',
-    short: 'Agents, RAG and LLM pipelines grounded in your data, built to run unattended.',
-    headline: 'AI that runs your operations, not a demo.',
+    core: true,
+    order: 4,
+    num: '04',
+    eyebrow: 'AI on Odoo',
+    title: 'AI for Odoo',
+    short: 'Ask Odoo questions in plain English, read invoices automatically, cut manual entry.',
+    headline: 'AI that saves hours inside your Odoo.',
     intro:
-      'We build production AI, not prompt wrappers. Agents that execute multi-step workflows end to end, RAG systems grounded in your documents and databases, fine-tuned models deployed in your own environment — sitting on top of the ERP we already know how to extend.',
+      'Once Odoo is working, AI can take the repetitive work off your team. Ask your ERP questions in plain English, let AI read supplier invoices and order emails, and get reports written for you. It only sees what each user is allowed to see, and it never touches your database directly.',
     icon: 'brain',
     bullets: [
-      'Custom LLM pipelines and fine-tuning',
-      'Autonomous agent workflows',
-      'RAG systems on proprietary data',
+      'Reading invoices, order emails and PDFs into Odoo automatically',
+      'Ask Odoo questions in plain English',
+      'Answers grounded in your own documents and Odoo data',
       'AI-powered reporting and analytics',
       'LLM integration into the tools you already run',
     ],
@@ -103,7 +226,7 @@ export const solutions = [
       },
       {
         title: 'Conversational data access',
-        desc: 'Plain-English questions against live business data. ORM-safe, role-gated, prompt-injection hardened.',
+        desc: 'Plain-English questions against live business data. ORM-safe, role-gated, tested against prompt injection.',
       },
       {
         title: 'Document intelligence',
@@ -112,28 +235,29 @@ export const solutions = [
     ],
     stats: [
       { value: '80%', label: 'Less manual entry on invoices (OCR build)' },
-      { value: 'NL\u2192SQL', label: 'Plain English against live ERP data' },
+      { value: 'Plain English', label: 'Questions answered from live Odoo data' },
       { value: '5', label: 'AI providers unified in one pipeline' },
     ],
-    tech: ['Claude MCP', 'OpenAI', 'Gemini Vision', 'Vercel AI Gateway', 'Python', 'TensorFlow', 'Zod', 'Supabase', 'Next.js', 'Flask'],
+    tech: ['Odoo', 'Claude', 'OpenAI', 'Gemini', 'Python', 'OCR', 'Email & PDF reading'],
     related: ['conversational-ai-agent-erp', 'email-intelligence-saas', 'ocr-invoice-engine'],
     faq: ['ai-accuracy', 'existing-systems', 'timelines'],
     seo: {
-      title: 'AI Solutions: Agents, RAG & LLM Pipelines | CodeCrafters',
+      title: 'AI for Odoo: Plain-English Questions, Invoice Reading & Automation | CodeCrafters',
       description:
-        'Production AI on top of your ERP: autonomous agents, RAG systems and LLM pipelines grounded in your own data. Founder-led builds. Free diagnostic.',
+        'AI added to your Odoo: ask questions in plain English, read invoices and order emails automatically, and cut manual entry. Role-checked and safe.',
     },
   },
   {
     slug: 'data-dashboards',
+    core: true,
     order: 5,
-    num: '03',
-    eyebrow: 'Visibility',
-    title: 'Data & Dashboards',
-    short: 'Real-time dashboards, forecasting and traceability. See problems before they cost you.',
+    num: '05',
+    eyebrow: 'Odoo reports',
+    title: 'Odoo Reports & Dashboards',
+    short: 'Live sales, stock and cash numbers from your Odoo, without waiting for month-end.',
     headline: 'Stop waiting for end-of-month reports.',
     intro:
-      'Live dashboards that surface anomalies before they become problems, track the KPIs your team actually cares about, and alert the right people. Our forecasting work lifted inventory planning accuracy by 45% and cut stock discrepancies by 60%.',
+      'Live dashboards on your Odoo data that surface problems early, track the KPIs your team actually cares about, and alert the right people. Our forecasting work lifted inventory planning accuracy by 45% and cut stock discrepancies by 60%.',
     icon: 'chart-line',
     bullets: [
       'Real-time operational dashboards',
@@ -173,15 +297,16 @@ export const solutions = [
     related: ['forecasting-traceability-dashboards', 'stock-prediction-research', 'ai-meeting-intelligence'],
     faq: ['existing-systems', 'timelines', 'pricing'],
     seo: {
-      title: 'Real-Time Dashboards & Forecasting | CodeCrafters',
+      title: 'Odoo Reports, Dashboards & Stock Forecasting | CodeCrafters',
       description:
-        'Real-time dashboards, forecasting and stock traceability built on your live data. +45% planning accuracy and 60% fewer discrepancies in production.',
+        'Live Odoo dashboards, sales and stock forecasting and traceability. +45% planning accuracy and 60% fewer stock discrepancies in production.',
     },
   },
   {
     slug: 'cloud-devops',
+    core: false,
     order: 3,
-    num: '04',
+    num: '06',
     eyebrow: 'Infrastructure',
     title: 'Cloud & DevOps',
     short: 'Kubernetes on AWS, GCP or Azure with zero-downtime pipelines and a monitored retainer.',
@@ -234,8 +359,9 @@ export const solutions = [
   },
   {
     slug: 'security',
+    core: false,
     order: 4,
-    num: '05',
+    num: '07',
     eyebrow: 'Protection',
     title: 'Security',
     short: 'Zero-trust architecture, pen testing and compliance for systems that hold real money.',
@@ -292,11 +418,12 @@ export const solutions = [
   },
   {
     slug: 'brand-design',
+    core: false,
     order: 6,
-    num: '06',
+    num: '08',
     eyebrow: 'Identity',
     title: 'Brand & Design',
-    short: 'Identity systems, design systems and decks that make enterprise buyers trust you first.',
+    short: 'Identity systems, design systems and decks that make buyers trust you first.',
     headline: 'Your brand is the first filter. Pass it.',
     intro:
       'We design brand identities that make enterprise buyers trust you before you say a word, and keep your team aligned long after the project ends. Built by a technical team that understands product, so the design system ships, not just the logo.',
@@ -358,5 +485,10 @@ export const solutions = [
 ]
 
 export const solutionBySlug = Object.fromEntries(solutions.map((s) => [s.slug, s]))
+
+// Odoo-first services shown in the menu, homepage and contact form. The rest stay
+// reachable (and indexed) but are listed as "Other services".
+export const coreSolutions = solutions.filter((s) => s.core)
+export const otherSolutions = solutions.filter((s) => !s.core)
 
 export default solutions

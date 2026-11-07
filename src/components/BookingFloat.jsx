@@ -6,8 +6,8 @@ import { site } from '../data/site.js'
 import { track } from '../lib/analytics.js'
 
 /**
- * Floating booking affordance. Renders only when a calendar URL is configured;
- * dismissing hides it for the rest of the session.
+ * Floating contact affordances: WhatsApp always, booking when a calendar URL is
+ * configured. Dismissing hides them for the rest of the session.
  */
 export default function BookingFloat() {
   const [visible, setVisible] = useState(false)
@@ -34,7 +34,7 @@ export default function BookingFloat() {
     setCollapsed(true)
   }
 
-  if (!site.calUrl) return null
+  if (!site.calUrl && !site.whatsappUrl) return null
 
   const onBooking = () => track('booking_click', { location: 'float', path: pathname })
 
@@ -50,21 +50,36 @@ export default function BookingFloat() {
         >
           <button
             onClick={collapse}
-            className="text-outline hover:text-on-surface transition-colors self-end mb-1"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-outline hover:text-on-surface transition-colors self-end"
             aria-label="Dismiss booking button"
           >
             <Icon name="x" size={14} />
           </button>
+          {site.whatsappUrl && (
+            <a
+              href={site.whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => track('whatsapp_click', { location: 'float', path: pathname })}
+              aria-label="Chat on WhatsApp"
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-molten hover:brightness-105 transition"
+            >
+              <Icon name="whatsapp" size={24} />
+            </a>
+          )}
+          {site.calUrl && (
           <a
             href={site.calUrl}
             target="_blank"
             rel="noreferrer"
             onClick={onBooking}
-            className="flex items-center gap-3 bg-molten text-on-primary font-bold px-4 py-3 text-[11px] uppercase tracking-[0.18em] rounded-sm shadow-molten hover:brightness-110 transition"
+            aria-label="Book a call"
+            className="flex min-h-[48px] min-w-[48px] items-center justify-center gap-3 bg-molten text-on-primary font-bold px-4 py-3 text-[11px] uppercase tracking-[0.18em] rounded-sm shadow-molten hover:brightness-110 transition"
           >
             <Icon name="calendar" size={16} />
             <span className="hidden sm:inline">Book a call</span>
           </a>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

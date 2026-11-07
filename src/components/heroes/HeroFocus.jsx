@@ -44,7 +44,7 @@ export default function HeroFocus() {
       <div className="mx-auto max-w-3xl text-center">
         <Eyebrow className="mb-7 justify-center">Odoo ERP · AI automation · Ahmedabad</Eyebrow>
         <h1 className="font-display text-display-xl font-semibold text-on-surface">
-          <SplitText text="ERP and AI that" immediate stagger={0.05} />
+          <SplitText text="ERP and AI that" immediate stagger={0.05} />{' '}
           <br />
           <span className="molten-text">
             <SplitText text="actually ship." immediate delay={0.25} stagger={0.05} />

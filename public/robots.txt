@@ -15,4 +15,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://codecrafters.in/sitemap.xml
+Sitemap: https://www.codecrafters.in/sitemap.xml

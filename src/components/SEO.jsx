@@ -16,11 +16,16 @@ const orgNode = {
   '@type': ['Organization', 'ProfessionalService'],
   '@id': ORG_ID,
   name: site.name,
+  alternateName: ['CodeCrafters India', 'codecrafters.in'],
+  ...(site.legal?.registeredName ? { legalName: site.legal.registeredName } : {}),
+  disambiguatingDescription:
+    'Odoo implementation and AI automation company in Ahmedabad, India (codecrafters.in). Not affiliated with the codecrafters.io coding-challenge platform.',
   url: BASE_URL,
   logo: { '@type': 'ImageObject', url: `${BASE_URL}/images/light_logo.png` },
   image: DEFAULT_OG_IMAGE,
   description: DEFAULT_DESCRIPTION,
   email: site.email,
+  telephone: site.phoneE164,
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.location.city,
@@ -30,6 +35,7 @@ const orgNode = {
   contactPoint: {
     '@type': 'ContactPoint',
     email: site.email,
+    telephone: site.phoneE164,
     contactType: 'sales',
     availableLanguage: ['English', 'Hindi', 'Gujarati'],
   },
@@ -40,16 +46,17 @@ const orgNode = {
     'Worldwide',
   ],
   knowsAbout: [
+    'Odoo',
     'Odoo ERP implementation',
-    'Odoo migration',
+    'Odoo migration and upgrades',
     'Odoo custom module development',
-    'ERP integration',
-    'AI agents',
-    'Retrieval-augmented generation',
-    'LLM pipelines',
+    'Odoo Community and Enterprise',
+    'Tally to Odoo migration',
+    'ERP for small and medium businesses',
+    'AI automation for Odoo',
     'B2B commerce platforms',
   ],
-  priceRange: '$$$',
+  priceRange: '$$',
   sameAs: Object.values(site.socials),
 }
 
@@ -150,8 +157,10 @@ export default function SEO({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
 
+      {/* `$` is escaped because the SSG head injection goes through String.replace,
+          where `$$` collapses to `$` (priceRange '$$' shipped as '$'). */}
       <script type="application/ld+json">
-        {JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}
+        {JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/\$/g, '\\u0024')}
       </script>
     </Head>
   )

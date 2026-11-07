@@ -68,7 +68,7 @@ export function Component() {
           <div className="lg:col-span-8">
             <Eyebrow className="mb-7">About</Eyebrow>
             <h1 className="font-display font-semibold text-display-xl text-on-surface">
-              <SplitText text="We build systems" immediate />
+              <SplitText text="We build systems" immediate />{' '}
               <br />
               <span className="molten-text">
                 <SplitText text="that last." immediate delay={0.2} />
@@ -87,9 +87,12 @@ export function Component() {
       <Section tone="low">
         <Container className="grid lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-4">
-            <SectionHeader eyebrow="Why we exist" title="Most enterprise AI never leaves the demo." size="md" />
+            <SectionHeader eyebrow="Why we exist" title="Most ERP and AI projects never get properly used." size="md" />
           </div>
           <Reveal className="lg:col-span-8 flex flex-col gap-5 text-on-surface-variant text-base md:text-lg leading-relaxed max-w-3xl">
+            <p>
+              Our engineers include ex-Odoo developers and people who have shipped AI products in production. The people who scope your project are the ones who build it.
+            </p>
             <p>
               CodeCrafters started inside the systems most agencies avoid: ERPs with a decade of customisations, finance teams reconciling by hand, warehouses running on spreadsheets. We learned that the intelligent part of an AI project is the easy part. The hard part is the data underneath it, the platform around it, and the people who have to trust it on a Monday morning.
             </p>
@@ -97,7 +100,7 @@ export function Component() {
               So we built a company that owns every layer. We design the agent and the pipeline, but we also fix the data model, harden the infrastructure, and sit with the operations team until the new workflow is boring. That is why our deployments are still running years later.
             </p>
             <p>
-              We stay small on purpose. Founder-led, senior-only, {site.availability.note.toLowerCase()}. It is the only way we know to keep the promise in the headline.
+              We stay small on purpose: an engineer-led team, and {site.availability.note.toLowerCase()}. It is the only way we know to keep the promise in the headline.
             </p>
           </Reveal>
         </Container>

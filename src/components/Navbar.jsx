@@ -4,13 +4,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Icon from './ui/Icon.jsx'
 import ArcadeButton from '../arcade/ArcadeButton.jsx'
 import { nav, site } from '../data/site.js'
-import { solutions } from '../data/solutions.js'
+import { coreSolutions, otherSolutions } from '../data/solutions.js'
 import { lockScroll, unlockScroll } from '../lib/scrollLock.js'
 
 function NavBadge({ children }) {
   return (
     <span className="ml-2 inline-flex items-center rounded-full bg-brand px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-on-primary-fixed">
+      <span className="sr-only">(</span>
       {children}
+      <span className="sr-only">)</span>
     </span>
   )
 }
@@ -107,7 +109,7 @@ export default function Navbar() {
                         onMouseLeave={scheduleCloseMega}
                       >
                         <div className="vitreous-glass rounded-lg p-3 w-[720px] grid grid-cols-2 gap-1 shadow-ambient">
-                          {solutions.map((s) => (
+                          {coreSolutions.map((s) => (
                             <Link
                               key={s.slug}
                               to={`/solutions/${s.slug}`}
@@ -127,11 +129,25 @@ export default function Navbar() {
                           ))}
                           <Link
                             to="/solutions"
-                            className="col-span-2 mt-1 flex items-center justify-between px-4 py-3 rounded-sm bg-surface-container-lowest/70 font-mono text-[10px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors"
+                            className="group flex gap-4 p-4 rounded-sm bg-brand-tint/60 hover:bg-brand-tint transition-colors"
                           >
-                            All solutions & engagement models
-                            <Icon name="arrow-right" size={14} />
+                            <span className="mt-0.5 w-9 h-9 shrink-0 rounded-sm bg-surface-container-lowest shadow-edge flex items-center justify-center text-primary-container">
+                              <Icon name="arrow-right" size={18} />
+                            </span>
+                            <span>
+                              <span className="block text-on-surface text-sm font-semibold group-hover:text-primary transition-colors">All Odoo services</span>
+                              <span className="block text-on-surface-variant text-xs leading-relaxed mt-1">How we work, timelines and engagement models.</span>
+                            </span>
                           </Link>
+                          <p className="col-span-2 mt-1 px-4 py-3 rounded-sm bg-surface-container-lowest/70 text-xs text-on-surface-variant">
+                            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-outline mr-2">Also</span>
+                            {otherSolutions.map((s, i) => (
+                              <span key={s.slug}>
+                                {i > 0 && <span aria-hidden="true"> · </span>}
+                                <Link to={`/solutions/${s.slug}`} className="hover:text-primary transition-colors">{s.title}</Link>
+                              </span>
+                            ))}
+                          </p>
                         </div>
                       </motion.div>
                     )}
@@ -170,7 +186,7 @@ export default function Navbar() {
               Book a diagnostic
             </Link>
             <button
-              className="lg:hidden text-on-surface-variant hover:text-primary-container transition-colors p-2 -mr-2"
+              className="lg:hidden inline-flex h-12 w-12 items-center justify-center text-on-surface-variant hover:text-primary-container transition-colors -mr-3"
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
@@ -207,7 +223,7 @@ export default function Navbar() {
                       <button
                         type="button"
                         aria-expanded={mobileSolutions}
-                        aria-label="Toggle solutions"
+                        aria-label="Show Odoo services"
                         onClick={() => setMobileSolutions((v) => !v)}
                         className="p-3 text-on-surface-variant"
                       >
@@ -217,7 +233,7 @@ export default function Navbar() {
                     <div className="grid transition-[grid-template-rows] duration-400" style={{ gridTemplateRows: mobileSolutions ? '1fr' : '0fr' }}>
                       <div className="overflow-hidden">
                         <ul className="pb-3 pl-1 flex flex-col">
-                          {solutions.map((s) => (
+                          {coreSolutions.map((s) => (
                             <li key={s.slug}>
                               <Link to={`/solutions/${s.slug}`} className="flex items-center gap-3 py-2.5 text-on-surface-variant text-base">
                                 <Icon name={s.icon} size={16} className="text-primary-container" />

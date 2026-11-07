@@ -33,7 +33,7 @@ function ogSvg({ title, tagline }) {
   <g mask="url(#gridmask)">${grid.join('')}</g>
   <rect width="${W}" height="${H}" fill="url(#glow)"/>
   <rect x="0" y="0" width="${W}" height="1" fill="rgba(245,197,24,0.25)"/>
-  <text x="80" y="150" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="6" fill="#f5c518">AI SOLUTIONS · ENTERPRISE-READY</text>
+  <text x="80" y="150" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="6" fill="#f5c518">ODOO · FOR GROWING BUSINESSES</text>
   <text x="80" y="300" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="700" font-size="84" letter-spacing="-3" fill="#e5e2e1">${escapeXml(title[0])}</text>
   <text x="80" y="395" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="700" font-size="84" letter-spacing="-3" fill="url(#molten)">${escapeXml(title[1])}</text>
   <text x="80" y="470" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="26" fill="#d1c5ac">${escapeXml(tagline)}</text>
@@ -48,7 +48,7 @@ async function main() {
   await mkdir('public/images', { recursive: true })
   await mkdir('public/icons', { recursive: true })
 
-  const svg = Buffer.from(ogSvg({ title: ['AI systems that', 'actually ship.'], tagline: 'Agents, RAG, LLM pipelines and enterprise platforms — designed, built and run.' }))
+  const svg = Buffer.from(ogSvg({ title: ['Odoo that your team', 'actually uses.'], tagline: 'Odoo implementation, migration and customisation, plus AI that saves hours.' }))
   const logo = await sharp(LOGO).resize({ height: 72, fit: 'inside' }).png().toBuffer()
   const logoMeta = await sharp(logo).metadata()
   await sharp(svg)

@@ -6,7 +6,7 @@
 // flexbox and CSS variables, so this is what renders the same in Gmail,
 // Outlook and Apple Mail.
 
-const BASE_URL = 'https://codecrafters.in'
+const BASE_URL = 'https://www.codecrafters.in'
 
 const escape = (s) =>
   String(s ?? '')

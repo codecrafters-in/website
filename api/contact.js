@@ -29,13 +29,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { name, email, company, budget, interest, message, botcheck } = req.body || {}
+  const { name, email, company, budget, interest, message = '', botcheck } = req.body || {}
   const attribution = attributionRows(req.body)
 
   // Honeypot — silently succeed so bots think it worked
   if (botcheck) return res.status(200).json({ ok: true })
 
-  if (!name || !email || !message) {
+  if (!name || !email) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
   if (!EMAIL_RE.test(String(email))) {
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
           ? `Source:\n${attribution.map(([k, v]) => `  ${k}: ${v}`).join('\n')}`
           : 'Source: direct / unknown',
         '',
-        `Message:\n${message}`,
+        `Message:\n${message || "(none)"}`,
       ].join('\n'),
       html: `
         <h2 style="color:#131313">New Contact Form Submission</h2>

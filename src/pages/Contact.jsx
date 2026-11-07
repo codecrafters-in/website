@@ -8,13 +8,13 @@ import useCopyToClipboard from '../hooks/useCopyToClipboard.js'
 import { site } from '../data/site.js'
 import { track } from '../lib/analytics.js'
 import { getAttribution } from '../lib/attribution.js'
-import { solutions } from '../data/solutions.js'
+import { coreSolutions } from '../data/solutions.js'
 import { faqByScope } from '../data/faq.js'
 import KeyPoints from '../components/KeyPoints.jsx'
 import { keyPoints } from '../data/keyPoints.js'
 import Aurora from '../components/Aurora.jsx'
 
-const BUDGETS = ['Under $25K', '$25K – $50K', '$50K – $100K', '$100K+', 'Not sure yet']
+const BUDGETS = ['Under $5K', '$5K – $15K', '$15K – $50K', '$50K+', 'Not sure yet']
 
 export function Component() {
   const [state, setState] = useState('idle')
@@ -77,34 +77,68 @@ export function Component() {
           <div className="lg:col-span-5">
             <Eyebrow className="mb-7">Free 45-min diagnostic</Eyebrow>
             <h1 className="font-display font-semibold text-display-lg text-on-surface">
-              <SplitText text="Let's find your" immediate />
+              <SplitText text="Let's find your" immediate />{' '}
               <br />
               <span className="molten-text">
                 <SplitText text="biggest win." immediate delay={0.2} />
               </span>
             </h1>
             <p className="mt-7 text-on-surface-variant text-lg leading-relaxed">
-              One call. We map your most expensive bottleneck, estimate what fixing it is worth, and tell you honestly whether AI belongs there. If it does not, we will say so.
+              One call. We look at how you run sales, stock and accounts today, find the most expensive bottleneck, and tell you honestly which Odoo setup (and which AI, if any) would fix it.
             </p>
 
             <div className="mt-10 flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  copy(site.email)
-                  track('email_copy', { location: 'contact' })
-                }}
-                className="group glass-card rounded-lg p-5 flex items-center justify-between text-left hover:shadow-edge-strong transition"
-              >
+              {site.calUrl && (
+                <Button
+                  href={site.calUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  size="lg"
+                  icon="calendar"
+                  onClick={() => track('booking_click', { location: 'contact' })}
+                >
+                  Book a 45-min call
+                </Button>
+              )}
+              <div className="glass-card rounded-lg p-5 flex items-center justify-between gap-4">
                 <span>
                   <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-outline">Email</span>
-                  <span className="block text-on-surface text-base mt-1">{site.email}</span>
+                  <a
+                    href={`mailto:${site.email}`}
+                    onClick={() => track('email_click', { location: 'contact' })}
+                    className="block text-on-surface text-base mt-1 hover:text-primary-container transition-colors"
+                  >
+                    {site.email}
+                  </a>
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary-container inline-flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    copy(site.email)
+                    track('email_copy', { location: 'contact' })
+                  }}
+                  className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary-container inline-flex items-center gap-1.5 min-h-[44px] px-2"
+                  aria-label={copied ? 'Email copied' : 'Copy email address'}
+                >
                   {copied ? <Icon name="check" size={14} /> : <Icon name="copy" size={14} />}
                   {copied ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <a
+                href={site.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => track('whatsapp_click', { location: 'contact' })}
+                className="glass-card rounded-lg p-5 flex items-center justify-between gap-4 hover:shadow-edge-strong transition"
+              >
+                <span>
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-outline">Talk to an engineer · WhatsApp or call</span>
+                  <span className="block text-on-surface text-base mt-1">{site.phone}</span>
                 </span>
-              </button>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white">
+                  <Icon name="whatsapp" size={20} />
+                </span>
+              </a>
               <div className="grid grid-cols-2 gap-3">
                 <GlassCard padding="p-5" lift={false}>
                   <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-outline">Response</span>
@@ -115,21 +149,6 @@ export function Component() {
                   <span className="block text-on-surface text-sm mt-1">{site.location.label} · IST</span>
                 </GlassCard>
               </div>
-              {site.calUrl && (
-                <a
-                  href={site.calUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => track('booking_click', { location: 'contact' })}
-                  className="glass-card rounded-lg p-5 flex items-center justify-between hover:shadow-edge-strong transition"
-                >
-                  <span>
-                    <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-outline">Prefer a calendar?</span>
-                    <span className="block text-on-surface text-base mt-1">Book a 45-minute slot directly</span>
-                  </span>
-                  <Icon name="calendar" size={20} className="text-primary-container" />
-                </a>
-              )}
             </div>
 
             <p className="mt-8 inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">
@@ -147,7 +166,7 @@ export function Component() {
             <Reveal delay={100}>
               <div className="glass-card rounded-lg p-6 md:p-10">
                 {state === 'done' ? (
-                  <div className="text-center py-16">
+                  <div className="text-center py-16" role="status" aria-live="polite">
                     <Icon name="circle-check" size={40} className="text-primary-container mx-auto" />
                     <Heading as="p" size="sm" className="mt-6">
                       Transmission received.
@@ -171,11 +190,14 @@ export function Component() {
                       id="interest"
                       name="interest"
                       as="select"
-                      label="What are you exploring?"
+                      label="What do you need help with?"
                       defaultValue=""
-                      options={[{ value: '', label: 'Pick one (or leave blank)' }, ...solutions.map((s) => ({ value: s.title, label: s.title })), { value: 'Something else', label: 'Something else' }]}
+                      options={[{ value: '', label: 'Pick one (or leave blank)' }, ...coreSolutions.map((s) => ({ value: s.title, label: s.title })), { value: 'Something else', label: 'Something else' }]}
                     />
-                    <FloatingField id="message" name="message" as="textarea" label="What is slowing you down?" required rows={5} />
+                    <div>
+                      <FloatingField id="message" name="message" as="textarea" label="What is slowing you down? (optional)" rows={5} aria-describedby="message-hint" />
+                      <p id="message-hint" className="mt-2 text-xs text-on-surface-variant">One line is fine, e.g. “our stock never matches Odoo”.</p>
+                    </div>
                     <input type="text" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                       <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-outline max-w-xs">
