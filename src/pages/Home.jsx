@@ -78,7 +78,7 @@ export function Component() {
   return (
     <>
       <SEO
-        title="Odoo Implementation, Migration & Customisation for SMEs"
+        title="Odoo Implementation, Migration & Customization for SMEs"
         description={site.description}
         path="/"
         jsonLd={jsonLd}

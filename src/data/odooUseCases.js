@@ -50,11 +50,11 @@ export const odooUseCases = [
     ],
     tech: ['Odoo 14–19', 'Community', 'Enterprise', 'Tally migration', 'Sales', 'Inventory', 'Accounting', 'Manufacturing', 'POS'],
     related: ['textile-wholesale-erp-b2b', 'portal-order-approval-engine', 'erp-migration-v14-v19'],
-    faq: ['location', 'odoo-edition', 'pricing', 'odoo-rescue'],
+    faq: ['gujarat-local', 'odoo-official-partner', 'odoo-edition', 'pricing', 'odoo-rescue'],
     seo: {
       title: 'Odoo Implementation Company in Ahmedabad & Gandhinagar | CodeCrafters',
       description:
-        'Odoo implementation, migration and customisation from an Ahmedabad-based team, for businesses in Ahmedabad, Gandhinagar, Gujarat and across India. From $5,000.',
+        'Odoo implementation, migration and customization from an Ahmedabad-based team, for businesses in Ahmedabad, Gandhinagar, Gujarat and across India. From $5,000.',
     },
   },
   {
@@ -108,7 +108,7 @@ export const odooUseCases = [
     related: ['textile-wholesale-erp-b2b', 'multi-vendor-ecommerce', 'erp-migration-v14-v19'],
     faq: ['odoo-edition', 'pricing', 'timelines'],
     seo: {
-      title: 'Odoo POS Setup & Customisation for Retail Stores | CodeCrafters',
+      title: 'Odoo POS Setup & Customization for Retail Stores | CodeCrafters',
       description:
         'Odoo Point of Sale set up for single and multi-store retailers: barcodes, price lists, offline billing, and stock and accounts updated as you sell.',
     },

@@ -61,7 +61,7 @@ export function Component() {
   return (
     <>
       <SEO
-        title="Odoo Services: Implementation, Migration, Customisation & AI"
+        title="Odoo Services: Implementation, Migration, Customization & AI"
         description="Odoo services for growing businesses: implementation, version upgrades and migrations, custom modules, reports and AI inside Odoo. One accountable team in Ahmedabad, India."
         path="/solutions"
         jsonLd={[breadcrumb([{ name: 'Home', path: '/' }, { name: 'Odoo services', path: '/solutions' }]), faqNode(solutionFaqs)]}

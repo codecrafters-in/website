@@ -10,7 +10,7 @@ export const faq = [
   {
     id: 'timelines',
     q: 'How long does a typical engagement take?',
-    a: 'First measurable wins usually land within 14 business days. A scoped build runs 2 to 8 weeks depending on integrations and migration volume. Brand projects average 2 to 3 weeks. You get a milestone plan before we start.',
+    a: 'First measurable wins usually land within 14 business days. A scoped build runs 2 to 8 weeks depending on integrations and migration volume. You get a milestone plan before we start.',
     scope: ['contact', 'solutions:ai', 'solutions:odoo', 'solutions:data-dashboards', 'solutions:brand-design'],
   },
   {
@@ -78,6 +78,18 @@ export const faq = [
     q: 'Which Odoo versions do you work with?',
     a: 'Odoo 14 through 19, Community and Enterprise. We also upgrade between versions and move businesses from Tally, spreadsheets or another ERP into Odoo.',
     scope: ['home', 'solutions:odoo-migration'],
+  },
+  {
+    id: 'odoo-official-partner',
+    q: 'Are you an official Odoo partner?',
+    a: 'No. CodeCrafters is an independent Odoo service provider, not part of the Odoo partner programme. We do not resell Odoo licences: you buy Odoo directly from Odoo S.A. (or use free Community), and we do the implementation, migration, custom modules and support. Our engineers include ex-Odoo developers, and we have shipped 120+ custom Odoo modules.',
+    scope: ['home', 'solutions:odoo', 'solutions:odoo-ahmedabad'],
+  },
+  {
+    id: 'gujarat-local',
+    q: 'Do you work with businesses in Ahmedabad and Gandhinagar?',
+    a: 'Yes. Our team is based in Ahmedabad, so businesses in Ahmedabad, Gandhinagar and the rest of Gujarat work with us in the same time zone, in English, Hindi or Gujarati, and in-person meetings can be arranged. We also work with clients elsewhere in India and abroad.',
+    scope: ['solutions:odoo-ahmedabad'],
   },
 ]
 

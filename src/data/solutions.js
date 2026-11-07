@@ -112,7 +112,7 @@ const baseSolutions = [
       },
     ],
     process: [
-      { num: '01', title: 'Audit', desc: 'We list every module, customisation and integration you run today.' },
+      { num: '01', title: 'Audit', desc: 'We list every module, customization and integration you run today.' },
       { num: '02', title: 'Plan', desc: 'What upgrades cleanly, what needs rewriting, and the cutover date.' },
       { num: '03', title: 'Test run', desc: 'A full trial migration on a copy, checked by your team.' },
       { num: '04', title: 'Switch', desc: 'The real move, timed around your business, with a fallback ready.' },
@@ -136,8 +136,8 @@ const baseSolutions = [
     core: true,
     order: 3,
     num: '03',
-    eyebrow: 'Odoo customisation',
-    title: 'Odoo Customisation & Modules',
+    eyebrow: 'Odoo customization',
+    title: 'Odoo Customization & Modules',
     short: 'Custom Odoo modules when standard Odoo does not fit how you work.',
     headline: 'When standard Odoo does not fit, we build what does.',
     intro:
@@ -185,7 +185,7 @@ const baseSolutions = [
     related: ['portal-order-approval-engine', 'multi-team-helpdesk', 'textile-wholesale-erp-b2b'],
     faq: ['odoo-rescue', 'existing-systems', 'pricing'],
     seo: {
-      title: 'Odoo Customisation & Custom Module Development | CodeCrafters',
+      title: 'Odoo Customization & Custom Module Development | CodeCrafters',
       description:
         'Custom Odoo modules for approvals, portals, commissions and integrations, built to survive upgrades. 120+ modules shipped from Ahmedabad, India.',
     },

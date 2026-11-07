@@ -8,7 +8,7 @@ export const site = {
   url: 'https://www.codecrafters.in',
   tagline: 'Odoo for growing businesses, set up so your team actually uses it.',
   description:
-    'Odoo implementation, migration and customisation for growing businesses, from Ahmedabad, India. 120+ custom Odoo modules and 15+ migrations, plus AI that saves hours inside Odoo.',
+    'Odoo implementation, migration and customization for growing businesses, from Ahmedabad, India. 120+ custom Odoo modules and 15+ migrations, plus AI that saves hours inside Odoo.',
   email: 'hello@codecrafters.in',
   phone: '+91 70438 31200',
   phoneE164: '+917043831200',
@@ -78,7 +78,7 @@ export const footerColumns = [
     links: [
       { label: 'Odoo Implementation', to: '/solutions/odoo' },
       { label: 'Odoo Migration & Upgrades', to: '/solutions/odoo-migration' },
-      { label: 'Odoo Customisation', to: '/solutions/odoo-customization' },
+      { label: 'Odoo Customization', to: '/solutions/odoo-customization' },
       { label: 'AI for Odoo', to: '/solutions/ai' },
       { label: 'Odoo Reports & Dashboards', to: '/solutions/data-dashboards' },
       { label: 'Odoo POS', to: '/solutions/odoo-pos' },

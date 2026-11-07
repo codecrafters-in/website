@@ -109,7 +109,7 @@ export function renderLlms({ site, solutions, work, insights }) {
     ...insights.map((a) => line(a.title, `/insights/${a.slug}`, a.excerpt)),
     '',
     '## Optional',
-    ...solutions.filter((s) => !s.core).map((s) => line(s.title, `/solutions/${s.slug}`, s.short)),
+    ...solutions.filter((s) => s.core === false).map((s) => line(s.title, `/solutions/${s.slug}`, s.short)),
     line('About', '/about'),
     line('Careers', '/careers'),
     '',
