@@ -52,6 +52,101 @@
       "source": "/brand-design",
       "destination": "/solutions/brand-design",
       "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contactus",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/our-services",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/industries",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/ai-solutions",
+      "destination": "/solutions/ai",
+      "permanent": true
+    },
+    {
+      "source": "/ai-agents-real-estate-usa",
+      "destination": "/solutions/ai",
+      "permanent": true
+    },
+    {
+      "source": "/services/cloud-devops",
+      "destination": "/solutions/cloud-devops",
+      "permanent": true
+    },
+    {
+      "source": "/services/ui-ux-design",
+      "destination": "/solutions/brand-design",
+      "permanent": true
+    },
+    {
+      "source": "/services/saas",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/services/software-development",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/services/web-development",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/services/mobile-app-development",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/services/on-demand",
+      "destination": "/solutions",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/2",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/blog/business-with-erp-solutions-2/patient-engagement-automation-odoo-ai",
+      "destination": "/solutions/ai",
+      "permanent": true
+    },
+    {
+      "source": "/blog/business-with-erp-solutions-2/transform-odoo-with-voice-to-text-16",
+      "destination": "/solutions/ai",
+      "permanent": true
+    },
+    {
+      "source": "/blog/business-with-erp-solutions-2/leveraging-odoo-s-api-for-intelligent",
+      "destination": "/solutions/ai",
+      "permanent": true
     }
   ],
   "headers": [
