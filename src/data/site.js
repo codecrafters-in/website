@@ -79,7 +79,7 @@ export const footerColumns = [
       { label: 'Odoo Implementation', to: '/solutions/odoo' },
       { label: 'Odoo Migration & Upgrades', to: '/solutions/odoo-migration' },
       { label: 'Odoo Customization', to: '/solutions/odoo-customization' },
-      { label: 'AI for Odoo', to: '/solutions/ai' },
+      { label: 'Odoo AI Integration', to: '/solutions/ai' },
       { label: 'Odoo Reports & Dashboards', to: '/solutions/data-dashboards' },
       { label: 'Odoo POS', to: '/solutions/odoo-pos' },
       { label: 'Odoo for Retail', to: '/solutions/odoo-retail' },

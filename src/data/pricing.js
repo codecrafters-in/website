@@ -30,3 +30,26 @@ export const pricing = [
 ]
 
 export default pricing
+
+// Odoo licence prices for India as listed on odoo.com/pricing, checked on the
+// date below. Odoo shows these as introductory prices for the first 12 months
+// (list prices are higher) and changes them from time to time: re-check before
+// relying on them. Implementation is our own price.
+export const odooPricing = {
+  checked: '8 November 2026',
+  source: 'https://www.odoo.com/pricing',
+  currency: '₹',
+  plans: [
+    { name: 'One App Free', yearly: '₹0', monthly: '₹0', includes: 'One Odoo app (for example Invoicing or CRM), unlimited users, Odoo Online hosting' },
+    { name: 'Standard', yearly: '₹580', monthly: '₹725', includes: 'All Odoo apps, Odoo Online hosting' },
+    { name: 'Custom', yearly: '₹1,080', monthly: '₹1,350', includes: 'All apps plus Odoo Studio, multi-company, external API, and Odoo.sh or on-premise hosting' },
+  ],
+  example: '10 users on Standard, billed yearly: 10 × ₹580 × 12 = ₹69,600 a year in Odoo licences.',
+}
+
+export const implementationPricing = {
+  from: 'US$5,000',
+  summary:
+    'Fixed price, agreed after a free scoping call. Focused setups and single custom modules start from US$5,000; full implementations with data migration are quoted on scope (apps, users, integrations, data volume). Indian clients are quoted in rupees.',
+  noMarkup: 'You pay Odoo S.A. directly for licences (or use free Community). We do not resell or mark up licences.',
+}

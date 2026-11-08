@@ -79,6 +79,32 @@ export default function Blocks({ blocks = [] }) {
             ))}
           </div>
         )
+      case 'table':
+        return (
+          <figure key={i} className="my-8">
+            <div className="overflow-x-auto rounded-lg bg-surface-container-lowest shadow-edge">
+              <table className="w-full min-w-[560px] text-left text-sm">
+                <thead>
+                  <tr>
+                    {b.head.map((h, j) => (
+                      <th key={j} scope="col" className="px-4 py-3 font-mono text-[10px] uppercase tracking-[0.16em] text-outline border-b border-outline-variant/40">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {b.rows.map((r, j) => (
+                    <tr key={j} className="border-b border-outline-variant/25 last:border-0">
+                      {r.map((c, k) => (
+                        <td key={k} className={`px-4 py-3 align-top leading-relaxed ${k === 0 ? 'font-semibold text-on-surface' : 'text-on-surface-variant'}`}><Inline text={String(c)} /></td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {b.caption && <figcaption className="mt-2 text-xs text-outline"><Inline text={b.caption} /></figcaption>}
+          </figure>
+        )
       default:
         return null
     }

@@ -13,13 +13,18 @@ import { faq } from '../data/faq.js'
 import { workBySlug } from '../data/work.js'
 import KeyPoints from '../components/KeyPoints.jsx'
 import Aurora from '../components/Aurora.jsx'
+import OdooPricing from '../components/OdooPricing.jsx'
+import Blocks from '../components/blocks/Blocks.jsx'
 
 export function Component() {
   const { slug } = useParams()
   const s = solutionBySlug[slug]
   if (!s) return <NotFoundView />
 
-  const faqs = faq.filter((f) => f.scope?.includes(`solutions:${s.slug}`) || (s.faq || []).includes(f.id)).slice(0, 5)
+  // Page-specific questions first, then shared ones, so each page has its own answers.
+  const shared = faq.filter((f) => f.scope?.includes(`solutions:${s.slug}`) || (s.faq || []).includes(f.id))
+  const faqs = [...(s.faqItems || []).map((f, i) => ({ id: `${s.slug}-${i}`, ...f })), ...shared].slice(0, 8)
+  const isOdoo = s.core === true || s.group === 'usecase'
   const related = (s.related || []).map((k) => workBySlug[k]).filter(Boolean)
   const idx = solutions.findIndex((x) => x.slug === s.slug)
   const next = solutions[(idx + 1) % solutions.length]
@@ -94,6 +99,21 @@ export function Component() {
           </Reveal>
         </Container>
       </Section>
+
+      {s.body?.length > 0 && (
+        <Section tone="base" id="guide" className="scroll-mt-20">
+          <Container className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+            <div className="lg:col-span-4 min-w-0">
+              <SectionHeader eyebrow="The detail" title={s.bodyTitle || `${s.title}, explained.`} size="md" />
+            </div>
+            <article className="lg:col-span-8 max-w-3xl min-w-0">
+              <Blocks blocks={s.body} />
+            </article>
+          </Container>
+        </Section>
+      )}
+
+      {isOdoo && <OdooPricing />}
 
       <Section tone="base">
         <Container className="grid lg:grid-cols-12 gap-10 lg:gap-16">

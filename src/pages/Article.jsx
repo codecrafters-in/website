@@ -68,7 +68,7 @@ export function Component() {
 
       <Section tone="low">
         <Container size="narrow" className="grid lg:grid-cols-12 gap-12">
-          <aside className="lg:col-span-3 order-2 lg:order-1">
+          <aside className="lg:col-span-3 min-w-0 order-2 lg:order-1">
             {toc.length > 0 && (
               <nav className="lg:sticky lg:top-28" aria-label="On this page">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-outline mb-4">On this page</p>
@@ -85,7 +85,7 @@ export function Component() {
               </nav>
             )}
           </aside>
-          <article className="lg:col-span-9 order-1 lg:order-2 max-w-3xl">
+          <article className="lg:col-span-9 order-1 lg:order-2 max-w-3xl min-w-0">
             <Blocks blocks={a.body} />
             <GlassCard className="mt-16" padding="p-6 md:p-8" lift={false}>
               <Eyebrow className="mb-3">Written by</Eyebrow>

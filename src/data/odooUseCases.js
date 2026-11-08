@@ -107,10 +107,16 @@ export const odooUseCases = [
     tech: ['Odoo POS', 'Inventory', 'Accounting', 'Barcode', 'Loyalty', 'eCommerce', 'OWL'],
     related: ['textile-wholesale-erp-b2b', 'multi-vendor-ecommerce', 'erp-migration-v14-v19'],
     faq: ['odoo-edition', 'pricing', 'timelines'],
+    faqItems: [
+      { q: 'Does Odoo POS work for restaurants?', a: 'Yes. Odoo POS has a restaurant mode with floor plans and tables, splitting bills, sending orders to kitchen printers or a kitchen screen, and tips. We set it up for cafes, restaurants and cloud kitchens as well as shops.' },
+      { q: 'Does Odoo POS work without internet?', a: 'Yes. Odoo POS keeps billing offline and syncs orders, stock and payments when the connection returns.' },
+      { q: 'What hardware does Odoo POS need?', a: 'Any device with a modern browser (PC, tablet or touchscreen), plus optional barcode scanners, receipt printers, cash drawers and weighing scales. We help you pick compatible hardware before go-live.' },
+      { q: 'Can Odoo POS print GST invoices?', a: "Yes. With Odoo's India localisation, POS receipts and invoices carry GST details, and sales flow into your GST reports in Odoo Accounting." },
+    ],
     seo: {
-      title: 'Odoo POS Setup & Customization for Retail Stores | CodeCrafters',
+      title: 'Odoo POS Setup for Retail Stores & Restaurants | CodeCrafters',
       description:
-        'Odoo Point of Sale set up for single and multi-store retailers: barcodes, price lists, offline billing, and stock and accounts updated as you sell.',
+        'Odoo POS software set up for shops and restaurants in India: barcodes, tables and kitchen printing, offline billing, GST receipts, and stock and accounts updated as you sell.',
     },
   },
   {
@@ -159,6 +165,10 @@ export const odooUseCases = [
     tech: ['Odoo POS', 'eCommerce', 'Inventory', 'Purchase', 'Accounting', 'Stripe', 'GoCardless', 'OWL'],
     related: ['multi-vendor-ecommerce', 'erp-migration-v14-v19', 'textile-wholesale-erp-b2b'],
     faq: ['odoo-edition', 'pricing', 'odoo-rescue'],
+    faqItems: [
+      { q: 'Can one Odoo run our shops and our online store?', a: 'Yes. Odoo POS and Odoo eCommerce share the same products, prices and stock, so a sale in the shop or online updates the same inventory.' },
+      { q: 'Can Odoo connect to Amazon or other marketplaces?', a: 'Marketplace connectors exist for Odoo (some official, some from the Odoo Apps Store). We check which fits your marketplaces and volume, or build the integration.' },
+    ],
     seo: {
       title: 'Odoo for Retail & eCommerce: POS, Online Store & Stock | CodeCrafters',
       description:
@@ -211,6 +221,11 @@ export const odooUseCases = [
     tech: ['Odoo MRP', 'Inventory', 'Purchase', 'Quality', 'PLM', 'Maintenance', 'Forecasting'],
     related: ['forecasting-traceability-dashboards', 'textile-wholesale-erp-b2b', 'ocr-invoice-engine'],
     faq: ['odoo-edition', 'pricing', 'timelines'],
+    faqItems: [
+      { q: 'Can Odoo handle job work and subcontracting?', a: 'Yes. Odoo Manufacturing supports subcontracting: sending raw material to a job worker, tracking what they hold, and receiving finished goods back against the order. We configure it to match how your job workers operate.' },
+      { q: 'Is Odoo suitable for a small manufacturer?', a: 'Yes. Many of our manufacturing clients are small and mid-sized. Start with bills of materials, manufacturing orders and stock, and add work centres, quality and maintenance later.' },
+      { q: 'Can Odoo calculate the real cost of each product?', a: 'Yes. Odoo rolls up material, labour (work centre time) and overheads into a product cost, and compares planned with actual cost per manufacturing order.' },
+    ],
     seo: {
       title: 'Odoo Manufacturing (MRP) Implementation for Manufacturers | CodeCrafters',
       description:
@@ -224,9 +239,9 @@ export const odooUseCases = [
     num: 'ACC',
     eyebrow: 'Odoo Accounting & Invoicing',
     title: 'Odoo Accounting & Billing',
-    navTitle: 'Odoo billing & accounting',
+    navTitle: 'Odoo accounting & billing',
     short: 'Invoices from orders, payments reconciled, and AI that reads supplier bills.',
-    headline: 'Billing and accounting that run themselves in Odoo.',
+    headline: 'Odoo accounting services and GST billing, set up properly.',
     intro:
       'In Odoo, invoices come straight from sales orders and deliveries, payments match automatically against bank statements, and reports come from the same data. Odoo also has an India localisation for GST invoices. We set up invoicing and accounting, connect payment gateways, and add AI that reads supplier bills and order emails so nobody types them in.',
     icon: 'receipt',
@@ -263,10 +278,92 @@ export const odooUseCases = [
     tech: ['Odoo Accounting', 'Invoicing', 'India localisation', 'Stripe', 'GoCardless', 'Plaid', 'OCR'],
     related: ['ocr-invoice-engine', 'portal-order-approval-engine', 'line-of-credit-platform'],
     faq: ['odoo-edition', 'pricing', 'ai-accuracy'],
+    bodyTitle: 'Odoo accounting for Indian businesses, explained.',
+    body: [
+      { type: 'h2', text: 'What Odoo Accounting does for an Indian business', id: 'what-odoo-accounting-does' },
+      {
+        type: 'p',
+        text: "Odoo Accounting keeps your books in the same system as sales, purchase and stock. When a delivery is confirmed, the invoice is ready; when a supplier bill arrives, it matches the purchase order; when the bank statement comes in, payments reconcile against open invoices. Your accountant stops retyping and starts reviewing.",
+      },
+      {
+        type: 'ul',
+        items: [
+          "**GST built in:** Odoo's India localisation sets up CGST, SGST and IGST taxes, HSN and SAC codes, and GST reports such as GSTR-1 and GSTR-3B.",
+          "**E-invoicing and e-way bills:** Odoo connects to the government portals to generate the IRN and QR code on invoices and to create e-way bills. Availability depends on your Odoo edition and version, so we confirm it for your setup before we start.",
+          "**Invoices from orders:** sales orders and deliveries become invoices without retyping, with automatic payment reminders.",
+          "**Bank reconciliation:** bank statements imported or synced, with rules that match recurring payments for you.",
+          "**Multi-company and branches:** separate books per company or GSTIN, with consolidated reports for the owner (Custom plan).",
+          "**Reports:** profit and loss, balance sheet, aged receivables and payables, cash flow, all live.",
+        ],
+      },
+      { type: 'h2', text: 'Odoo vs Tally Prime vs Zoho Books', id: 'odoo-vs-tally-vs-zoho-books' },
+      {
+        type: 'p',
+        text: "All three handle GST accounting. The difference is how much of the business they run. Tally is the accountant's tool; Zoho Books is cloud accounting inside the Zoho suite; Odoo is a full ERP where accounting is one app among sales, stock, purchase, manufacturing and POS.",
+      },
+      {
+        type: 'table',
+        head: ['', 'Odoo', 'Tally Prime', 'Zoho Books'],
+        rows: [
+          ['Best fit', 'Businesses that want accounting, stock, sales and manufacturing in one system', 'Accounting-led businesses whose CA works in Tally', 'Service and trading businesses that want simple cloud accounting'],
+          ['Inventory and manufacturing', 'Full inventory, multi-warehouse, manufacturing (MRP) in the same database', 'Inventory and basic manufacturing vouchers', 'Inventory via Zoho Inventory; no full manufacturing'],
+          ['Sales, CRM, POS, eCommerce', 'Built-in apps on the same data', 'Not included', 'Separate Zoho apps'],
+          ['Customisation', 'Custom modules for any workflow', 'TDL customisation', 'Limited to settings and integrations'],
+          ['Where it runs', 'Cloud (Odoo Online, Odoo.sh) or your own server', 'Desktop, with remote access options', 'Cloud'],
+          ['Typical trigger to move to Odoo', 'Already there', 'Stock, sales and accounts no longer match', 'Need manufacturing or deeper stock control'],
+        ],
+        caption: 'Summary of product scope as of November 2026. Each product changes often; check current features before deciding.',
+      },
+      { type: 'h2', text: 'How we set up Odoo accounting', id: 'how-we-set-up-odoo-accounting' },
+      {
+        type: 'ol',
+        items: [
+          "**Map your current books:** chart of accounts, GSTINs, tax rates, cost centres and how your CA closes the month.",
+          "**Configure Odoo:** chart of accounts, GST taxes and fiscal positions, HSN codes, invoice and credit note formats.",
+          "**Move opening balances:** customers, suppliers, ledgers and open invoices from Tally or Excel, checked against your trial balance.",
+          "**Connect money:** bank statement import or sync, reconciliation rules, and payment gateways such as Stripe or GoCardless.",
+          "**Automate the routine:** invoices from deliveries, payment reminders, recurring bills, and AI that reads supplier invoices.",
+          "**Train and hand over:** your accountant runs one month-end in Odoo with us beside them, then on their own.",
+        ],
+      },
+      {
+        type: 'callout',
+        title: 'Your CA stays',
+        text: "We set up and support the system; your chartered accountant keeps filing returns and signing off the books. Odoo exports the reports they need, and they can be given their own login.",
+      },
+      { type: 'h2', text: 'Moving from Tally to Odoo', id: 'moving-from-tally' },
+      {
+        type: 'p',
+        text: "Most of our accounting projects start on Tally. We export masters and balances, map Tally ledgers to the Odoo chart of accounts, load open invoices so receivables carry over, and run Tally and Odoo side by side for one month-end until the numbers match. Then Tally becomes read-only history. Read the full [Tally to Odoo migration guide](/insights/tally-to-odoo-migration).",
+      },
+      { type: 'h2', text: 'Where AI helps in accounting', id: 'ai-in-accounting' },
+      {
+        type: 'p',
+        text: "The repetitive part of accounting is reading documents. We add AI that reads supplier invoices, receipts and order emails into Odoo as draft bills, checks them against purchase orders, and sends anything unclear to a person. On one build this removed 80% of manual invoice entry.",
+      },
+    ],
+    faqItems: [
+      {
+        q: 'Can Odoo replace Tally for GST?',
+        a: "For most growing businesses, yes. Odoo's India localisation handles GST taxes, HSN codes, GSTR reports, e-invoicing and e-way bills (depending on edition and version). Many companies keep Tally read-only for past years after moving.",
+      },
+      {
+        q: 'Do we need Odoo Enterprise for accounting?',
+        a: 'Odoo Community includes invoicing and payments. Full accounting (bank reconciliation, financial reports, budgets, assets) is part of the paid Odoo plans. We recommend the plan after looking at your process on the free diagnostic call.',
+      },
+      {
+        q: 'Can our chartered accountant work in Odoo?',
+        a: 'Yes. Your CA can have their own Odoo login with access to the reports and ledgers they need, or receive exported reports. We train them during go-live.',
+      },
+      {
+        q: 'How long does an Odoo accounting setup take?',
+        a: 'A focused invoicing and accounting setup with opening balances usually takes 2 to 4 weeks. Adding inventory, multi-company or a Tally migration with years of history takes longer; you get a milestone plan before we start.',
+      },
+    ],
     seo: {
-      title: 'Odoo Accounting & Billing Setup, with AI Invoice Reading | CodeCrafters',
+      title: 'Odoo Accounting Services & GST Billing Software Setup in India | CodeCrafters',
       description:
-        'Odoo invoicing and accounting set up for growing businesses: invoices from orders, bank reconciliation, GST invoices via Odoo India, and AI that reads supplier bills.',
+        'Odoo accounting and billing set up for Indian businesses: GST, e-invoicing, bank reconciliation, Tally migration and AI invoice reading. Odoo vs Tally vs Zoho Books compared.',
     },
   },
 ]

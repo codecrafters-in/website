@@ -64,6 +64,10 @@ const baseSolutions = [
     tech: ['Odoo 14–19', 'Community', 'Enterprise', 'Sales', 'CRM', 'Inventory', 'Purchase', 'Accounting', 'Manufacturing', 'eCommerce', 'Helpdesk'],
     related: ['textile-wholesale-erp-b2b', 'portal-order-approval-engine', 'erp-migration-v14-v19'],
     faq: ['odoo-edition', 'odoo-rescue', 'pricing', 'timelines'],
+    faqItems: [
+      { q: 'How long does an Odoo implementation take for a small business?', a: 'A focused setup (sales, inventory, invoicing) for a small business usually takes 3 to 6 weeks. Manufacturing, multi-company or a migration with years of history takes 2 to 4 months. First working results usually land within 14 business days.' },
+      { q: 'Which Odoo apps does a typical SME start with?', a: 'Most start with Sales, Inventory, Purchase and Invoicing or Accounting, then add CRM, Manufacturing, POS or eCommerce as needed. We recommend only the apps you will use in the first six months.' },
+    ],
     seo: {
       title: 'Odoo Implementation Services for Growing Businesses | CodeCrafters',
       description:
@@ -125,6 +129,11 @@ const baseSolutions = [
     tech: ['Odoo 14–19', 'OWL', 'Python', 'PostgreSQL', 'Tally', 'Excel / CSV', 'ETL'],
     related: ['erp-migration-v14-v19', 'textile-wholesale-erp-b2b', 'multi-vendor-ecommerce'],
     faq: ['odoo-rescue', 'odoo-edition', 'timelines'],
+    faqItems: [
+      { q: 'Can you upgrade Odoo with our custom modules?', a: 'Yes. Custom modules are the hard part of every upgrade. We list each one, rewrite what breaks for the new version, and test it on a copy of your database before switching.' },
+      { q: 'How do you migrate data from Tally to Odoo?', a: 'We export masters (customers, suppliers, products, ledgers) and balances from Tally, map them to Odoo, load open invoices so receivables carry over, and run both systems for one month-end until the numbers match.' },
+      { q: 'Will we lose data during an Odoo upgrade?', a: 'Not if it is done properly. Every record is counted and reconciled on a test run first. Across 15+ migrations we have had zero data loss.' },
+    ],
     seo: {
       title: 'Odoo Migration & Upgrade Services (v14 to v19) | CodeCrafters',
       description:
@@ -184,6 +193,10 @@ const baseSolutions = [
     tech: ['Odoo 14–19', 'Python', 'OWL', 'QWeb', 'PostgreSQL', 'REST APIs', 'Stripe', 'GoCardless'],
     related: ['portal-order-approval-engine', 'multi-team-helpdesk', 'textile-wholesale-erp-b2b'],
     faq: ['odoo-rescue', 'existing-systems', 'pricing'],
+    faqItems: [
+      { q: 'Studio or custom module: which should we use?', a: 'Odoo Studio is fine for adding fields, simple views and basic automations. Anything with business logic, integrations or heavy use belongs in a proper custom module, which survives upgrades and can be tested.' },
+      { q: 'How much does Odoo customization cost?', a: 'It depends on scope. Small changes are quoted by the task; custom modules start from US$5,000 as fixed-price projects after a free scoping call.' },
+    ],
     seo: {
       title: 'Odoo Customization & Custom Module Development | CodeCrafters',
       description:
@@ -196,7 +209,7 @@ const baseSolutions = [
     order: 4,
     num: '04',
     eyebrow: 'AI on Odoo',
-    title: 'AI for Odoo',
+    title: 'Odoo AI Integration',
     short: 'Ask Odoo questions in plain English, read invoices automatically, cut manual entry.',
     headline: 'AI that saves hours inside your Odoo.',
     intro:
@@ -243,8 +256,13 @@ const baseSolutions = [
     tech: ['Odoo', 'Claude', 'OpenAI', 'Gemini', 'Python', 'OCR', 'Email & PDF reading'],
     related: ['conversational-ai-agent-erp', 'email-intelligence-saas', 'ocr-invoice-engine'],
     faq: ['ai-accuracy', 'existing-systems', 'timelines'],
+    faqItems: [
+      { q: 'What AI agents can you add to Odoo?', a: 'The ones we build most: a finance agent that reads supplier invoices and matches them to purchase orders, a sales agent that drafts quotations and follow-ups from Odoo data, an inventory agent that flags low stock and suggests purchase orders, and a management assistant that answers questions about sales and margins in plain English.' },
+      { q: 'Is it safe to connect AI to our Odoo?', a: 'Yes, when it is built properly. The AI never gets direct database access: every request goes through Odoo, which checks that user\'s permissions first, and every action is logged. Unclear cases go to a person.' },
+      { q: 'Does this work with Odoo 19 AI features?', a: 'Yes. Odoo 19 includes its own AI features; we use them where they fit and build custom agents where you need your own workflows, data sources or approval rules.' },
+    ],
     seo: {
-      title: 'AI for Odoo: Plain-English Questions, Invoice Reading & Automation | CodeCrafters',
+      title: 'Odoo AI Integration: AI Agents, Chatbots & Invoice Reading | CodeCrafters',
       description:
         'AI added to your Odoo: ask questions in plain English, read invoices and order emails automatically, and cut manual entry. Role-checked and safe.',
     },

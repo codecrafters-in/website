@@ -1,8 +1,150 @@
 // Insights / articles for codecrafters.in
-// Plain data module. Block types: p, h2 (with id), h3, ul, ol, quote, callout, code, stat.
+// Plain data module. Block types: p, h2 (with id), h3, ul, ol, quote, callout, code, stat, table ({head, rows, caption}).
 // Inline formatting inside `text`: **bold** and `code` only.
 
 export const insights = [
+  {
+    slug: 'tally-to-odoo-migration',
+    title: 'Tally to Odoo migration: a step-by-step guide for Indian businesses',
+    excerpt:
+      'How to move masters, GST settings, opening balances and open bills from Tally Prime to Odoo, with a Tally-to-Odoo mapping table, a cutover plan and the mistakes that cost the most.',
+    date: '2026-11-08',
+    updated: '2026-11-08',
+    tags: ['Odoo', 'Tally', 'Migration', 'GST'],
+    readingTime: '9 min',
+    author: 'CodeCrafters',
+    seo: {
+      title: 'Tally to Odoo Migration: Step-by-Step Guide (GST, Ledgers, Opening Balances)',
+      description:
+        'Move from Tally Prime to Odoo without losing data: masters, GST, opening balances and open bills, with a Tally-to-Odoo mapping table and a cutover checklist.',
+    },
+    body: [
+      {
+        type: 'p',
+        text: "Most growing Indian businesses we meet run their accounts in Tally and everything else in spreadsheets. It works until stock, sales and accounts stop agreeing with each other. Moving to Odoo fixes that by putting all of it in one system, but only if the move from Tally is done carefully. This guide is the process we follow.",
+      },
+      {
+        type: 'callout',
+        title: 'The short version',
+        text: "Pick a clean cutover date, move masters and opening balances (not years of vouchers), load open invoices so receivables carry over, run both systems for one month-end, then make Tally read-only. Plan 3 to 6 weeks for a typical SME.",
+      },
+      { type: 'h2', text: 'When moving from Tally to Odoo makes sense', id: 'when-it-makes-sense' },
+      {
+        type: 'ul',
+        items: [
+          "Stock in Tally rarely matches stock on the shelf, because sales and dispatch happen elsewhere.",
+          "Invoices are typed twice: once in a sales sheet or app, again in Tally.",
+          "You need CRM, purchase approvals, manufacturing, POS or an online store connected to the accounts.",
+          "You have more than one location or company and consolidation is a monthly spreadsheet exercise.",
+        ],
+      },
+      {
+        type: 'p',
+        text: "If accounting is genuinely the only thing you need and your CA is happy, Tally may be enough. The move pays off when the rest of the business needs to run on the same data.",
+      },
+      { type: 'h2', text: 'How Tally concepts map to Odoo', id: 'tally-to-odoo-mapping' },
+      {
+        type: 'table',
+        head: ['In Tally Prime', 'In Odoo', 'Note'],
+        rows: [
+          ['Groups', 'Account types and the chart of accounts', 'Map each Tally group to an Odoo account type before moving ledgers'],
+          ['Ledgers (accounts)', 'Accounts', 'Bank, cash, income, expense and tax ledgers become accounts'],
+          ['Ledgers (parties)', 'Contacts (customers and vendors)', 'With GSTIN, state, address and payment terms'],
+          ['Stock items', 'Products', 'With HSN code, GST rate, units of measure and cost'],
+          ['Stock groups and categories', 'Product categories', 'Also drive stock valuation accounts'],
+          ['Godowns', 'Warehouses and locations', 'One warehouse per physical site'],
+          ['Voucher types', 'Journals', 'Sales, purchase, bank, cash and miscellaneous journals'],
+          ['Cost centres', 'Analytic accounts', 'For branch, project or department reporting'],
+          ['Bill-wise details', 'Open invoices and bills', 'So receivables and payables keep their due dates'],
+          ['GST details', 'Taxes and fiscal positions', "Set up through Odoo's India localisation"],
+        ],
+        caption: 'Field names vary slightly between Tally Prime and Odoo versions.',
+      },
+      { type: 'h2', text: 'Step 1: choose the cutover date', id: 'step-1-cutover-date' },
+      {
+        type: 'p',
+        text: "The cleanest cutover is the start of a financial year (1 April) or, failing that, the start of a month after a closed month-end. Everything before that date stays in Tally as history; everything after it happens in Odoo. Avoid cutting over mid-month: you would have to split GST returns across two systems.",
+      },
+      { type: 'h2', text: 'Step 2: clean the masters in Tally first', id: 'step-2-clean-masters' },
+      {
+        type: 'ul',
+        items: [
+          "Merge duplicate parties (the same customer created three times with slightly different names).",
+          "Check every party has the correct GSTIN and state, because Odoo uses the state to decide CGST plus SGST or IGST.",
+          "Check every stock item has an HSN code, GST rate and the right unit of measure.",
+          "Close or delete ledgers nobody has used for years.",
+        ],
+      },
+      {
+        type: 'p',
+        text: "Cleaning in Tally is faster than cleaning after the import, and it is the step most often skipped.",
+      },
+      { type: 'h2', text: 'Step 3: export from Tally', id: 'step-3-export' },
+      {
+        type: 'p',
+        text: "Export from Tally Prime to Excel or XML: the chart of groups and ledgers, party masters, stock items, the trial balance as on the cutover date, stock summary with quantities and values per godown, and outstanding receivables and payables bill by bill. Keep the exported files: they are your audit trail.",
+      },
+      { type: 'h2', text: 'Step 4: configure Odoo before importing', id: 'step-4-configure-odoo' },
+      {
+        type: 'ol',
+        items: [
+          "Install Accounting with the **India** localisation, so GST taxes, fiscal positions and reports are in place.",
+          "Set up the company, GSTIN, state and financial year.",
+          "Adjust the chart of accounts to match the Tally groups you mapped.",
+          "Create journals for each Tally voucher type you actually use.",
+          "Create warehouses for each godown and set the stock valuation method.",
+        ],
+      },
+      { type: 'h2', text: 'Step 5: import masters and opening balances', id: 'step-5-import' },
+      {
+        type: 'ol',
+        items: [
+          "Import contacts, then products, using Odoo's import templates.",
+          "Post the opening balance entry from the Tally trial balance as on the cutover date.",
+          "Load each open customer invoice and vendor bill as an opening document, so due dates and ageing carry over.",
+          "Load opening stock quantities and values per warehouse.",
+          "Compare Odoo's trial balance, receivables, payables and stock value with Tally. They must match to the rupee before you go further.",
+        ],
+      },
+      { type: 'h2', text: 'Step 6: run both systems for one month-end', id: 'step-6-parallel-run' },
+      {
+        type: 'p',
+        text: "For the first month, record transactions in Odoo and keep Tally running for the same period. At month-end, compare sales, purchases, GST liability and closing balances. Differences at this stage are cheap to fix; differences found at year-end are not. Once the month matches, make Tally read-only and keep it for past years.",
+      },
+      { type: 'h2', text: 'Should you migrate old Tally vouchers?', id: 'old-vouchers' },
+      {
+        type: 'p',
+        text: "Usually not. Moving years of vouchers is slow, expensive and rarely used: auditors and your CA can still open the old years in Tally. Move opening balances and open documents. If you need history for reporting, import summarised monthly figures into a separate journal instead of every voucher.",
+      },
+      { type: 'h2', text: 'Mistakes that cost the most', id: 'mistakes' },
+      {
+        type: 'ul',
+        items: [
+          "**Skipping the master clean-up:** duplicates and missing GSTINs break GST reports from day one.",
+          "**Importing balances without bill-wise detail:** receivables arrive as one lump per customer, and nobody knows which invoices are overdue.",
+          "**Cutting over mid-month:** splits GST returns across two systems.",
+          "**No parallel month-end:** errors surface at year-end when they are expensive.",
+          "**Leaving the CA out:** involve them in the mapping, and give them an Odoo login.",
+        ],
+      },
+      { type: 'h2', text: 'How long it takes', id: 'how-long' },
+      {
+        type: 'table',
+        head: ['Business', 'Typical duration', 'What drives it'],
+        rows: [
+          ['Single company, accounts and stock', '3 to 6 weeks', 'Master clean-up and one parallel month-end'],
+          ['Multiple branches or GSTINs', '6 to 10 weeks', 'Mapping per company, consolidation, more stock locations'],
+          ['Manufacturing with bills of materials', '2 to 4 months', 'Products, BOMs and costing set up alongside accounts'],
+        ],
+        caption: 'Ranges from our projects; your timeline depends on data quality and how much of the business moves at once.',
+      },
+      {
+        type: 'p',
+        text: "We do Tally to Odoo migrations as fixed-price projects from our Ahmedabad team. See [Odoo migration services](/solutions/odoo-migration) and [Odoo accounting and billing](/solutions/odoo-accounting-billing), or book a free 45-minute diagnostic and we will look at your Tally data with you.",
+      },
+    ],
+  },
+
   {
     slug: 'ai-readiness-audit-14-questions',
     title: 'The AI readiness audit: 14 questions before you automate anything',
