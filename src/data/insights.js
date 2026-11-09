@@ -138,7 +138,7 @@ const baseInsights = [
           ['Multiple branches or GSTINs', '6 to 10 weeks', 'Mapping per company, consolidation, more stock locations'],
           ['Manufacturing with bills of materials', '2 to 4 months', 'Products, BOMs and costing set up alongside accounts'],
         ],
-        caption: 'Ranges from our projects; your timeline depends on data quality and how much of the business moves at once.',
+        caption: 'Typical ranges, not a quote: your timeline depends on data quality and how much of the business moves at once.',
       },
       {
         type: 'p',

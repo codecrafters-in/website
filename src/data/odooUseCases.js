@@ -61,7 +61,7 @@ export const odooUseCases = [
       { type: 'h2', text: 'Odoo India (Gandhinagar), official partners and independent teams', id: 'odoo-india-vs-partners' },
       {
         type: 'p',
-        text: "Odoo S.A., the company that makes Odoo, has its India office in Gandhinagar. It sells licences, runs the product and offers paid implementation packs; most implementation work in India is done by partners and independent firms. **Official partners** are enrolled in Odoo's partner programme and can resell licences. **Independent Odoo companies** like CodeCrafters implement, migrate and customise Odoo, while you buy licences directly from Odoo (or use free Community). Both can do the work; what matters is experience with businesses like yours and who actually does the engineering.",
+        text: "Odoo S.A., the company that makes Odoo, has its India office in Gandhinagar. It sells licences, runs the product and offers paid implementation packs; most implementation work in India is done by partners and independent firms. **Official partners** are enrolled in Odoo's partner programme and can resell licences. **Independent Odoo companies** like CodeCrafters implement, migrate and customise Odoo, while you buy licences directly from Odoo (or use free Community). Both can do the work; what matters is experience with businesses like yours and who actually does the engineering. More in [official Odoo partner vs independent company](/insights/odoo-partner-vs-independent).",
       },
       {
         type: 'table',
@@ -78,7 +78,7 @@ export const odooUseCases = [
         type: 'ul',
         items: [
           "Moving from Tally and Excel to Odoo, with GST set up properly. See [Tally to Odoo migration](/insights/tally-to-odoo-migration).",
-          "Wholesale and textile setups: customer price lists, agent commissions, B2B ordering, barcode selling.",
+          "Wholesale and textile setups: customer price lists, agent commissions, B2B ordering, barcode selling. See [Odoo for textile and wholesale](/insights/odoo-for-textile-wholesale).",
           "Manufacturing with bills of materials, job work and costing. See [Odoo Manufacturing](/solutions/odoo-manufacturing).",
           "Fixing an Odoo setup another vendor left half-finished, or upgrading an old version. See [Odoo migration](/solutions/odoo-migration).",
           "Knowing the cost up front. See [Odoo price in India](/insights/odoo-price-india) and [implementation cost in India](/insights/odoo-implementation-cost-india).",
@@ -322,7 +322,7 @@ export const odooUseCases = [
       {
         type: 'ul',
         items: [
-          "**GST built in:** Odoo's India localisation sets up CGST, SGST and IGST taxes, HSN and SAC codes, and GST reports such as GSTR-1 and GSTR-3B.",
+          "**GST built in:** Odoo's India localisation sets up CGST, SGST and IGST taxes, HSN and SAC codes, and GST reports such as GSTR-1 and GSTR-3B. See the [Odoo GST setup guide](/insights/odoo-gst-setup-india).",
           "**E-invoicing and e-way bills:** Odoo connects to the government portals to generate the IRN and QR code on invoices and to create e-way bills. Availability depends on your Odoo edition and version, so we confirm it for your setup before we start.",
           "**Invoices from orders:** sales orders and deliveries become invoices without retyping, with automatic payment reminders.",
           "**Bank reconciliation:** bank statements imported or synced, with rules that match recurring payments for you.",

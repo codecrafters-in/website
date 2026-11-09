@@ -105,6 +105,9 @@ const baseSolutions = [
           "[Odoo implementation cost in India](/insights/odoo-implementation-cost-india): what drives the quote and what to ask before you sign.",
           "[Odoo Community vs Enterprise](/insights/odoo-community-vs-enterprise): which edition fits an SME.",
           "[Odoo vs Tally Prime](/insights/odoo-vs-tally): when Tally is enough and when to move.",
+          "[Odoo vs Zoho](/insights/odoo-vs-zoho): one ERP or an app suite.",
+          "[Odoo GST setup for India](/insights/odoo-gst-setup-india): taxes, e-invoicing, e-way bills and returns.",
+          "[Official Odoo partner vs independent company](/insights/odoo-partner-vs-independent): how to choose.",
         ],
       },
     ],
@@ -169,6 +172,21 @@ const baseSolutions = [
     tech: ['Odoo 14–19', 'OWL', 'Python', 'PostgreSQL', 'Tally', 'Excel / CSV', 'ETL'],
     related: ['erp-migration-v14-v19', 'textile-wholesale-erp-b2b', 'multi-vendor-ecommerce'],
     faq: ['odoo-rescue', 'odoo-edition', 'timelines'],
+    bodyTitle: 'Odoo upgrades and migrations, explained.',
+    body: [
+      {
+        type: 'p',
+        text: "Two kinds of migration bring people to us. **Version upgrades** move an existing Odoo to a newer version, and the hard part is always the custom modules. **System migrations** move a business onto Odoo from Tally, spreadsheets or another ERP, and the hard part is clean data and matching balances.",
+      },
+      {
+        type: 'ul',
+        items: [
+          "[Upgrading Odoo 17 to 19 with custom modules](/insights/odoo-upgrade-17-to-19-custom-modules): what breaks and how to plan it.",
+          "[Tally to Odoo migration](/insights/tally-to-odoo-migration): masters, GST, opening balances and a parallel month-end.",
+          "[Odoo Community vs Enterprise](/insights/odoo-community-vs-enterprise): including moving between editions.",
+        ],
+      },
+    ],
     faqItems: [
       { q: 'Can you upgrade Odoo with our custom modules?', a: 'Yes. Custom modules are the hard part of every upgrade. We list each one, rewrite what breaks for the new version, and test it on a copy of your database before switching.' },
       { q: 'How do you migrate data from Tally to Odoo?', a: 'We export masters (customers, suppliers, products, ledgers) and balances from Tally, map them to Odoo, load open invoices so receivables carry over, and run both systems for one month-end until the numbers match.' },
