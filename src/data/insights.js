@@ -2,7 +2,9 @@
 // Plain data module. Block types: p, h2 (with id), h3, ul, ol, quote, callout, code, stat, table ({head, rows, caption}).
 // Inline formatting inside `text`: **bold** and `code` only.
 
-export const insights = [
+import { odooGuides } from './odooGuides.js'
+
+const baseInsights = [
   {
     slug: 'tally-to-odoo-migration',
     title: 'Tally to Odoo migration: a step-by-step guide for Indian businesses',
@@ -722,6 +724,9 @@ const tools = {
     ],
   },
 ]
+
+// Odoo buyer guides first: they are the newest and the most searched.
+export const insights = [...odooGuides, ...baseInsights]
 
 export const insightBySlug = Object.fromEntries(insights.map((a) => [a.slug, a]))
 

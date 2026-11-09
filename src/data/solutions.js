@@ -68,6 +68,46 @@ const baseSolutions = [
       { q: 'How long does an Odoo implementation take for a small business?', a: 'A focused setup (sales, inventory, invoicing) for a small business usually takes 3 to 6 weeks. Manufacturing, multi-company or a migration with years of history takes 2 to 4 months. First working results usually land within 14 business days.' },
       { q: 'Which Odoo apps does a typical SME start with?', a: 'Most start with Sales, Inventory, Purchase and Invoicing or Accounting, then add CRM, Manufacturing, POS or eCommerce as needed. We recommend only the apps you will use in the first six months.' },
     ],
+    bodyTitle: 'Odoo implementation for Indian SMEs, explained.',
+    body: [
+      { type: 'h2', text: 'What an Odoo implementation includes', id: 'what-it-includes' },
+      {
+        type: 'p',
+        text: "An Odoo implementation turns standard Odoo into the system your business runs on. It covers choosing the apps, configuring them to your process, moving your data in, building anything Odoo does not do out of the box, training your team and supporting you after go-live. Buying Odoo licences is separate and paid to Odoo directly.",
+      },
+      { type: 'h2', text: 'Which Odoo apps fit which business', id: 'apps-by-business' },
+      {
+        type: 'table',
+        head: ['Business type', 'Typical starting apps', 'Often added later'],
+        rows: [
+          ['Trading and distribution', 'Sales, Purchase, Inventory, Invoicing or Accounting', 'CRM, customer portal, barcode, eCommerce'],
+          ['Manufacturing', 'Manufacturing (MRP), Inventory, Purchase, Sales, Accounting', 'Quality, Maintenance, PLM, subcontracting'],
+          ['Retail', 'Point of Sale, Inventory, Accounting', 'eCommerce, loyalty, multi-store'],
+          ['Textile and wholesale', 'Sales with customer price lists, Inventory, Accounting', 'Agent commissions, B2B portal, catalogues'],
+          ['Services', 'CRM, Sales, Project, Timesheets, Invoicing', 'Helpdesk, field service, subscriptions'],
+        ],
+        caption: 'Starting points, not rules. We recommend only the apps you will use in the first six months.',
+      },
+      { type: 'h2', text: 'What is different about Odoo in India', id: 'india' },
+      {
+        type: 'ul',
+        items: [
+          "**GST from day one:** taxes, HSN codes, GSTR reports, e-invoicing and e-way bills through Odoo's India localisation.",
+          "**Moving off Tally:** most Indian SMEs start on Tally and Excel. See the [Tally to Odoo migration guide](/insights/tally-to-odoo-migration).",
+          "**Multiple GSTINs and branches:** separate books per registration, consolidated reports for the owner.",
+          "**Licence cost in rupees:** from ₹580 per user per month on Standard, billed yearly. See [Odoo price in India](/insights/odoo-price-india).",
+        ],
+      },
+      { type: 'h2', text: 'Guides before you decide', id: 'guides' },
+      {
+        type: 'ul',
+        items: [
+          "[Odoo implementation cost in India](/insights/odoo-implementation-cost-india): what drives the quote and what to ask before you sign.",
+          "[Odoo Community vs Enterprise](/insights/odoo-community-vs-enterprise): which edition fits an SME.",
+          "[Odoo vs Tally Prime](/insights/odoo-vs-tally): when Tally is enough and when to move.",
+        ],
+      },
+    ],
     seo: {
       title: 'Odoo Implementation Services for Growing Businesses | CodeCrafters',
       description:

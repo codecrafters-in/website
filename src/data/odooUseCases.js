@@ -51,8 +51,42 @@ export const odooUseCases = [
     tech: ['Odoo 14–19', 'Community', 'Enterprise', 'Tally migration', 'Sales', 'Inventory', 'Accounting', 'Manufacturing', 'POS'],
     related: ['textile-wholesale-erp-b2b', 'portal-order-approval-engine', 'erp-migration-v14-v19'],
     faq: ['gujarat-local', 'odoo-official-partner', 'odoo-edition', 'pricing', 'odoo-rescue'],
+    bodyTitle: 'Working with an Odoo team in Ahmedabad.',
+    body: [
+      { type: 'h2', text: 'An Odoo team in Ahmedabad, for businesses across Gujarat', id: 'local-team' },
+      {
+        type: 'p',
+        text: "Gujarat searches for Odoo more than any other Indian state, and much of that demand comes from manufacturers, traders and textile and wholesale businesses around Ahmedabad and Gandhinagar. Working with an Ahmedabad team means the same time zone, conversations in English, Hindi or Gujarati, and people who understand how these businesses trade: price lists by customer, agent commissions, job work, GST and the move off Tally.",
+      },
+      { type: 'h2', text: 'Odoo India (Gandhinagar), official partners and independent teams', id: 'odoo-india-vs-partners' },
+      {
+        type: 'p',
+        text: "Odoo S.A., the company that makes Odoo, has its India office in Gandhinagar. It sells licences, runs the product and offers paid implementation packs; most implementation work in India is done by partners and independent firms. **Official partners** are enrolled in Odoo's partner programme and can resell licences. **Independent Odoo companies** like CodeCrafters implement, migrate and customise Odoo, while you buy licences directly from Odoo (or use free Community). Both can do the work; what matters is experience with businesses like yours and who actually does the engineering.",
+      },
+      {
+        type: 'table',
+        head: ['', 'Odoo S.A. (Gandhinagar)', 'Official Odoo partner', 'Independent Odoo company'],
+        rows: [
+          ['Sells Odoo licences', 'Yes', 'Yes (resells)', 'No: you buy from Odoo directly'],
+          ['Implements and customises', 'Through paid Success Packs', 'Yes', 'Yes'],
+          ['Listed on odoo.com partner directory', 'Not applicable', 'Yes', 'No'],
+          ['Who you work with', 'Odoo staff', 'Varies by partner', 'At CodeCrafters, the engineers who build it'],
+        ],
+      },
+      { type: 'h2', text: 'What businesses in Ahmedabad and Gandhinagar usually ask us for', id: 'common-projects' },
+      {
+        type: 'ul',
+        items: [
+          "Moving from Tally and Excel to Odoo, with GST set up properly. See [Tally to Odoo migration](/insights/tally-to-odoo-migration).",
+          "Wholesale and textile setups: customer price lists, agent commissions, B2B ordering, barcode selling.",
+          "Manufacturing with bills of materials, job work and costing. See [Odoo Manufacturing](/solutions/odoo-manufacturing).",
+          "Fixing an Odoo setup another vendor left half-finished, or upgrading an old version. See [Odoo migration](/solutions/odoo-migration).",
+          "Knowing the cost up front. See [Odoo price in India](/insights/odoo-price-india) and [implementation cost in India](/insights/odoo-implementation-cost-india).",
+        ],
+      },
+    ],
     seo: {
-      title: 'Odoo Implementation Company in Ahmedabad & Gandhinagar | CodeCrafters',
+      title: 'Odoo Company in Ahmedabad & Gandhinagar: Implementation & Support | CodeCrafters',
       description:
         'Odoo implementation, migration and customization from an Ahmedabad-based team, for businesses in Ahmedabad, Gandhinagar, Gujarat and across India. From $5,000.',
     },
